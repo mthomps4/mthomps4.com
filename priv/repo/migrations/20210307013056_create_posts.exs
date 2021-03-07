@@ -3,16 +3,15 @@ defmodule Dilong.Repo.Migrations.CreatePosts do
 
   def change do
     create table(:posts) do
-      add :title, :string
-      add :description, :text
-      add :file_url, :string
-      add :copied_markdown, :text
-      add :published, :boolean, default: false, null: false
-      add :published_on, :utc_datetime
-      add :last_updated, :utc_datetime
+      add(:title, :string)
+      add(:description, :text)
+      add(:file_url, :string)
+      add(:copied_markdown, :text, null: true)
+      add(:published, :boolean, default: false)
+      add(:published_on, :date, null: true)
+      add(:last_updated, :date, null: true)
 
       timestamps()
     end
-
   end
 end
