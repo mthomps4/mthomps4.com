@@ -18,6 +18,7 @@ defmodule DilongWeb.Router do
     pipe_through :browser
 
     live "/", PageLive, :index
+    live "/blog", BlogLive.Index, :index
   end
 
   # Other scopes may use custom stacks.
