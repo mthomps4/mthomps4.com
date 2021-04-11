@@ -2,8 +2,8 @@ use Mix.Config
 
 # Configure your database
 config :dilong, Dilong.Repo,
-  username: "matt",
-  password: "test1234",
+  username: "postgres",
+  password: "postgres",
   database: "dilong_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
