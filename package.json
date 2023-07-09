@@ -10,7 +10,12 @@
     "tailwindcss": "^3.3.2"
   },
   "scripts": {
+    "dev": "concurrently --names \"Rails,esbuild\" -c blue,magenta \"rails server\" \"yarn build:watch\"",
+    "build:watch": "yarn build --watch",
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
   }
 }
