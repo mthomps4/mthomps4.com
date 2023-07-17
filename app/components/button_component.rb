@@ -1,14 +1,51 @@
 # frozen_string_literal: true
 
 class ButtonComponent < ViewComponent::Base
-  def initialize(label:, url:, size: :md, variant: :primary, css: '')
+  SIZE = {
+    sm: :sm,
+    md: :md,
+    lg: :lg,
+    xl: :xl
+  }.freeze
+
+  VARIANT = {
+    primary: :primary,
+    secondary: :secondary,
+    danger: :danger
+  }.freeze
+
+  TYPE = {
+    button: 'button',
+    submit: 'submit',
+    reset: 'reset'
+  }.freeze
+
+  def initialize(label:, options: {})
     @label = label
-    @url = url
-    @styles = generate_styles(size, variant, css)
+    @options = validate_options(options)
+    @styles = generate_styles(@options)
   end
 
-  def generate_styles(size, variant, css)
-    TW_MERGER.merge("#{default_styles} #{size_styles(size)} #{variant_styles(variant)} #{css}")
+  # Could make a basic call here and remove the html.erb -- but I like the flexibility of the erb
+  # def call
+  #   button_to(button_options) do
+  #     @label
+  #   end
+  # end
+
+  private
+
+  def validate_options(options)
+    {
+      size: SIZE[options[:size]&.to_sym] || SIZE[:md],
+      variant: VARIANT[options[:variant]&.to_sym] || VARIANT[:primary],
+      custom_css: options[:custom_css].to_s,
+      type: TYPE[options[:type]&.to_sym] || TYPE[:button]
+    }
+  end
+
+  def generate_styles(options)
+    TW_MERGER.merge("#{default_styles} #{size_styles(options[:size])} #{variant_styles(options[:variant])} #{options[:custom_css]}")
   end
 
   def default_styles
@@ -17,18 +54,25 @@ class ButtonComponent < ViewComponent::Base
 
   def size_styles(size)
     {
-      sm: 'px-2.5 py-1.5 text-xs',
-      md: 'px-3 py-2 text-sm',
-      lg: 'px-4 py-2 text-sm',
-      xl: 'px-4 py-2 text-base'
+      SIZE[:sm] => 'px-2.5 py-1.5 text-xs',
+      SIZE[:md] => 'px-3 py-2 text-sm',
+      SIZE[:lg] => 'px-4 py-2 text-sm',
+      SIZE[:xl] => 'px-4 py-2 text-base'
     }[size] || ''
   end
 
   def variant_styles(variant)
     {
-      primary: 'bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus-visible:outline-indigo-600',
-      secondary: 'bg-brand-500 hover:bg-blue-700 focus:ring-blue-500 focus-visible:outline-blue-600',
-      danger: 'bg-red-600 hover:bg-red-700 focus:ring-red-500 focus-visible:outline-red-600'
+      VARIANT[:primary] => 'bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus-visible:outline-indigo-600',
+      VARIANT[:secondary] => 'bg-brand-500 hover:bg-blue-700 focus:ring-blue-500 focus-visible:outline-blue-600',
+      VARIANT[:danger] => 'bg-red-600 hover:bg-red-700 focus:ring-red-500 focus-visible:outline-red-600'
     }[variant] || ''
+  end
+
+  def button_options
+    {
+      class: @styles,
+      type: @options[:type]
+    }.compact
   end
 end

@@ -7,39 +7,39 @@ class ButtonComponentPreview < ViewComponent::Preview
   # ------------
   # A button for clicking.
   #
-  # @param label "The text to display on the button."
+  # @param label [String] "The text to display on the button."
   # @param variant [Symbol] select "The variant" { choices: [[Primary, primary], [Secondary, secondary], [Danger, danger]] }
-  # @param css "custom tailwind (assummes classes have been used and compiled)"
+  # @param css [String] "Custom tailwind classes (assumes classes have been used and compiled)"
 
   def small(label: 'Dynamic text', variant: :primary, css: '')
-    render(ButtonComponent.new(label:, url: 'https://google.com', size: :sm, variant:, css:))
+    render(ButtonComponent.new(label:, options: { size: :sm, variant:, css: }))
   end
 
   def medium(label: 'Dynamic text', variant: :primary, css: '')
-    render(ButtonComponent.new(label:, url: 'https://google.com', size: :md, variant:, css:))
+    render(ButtonComponent.new(label:, options: { size: :md, variant:, css: }))
   end
 
   def large(label: 'Dynamic text', variant: :primary, css: '')
-    render(ButtonComponent.new(label:, url: 'https://google.com', size: :lg, variant:, css:))
+    render(ButtonComponent.new(label:, options: { size: :lg, variant:, css: }))
   end
 
   def extra_large(label: 'Dynamic text', variant: :primary, css: '')
-    render(ButtonComponent.new(label:, url: 'https://google.com', size: :xl, variant:, css:))
+    render(ButtonComponent.new(label:, options: { size: :xl, variant:, css: }))
   end
   # @!endgroup
 
-  # @!group Primay
+  # @!group Primary
 
   # Button Component
   # ------------
   # A button for clicking.
   #
-  # @param label "The text to display on the button."
+  # @param label [String] "The text to display on the button."
   # @param size [Symbol] select "The size" { choices: [[xs, xs], [sm, sm], [md, md], [lg, lg], [xl, xl]] }
-  # @param css "custom tailwind (assummes classes have been used and compiled)"
+  # @param css [String] "Custom tailwind classes (assumes classes have been used and compiled)"
 
   def primary(size: :md, label: 'Dynamic text', css: '')
-    render(ButtonComponent.new(label:, url: 'https://google.com', size:, variant: :primary, css:))
+    render(ButtonComponent.new(label:, options: { size:, variant: :primary, css: }))
   end
   # @!endgroup
 
@@ -49,12 +49,12 @@ class ButtonComponentPreview < ViewComponent::Preview
   # ------------
   # A button for clicking.
   #
-  # @param label "The text to display on the button."
+  # @param label [String] "The text to display on the button."
   # @param size [Symbol] select "The size" { choices: [[xs, xs], [sm, sm], [md, md], [lg, lg], [xl, xl]] }
-  # @param css "custom tailwind (assummes classes have been used and compiled)"
+  # @param css [String] "Custom tailwind classes (assumes classes have been used and compiled)"
 
   def secondary(size: :md, label: 'Dynamic text', css: '')
-    render(ButtonComponent.new(label:, url: 'https://google.com', size:, variant: :secondary, css:))
+    render(ButtonComponent.new(label:, options: { size:, variant: :secondary, css: }))
   end
   # @!endgroup
 
@@ -64,12 +64,12 @@ class ButtonComponentPreview < ViewComponent::Preview
   # ------------
   # A button for clicking.
   #
-  # @param label "The text to display on the button."
+  # @param label [String] "The text to display on the button."
   # @param size [Symbol] select "The size" { choices: [[xs, xs], [sm, sm], [md, md], [lg, lg], [xl, xl]] }
-  # @param css "custom tailwind (assummes classes have been used and compiled)"
+  # @param css [String] "Custom tailwind classes (assumes classes have been used and compiled)"
 
   def danger(size: :md, label: 'Dynamic text', css: '')
-    render(ButtonComponent.new(label:, url: 'https://google.com', size:, variant: :danger, css:))
+    render(ButtonComponent.new(label:, options: { size:, variant: :danger, css: }))
   end
   # @!endgroup
 end
