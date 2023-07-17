@@ -7,4 +7,14 @@ module.exports = {
     "./app/assets/stylesheets/**/*.css",
     "./app/javascript/**/*.js",
   ],
+  theme: {
+    extend: {
+      colors: {
+        brand: {
+          500: "#AACCFF",
+          700: "#ccaaFF",
+        },
+      },
+    },
+  },
 };

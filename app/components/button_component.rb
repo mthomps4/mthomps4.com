@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Button < ViewComponent::Base
+class ButtonComponent < ViewComponent::Base
   def initialize(label:, url:, size: :md, variant: :primary, css: '')
     @label = label
     @url = url
@@ -27,8 +27,8 @@ class Button < ViewComponent::Base
   def variant_styles(variant)
     {
       primary: 'bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus-visible:outline-indigo-600',
-      red: 'bg-red-600 hover:bg-red-700 focus:ring-red-500 focus-visible:outline-red-600',
-      blue: 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus-visible:outline-blue-600'
+      secondary: 'bg-brand-500 hover:bg-blue-700 focus:ring-blue-500 focus-visible:outline-blue-600',
+      danger: 'bg-red-600 hover:bg-red-700 focus:ring-red-500 focus-visible:outline-red-600'
     }[variant] || ''
   end
 end
