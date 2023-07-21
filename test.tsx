@@ -23,7 +23,8 @@ const variantStyles = {
   },
 };
 
-const primaryErrorStyles = 'bg-brand-inactive-400 text-brand-white-300 hover:text-brand-white-300';
+const primaryErrorStyles =
+  'bg-brand-inactive-400 text-brand-white-300 hover:text-brand-white-300';
 
 const secondaryErrorStyles =
   'text-brand-alert-500 hover:bg-white hover:text-brand-alert-500 hover:border-brand-alert-500';
@@ -49,7 +50,10 @@ const buttonVariants = cva(baseStyles, {
 });
 
 export interface ButtonProps
-  extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>,
+  extends DetailedHTMLProps<
+      ButtonHTMLAttributes<HTMLButtonElement>,
+      HTMLButtonElement
+    >,
     VariantProps<typeof buttonVariants> {}
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -61,7 +65,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       />
     );
-  }
+  },
 );
 
 Button.displayName = 'Button';
