@@ -2,11 +2,11 @@
 
 Rails.application.routes.draw do
   resources :posts
-  get 'main/index'
+  get "main/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root 'main#index'
+  root "main#index"
 
-  mount Lookbook::Engine, at: '/lookbook' if Rails.env.development?
+  mount Lookbook::Engine, at: "/lookbook" if Rails.env.development?
 end

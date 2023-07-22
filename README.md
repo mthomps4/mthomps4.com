@@ -23,14 +23,25 @@ Things you may want to cover:
 
 - ...
 
+## Setup
+
+TODO:
+
+## Linting & Formatting
+
+<https://github.com/standardrb/standard>
+[standardrb extension](https://blog.testdouble.com/posts/2023-02-16-its-official-the-standard-ruby-vscode-extension)
+
+## Toolbox
+
+- Awesome Print: <https://github.com/awesome-print/awesome_print>
+
 ## TODOs
 
-### Setup
+### Dev
 
-- rubocop
 - factory_girl
 - awesomeprint
-- solargraph
 - eslint
 - prettier
 - tailwind theme

@@ -2,6 +2,6 @@
 
 class MainController < ApplicationController
   def index
-    @title = 'MAIN'
+    @title = "MAIN"
   end
 end
