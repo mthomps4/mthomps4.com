@@ -70,6 +70,7 @@ group :development, :test do
   gem "standard"
   gem "standard-rails"
   gem "awesome_print"
+  gem "erb_lint", require: false
 end
 
 group :development do

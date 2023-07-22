@@ -10,9 +10,11 @@
     "tailwindcss": "^3.3.2"
   },
   "scripts": {
-    "lint": "standardrb",
-    "lint:fix": "standardrb --fix",
-    "dev": "concurrently --names \"Rails,esbuild,css\" -c blue,magenta,yellow \"rails server\" \"yarn build:watch\" \"yarn build:css:dev\"",
+    "lint": "bundle exec standardrb",
+    "lint:fix": "bundle exec standardrb --fix",
+    "lint:erb:fix": "bundle exec erblint --lint-all --enable-all-linters -a",
+    "lint:all": "yarn lint:fix && yarn lint:erb:fix",
+    "dev": "concurrently --names \"Rails,esbuild,css\" -c blue,magenta,yellow \"bundle exec rails server\" \"yarn build:watch\" \"yarn build:css:dev\"",
     "build:watch": "yarn build --watch",
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",

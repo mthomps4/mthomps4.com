@@ -1,3 +1,8 @@
+# React Snippet Test
+
+Attempting to render Button.tsx
+
+```ts
 import * as React from 'react';
 import { DetailedHTMLProps, ButtonHTMLAttributes } from 'react';
 import { VariantProps, cva } from 'class-variance-authority';
@@ -71,3 +76,4 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = 'Button';
 
 export { Button, buttonVariants };
+```

@@ -1,36 +1,20 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-- Ruby version
-
-- System dependencies
-
-- Configuration
-
-- Database creation
-
-- Database initialization
-
-- How to run the test suite
-
-- Services (job queues, cache servers, search engines, etc.)
-
-- Deployment instructions
-
-- ...
-
 ## Setup
 
 TODO:
 
 ## Linting & Formatting
 
+### Standard RB
+
 <https://github.com/standardrb/standard>
 [standardrb extension](https://blog.testdouble.com/posts/2023-02-16-its-official-the-standard-ruby-vscode-extension)
+
+### ERB Lint (WIP)
+
+Still not 100% on this one... may remove
+[erb-lint](https://github.com/Shopify/erb-lint)
 
 ## Toolbox
 
@@ -41,7 +25,6 @@ TODO:
 ### Dev
 
 - factory_girl
-- awesomeprint
 - eslint
 - prettier
 - tailwind theme
