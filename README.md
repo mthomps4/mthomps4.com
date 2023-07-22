@@ -18,6 +18,8 @@ Still not 100% on this one... may remove
 
 ## Toolbox
 
+- asdf .tool-versions
+- redis (recommend asdf redis)
 - Awesome Print: <https://github.com/awesome-print/awesome_print>
 
 ## TODOs

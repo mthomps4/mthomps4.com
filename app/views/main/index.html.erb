@@ -1,3 +1,12 @@
-<h1>Main#index.html.erb</h1>
-<p class="p-4 bg-red-400">RAWR</p>
-<%= [1, 2, 3].each(x => x) %>
+<h1 class="bg-brand-blue-300">Main#index.html.erb</h1>
+<div class="absolute w-full -z-10 h-full bg-gradient-to-tr from-20% from-transparent  via-brand-blue-500 via-30% to-pink-400 to-95% rounded-full flex justify-center items-center blur-2xl">
+</div>
+<p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure magnam ratione omnis rem. Deleniti aperiam, iusto eius tempore aut veritatis fugit quas distinctio ipsam sint fugiat cum ullam vero maiores.</p>
+<div class="bg-brand-blue-800 p-4 m-8 rounded-xl h-[500px] border-4 border-brand-blue-300">
+  <p class="text-lg text-brand-blue-50">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus veritatis magni sit consectetur ipsum nemo esse sint! Nihil saepe enim veniam impedit quasi maxime libero necessitatibus provident iusto aspernatur. Nam.</p>
+</div>
+<div class="flex">
+  <% [50,100,200,300,400,500,600,700,800,900,950].each do |step| %>
+    <div class="bg-brand-blue-<%= step %> h-8 w-8 rounded-full m-2 border-[1px] border-black"></div>
+  <% end %>
+</div>

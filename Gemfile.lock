@@ -97,6 +97,9 @@ GEM
     ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    hotwire-livereload (1.2.3)
+      listen (>= 3.0.0)
+      rails (>= 6.0.0)
     htmlbeautifier (1.4.2)
     htmlentities (4.3.4)
     i18n (1.14.1)
@@ -200,6 +203,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     redcarpet (3.6.0)
+    redis (4.8.1)
     regexp_parser (2.8.1)
     reline (0.3.6)
       io-console (~> 0.5)
@@ -297,6 +301,7 @@ DEPENDENCIES
   capybara
   cssbundling-rails
   debug
+  hotwire-livereload
   htmlbeautifier
   jbuilder
   jsbundling-rails
@@ -306,6 +311,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 7.0.6)
   redcarpet
+  redis (~> 4.0)
   rouge
   selenium-webdriver
   sprockets-rails

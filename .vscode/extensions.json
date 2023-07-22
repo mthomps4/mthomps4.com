@@ -1,8 +1,8 @@
 {
   "recommendations": [
-    "testdouble.vscode-standard-ruby",
+    "testdouble.vscode-standard-ruby", // lint and format
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
-    "rebornix.ruby"
+    "rebornix.ruby" // highlighting
   ]
 }
