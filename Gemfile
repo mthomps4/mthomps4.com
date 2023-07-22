@@ -70,7 +70,9 @@ group :development, :test do
   gem "standard"
   gem "standard-rails"
   gem "awesome_print"
-  gem "erb_lint", require: false
+  # Hit a lot of weird errors here...
+  # gem "erb_lint", require: false
+  # gem "better_html" # needed for erb_lint
 end
 
 group :development do
