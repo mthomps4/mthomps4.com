@@ -12,8 +12,6 @@
   "scripts": {
     "lint": "bundle exec standardrb",
     "lint:fix": "bundle exec standardrb --fix",
-    "lint:erb:fix": "bundle exec erblint --lint-all --enable-all-linters -a",
-    "lint:all": "yarn lint:fix && yarn lint:erb:fix",
     "dev": "concurrently --names \"Rails,esbuild,css\" -c blue,magenta,yellow \"bundle exec rails server\" \"yarn build:watch\" \"yarn build:css:dev\"",
     "build:watch": "yarn build --watch",
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
