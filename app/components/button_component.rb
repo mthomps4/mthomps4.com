@@ -63,8 +63,8 @@ class ButtonComponent < ViewComponent::Base
 
   def variant_styles(variant)
     {
-      VARIANT[:primary] => "bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus-visible:outline-indigo-600",
-      VARIANT[:secondary] => "bg-brand-500 hover:bg-blue-700 focus:ring-blue-500 focus-visible:outline-blue-600",
+      VARIANT[:primary] => "bg-brand-emerald-600 hover:bg-brand-emerald-700 focus:ring-brand-emerald-500 focus-visible:outline-brand-emerald-600",
+      VARIANT[:secondary] => "bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus-visible:outline-blue-600",
       VARIANT[:danger] => "bg-red-600 hover:bg-red-700 focus:ring-red-500 focus-visible:outline-red-600"
     }[variant] || ""
   end

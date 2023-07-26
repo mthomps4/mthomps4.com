@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="bg-brand-blue-300>
+<html class="bg-brand-emerald-700">
   <head>
     <title>Turby</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -144,7 +144,10 @@
     </style> %>
     <%= hotwire_livereload_tags if Rails.env.development? %>
   </head>
-  <body class="bg-gradient-to-b from-brand-blue-300 to-brand-blue-700 min-h-screen" >
-    <%= yield %>
+  <body class="bg-brand-emerald-100 pb-4 min-h-screen" >
+    <%= render "shared/nav" %>
+    <div class="bg-gradient-to-br from-brand-emerald-50 to-brand-emerald-100 border-2 border-brand-emerald-300 m-4 p-4 rounded-lg">
+      <%= yield %>
+    </div>
   </body>
 </html>

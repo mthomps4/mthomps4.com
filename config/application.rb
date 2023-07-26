@@ -3,6 +3,8 @@
 require_relative "boot"
 
 require "rails/all"
+require "view_component"
+require "primer/view_components/engine"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -20,6 +22,8 @@ module Turby
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.hosts << ".ngrok-free.app" if Rails.env.development?
 
     # LOOKBOOK
     config.view_component.default_preview_layout = "lookbook"

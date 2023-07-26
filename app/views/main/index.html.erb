@@ -1,58 +1,22 @@
-<nav class="bg-white shadow">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="flex h-16 justify-between">
-      <div class="flex">
-        <div class="flex flex-shrink-0 items-center">
-          <img class="h-8 w-8" src="/brand/MT-circle-blue.png" alt="Matt Thompson">
-        </div>
-        <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-          <!-- Current: "border-brand-blue-500 text-brand-blue-900", Default: "border-transparent text-brand-blue-500 hover:border-brand-blue-300 hover:text-gray-700" -->
-          <a href="#" class="inline-flex items-center border-b-2 border-brand-blue-500 px-1 pt-1 text-sm font-medium text-brand-blue-900">Dashboard</a>
-          <a href="#" class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-brand-blue-500 hover:border-brand-blue-300 hover:text-gray-700">Team</a>
-          <a href="#" class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-brand-blue-500 hover:border-brand-blue-300 hover:text-gray-700">Projects</a>
-          <a href="#" class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-brand-blue-500 hover:border-brand-blue-300 hover:text-gray-700">Calendar</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Mobile menu, show/hide based on menu state. -->
-  <div class="sm:hidden" id="mobile-menu">
-    <div class="space-y-1 pb-3 pt-2">
-      <!-- Current: "bg-brand-blue-50 border-brand-blue-500 text-brand-blue-700", Default: "border-transparent text-brand-blue-500 hover:bg-brand-blue-50 hover:border-brand-blue-300 hover:text-gray-700" -->
-      <a href="#" class="block border-l-4 border-brand-blue-500 bg-brand-blue-50 py-2 pl-3 pr-4 text-base font-medium text-brand-blue-700">Dashboard</a>
-      <a href="#" class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-brand-blue-500 hover:border-brand-blue-300 hover:bg-brand-blue-50 hover:text-gray-700">Team</a>
-      <a href="#" class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-brand-blue-500 hover:border-brand-blue-300 hover:bg-brand-blue-50 hover:text-gray-700">Projects</a>
-      <a href="#" class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-brand-blue-500 hover:border-brand-blue-300 hover:bg-brand-blue-50 hover:text-gray-700">Calendar</a>
-    </div>
-  </div>
-</nav>
-<div class="mx-10">
+<div>
   <div class="flex flex-col justify-center items-center">
-    <div class="flex justify-center items-center">
-      <%= image_tag "/brand/MThompson-blue.png", class: "h-32", alt: "Matthew Thompson" %>
+    <div class="w-full flex justify-between">
+      <h1 class="flex flex-col text-5xl text-brand-emerald-700 font-light text-center">
+        <span>Matthew</span>
+        <span>Thompson</span>
+      </h1>
+      <%= image_tag "/avatars/shop.JPG", class: "h-24 w-24 border-2 shadow-xl object-fit borer-4 border-brand-emerald-300 rounded-lg", alt: "Matthew Thompson image" %>
     </div>
-    <h2 class="text-lg text-brand-blue-700 ">Long Tagline about me ... </h2>
+    <h2 class="my-4">Softward Engineer - Architect - Builder</h2>
   </div>
-  <div class="flex">
-    <div class="bg-brand-blue-100 p-4 m-8 rounded-xl h-[500px] border-2 border-brand-blue-400">
-      <%= image_tag "/avatars/park.jpg", class: "h-auto w-32 border-2 shadow-xl object-fit", alt: "Matthew Thompson image" %>
-      <p class="text-lg text-brand-blue-700">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus veritatis magni sit consectetur ipsum nemo esse sint! Nihil saepe enim veniam impedit quasi maxime libero necessitatibus provident iusto aspernatur. Nam.</p>
-    </div>
-    <p class="p-4 m-8">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae enim, nam ducimus unde, sed accusamus a modi optio hic quasi esse nesciunt ipsa dolorum aperiam sunt officia, labore maiores voluptatem.</p>
+  <div class="mt-4">
+    <p class="my-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae enim, nam ducimus unde, sed accusamus a modi optio hic quasi esse nesciunt ipsa dolorum aperiam sunt officia, labore maiores voluptatem.</p>
+    <p class="my-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae enim, nam ducimus unde, sed accusamus a modi optio hic quasi esse nesciunt ipsa dolorum aperiam sunt officia, labore maiores voluptatem.</p>
+    <p class="my-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae enim, nam ducimus unde, sed accusamus a modi optio hic quasi esse nesciunt ipsa dolorum aperiam sunt officia, labore maiores voluptatem.</p>
+    <p class="my-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae enim, nam ducimus unde, sed accusamus a modi optio hic quasi esse nesciunt ipsa dolorum aperiam sunt officia, labore maiores voluptatem.</p>
   </div>
-  <div class="flex">
-    <% [50,100,200,300,400,500,600,700,800,900,950].each do |step| %>
-      <div class="bg-brand-blue-<%= step %> h-8 w-8 rounded-full m-2 border-[1px] border-black"></div>
-    <% end %>
-  </div>
-  <div class="flex">
-    <% [50,100,200,300,400,500,600,700,800,900,950].each do |step| %>
-      <div class="bg-brand-matrix-<%= step %> h-8 w-8 rounded-full m-2 border-[1px] border-black"></div>
-    <% end %>
-  </div>
-  <div class="flex">
-    <% [50,100,200,300,400,500,600,700,800,900,950].each do |step| %>
-      <div class="bg-brand-blue-bell-<%= step %> h-8 w-8 rounded-full m-2 border-[1px] border-black"></div>
-    <% end %>
-  </div>
+</div>
+<div class="my-10">
+  <%= render(ButtonComponent.new(label: "Learn More...")) %>
+</div>
 </div>

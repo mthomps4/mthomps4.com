@@ -55,6 +55,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 gem "view_component"
+gem "primer_view_components"
 gem "tailwind_merge"
 
 # Markdown rendering

@@ -1,0 +1,41 @@
+<% link_class = "text-sm font-medium text-brand-emerald-50 hover:border-brand-emerald-200 hover:border-b-2 my-4 active:text-brand-emerald-700 active:border-brand-emerald-700" %>
+<% menu_links = [
+    { label: 'About', path: root_path, class: link_class },
+    { label: 'Blog', path: posts_path, class: link_class },
+    { label: 'Contact', path: root_path, class: link_class },
+] %>
+<nav class="bg-gradient-to-tr from-brand-emerald-400 to-brand-emerald-600 shadow-xl h-18" data-controller="reveal" data-reveal-hidden-class="hidden">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 justify-between">
+      <div class="w-full flex justify-between">
+        <div class="flex flex-shrink-0 items-center">
+          <img class="h-12" src="/brand/MThompson-white.png" alt="Matt Thompson">
+        </div>
+        <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+          <% menu_links.each do |link| %>
+            <%= link_to link[:label], link[:path], class: link[:class] %>
+          <% end %>
+        </div>
+      </div>
+      <!-- Mobile menu button -->
+      <div class="-mr-2 flex items-center sm:hidden">
+        <button data-action="click->reveal#toggle" type="button" class="inline-flex items-center justify-center rounded-md p-2 text-brand-emerald-400 hover:bg-brand-emerald-600 hover:text-brand-emerald-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-emerald-500" aria-controls="mobile-menu">
+          <span class="sr-only hidden">Open main menu</span>
+          <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Mobile menu, show/hide based on menu state. -->
+  <div class="sm:hidden" id="mobile-menu">
+    <div data-reveal-target="item" class="hidden">
+      <div class="flex flex-col items-center justify-center">
+        <% menu_links.each do |link| %>
+          <%= link_to link[:label], link[:path], class: link[:class] %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>
