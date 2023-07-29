@@ -11,7 +11,8 @@
         <div class="flex flex-shrink-0 items-center">
           <img class="h-12" src="/brand/MThompson-white.png" alt="Matt Thompson">
         </div>
-        <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+        <div class="hidden sm:ml-6 sm:flex sm:space-x-8 items-center">
+          <div class="h-12 w-12 flex"><%= render('shared/dark_mode_toggle')%> </div>
           <% menu_links.each do |link| %>
             <%= link_to link[:label], link[:path], class: link[:class] %>
           <% end %>

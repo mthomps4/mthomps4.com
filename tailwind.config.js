@@ -1,8 +1,10 @@
 module.exports = {
+  darkMode: 'class',
   content: [
     './app/components/**/*.html.erb',
     './app/components/**/*.rb',
     './app/views/**/*.html.erb',
+    './app/views/**/*',
     './app/helpers/**/*.rb',
     './app/assets/stylesheets/**/*.css',
     './app/javascript/**/*.js',
