@@ -9,3 +9,6 @@ application.register('dark-mode', DarkModeController);
 
 import HelloController from './hello_controller';
 application.register('hello', HelloController);
+
+import Reveal from 'stimulus-reveal-controller';
+application.register('reveal', Reveal);

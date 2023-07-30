@@ -62,6 +62,7 @@ class PostsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.find(params[:id])
+    @markdown = PostsHelper.render_markdown(@post.content)
   end
 
   # Only allow a list of trusted parameters through.

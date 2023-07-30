@@ -1,11 +1,11 @@
-<p style="color: green"><%= notice %></p>
-<h1>Posts</h1>
-<div id="posts">
-  <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
-  <% end %>
+<div class="my-4">
+  <h1 class="text-4xl text-brand-blue-700 dark:text-brand-blue-50 font-light text-center">Posts</h1>
+  <div id="posts" class="bg-gradient-to-br from-brand-blue-50 to-brand-blue-100 dark:from-brand-blue-800 dark:to-brand-blue-950 border-[1px] border-brand-blue-300 dark:border-brand-blue-600 my-2 p-2 rounded-lg text-brand-blue-950 dark:text-brand-blue-100">
+    <% @posts.each do |post| %>
+      <%= render post %>
+      <p class="flex justify-end underline active:text-brand-blue-300">
+        <%= link_to "Read more...", post %>
+      </p>
+    <% end %>
+  </div>
 </div>
-<%= link_to "New post", new_post_path %>

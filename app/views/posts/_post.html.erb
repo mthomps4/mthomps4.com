@@ -1,4 +1,4 @@
-<div id="<%= dom_id post %>" class="my-10">
+<div id="<%= dom_id post %>" class="my-4">
   <p>
     <strong>Title:</strong>
     <%= post.title %>
@@ -9,6 +9,8 @@
   </p>
   <p>
     <strong>Content:</strong>
-    <%= PostsHelper.render_markdown(post.content) %>
   </p>
+  <div class="break-words prose prose-brand-blue dark:prose-invert">
+    <%= @markdown %>
+  </div>
 </div>

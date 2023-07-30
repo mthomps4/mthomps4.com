@@ -9,7 +9,6 @@ export default class extends Controller {
       (!('theme' in localStorage) &&
         window.matchMedia('(prefers-color-scheme: dark)').matches)
     ) {
-      console.log(this.lightIconTarget);
       this.lightIconTarget.classList.remove('hidden');
     } else {
       this.darkIconTarget.classList.remove('hidden');

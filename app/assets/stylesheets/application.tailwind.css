@@ -3,19 +3,24 @@
 @tailwind utilities;
 
 /* Markdown Code Styles */
-/* https: //github.com/mgyongyosi/OneDarkJekyll/blob/master/syntax-one-dark.css */
+/* https://github.com/mgyongyosi/OneDarkJekyll/blob/master/syntax-one-dark.css */
 .highlight,
 pre.highlight {
-  background: #282c34;
-  color: #abb2bf
+  /* background: #282c34; */
+    background: #1d2534;
+  /* color: #abb2bf */
+  color: #f5f7fa;
 }
 
 .highlight pre {
-  background: #282c34
+  /* background: #282c34 */
+    background: #1d2534;
+    background-image: linear-gradient(to bottom right, #2c384e, #1d2534);
 }
 
 .highlight .hll {
-  background: #282c34
+  /* background: #282c34 */
+    background: #1d2534;
 }
 
 .highlight .c {
