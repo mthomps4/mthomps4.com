@@ -1,7 +1,7 @@
-<p style="color: green"><%= notice %></p>
-<%= render @post %>
-<div>
-  <%= link_to "Edit this post", edit_post_path(@post) %> |
-  <%= link_to "Back to posts", posts_path %>
-  <%= button_to "Destroy this post", @post, method: :delete %>
+<div class="flex justify-start items-center text-brand-blue-700 dark:text-brand-blue-100 mt-4" >
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+  </svg>
+  <%= link_to "Back to posts", posts_path, class: "ml-2" %>
 </div>
+<%= render @post %>
