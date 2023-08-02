@@ -23,7 +23,8 @@ module Turby
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    config.hosts << ".ngrok-free.app" if Rails.env.development?
+    config.hosts << ".ngrok.dev" if Rails.env.development?
+    config.hosts << ".ngrok.app" if Rails.env.development?
 
     # LOOKBOOK
     config.view_component.default_preview_layout = "lookbook"

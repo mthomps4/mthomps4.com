@@ -14,7 +14,7 @@
   "scripts": {
     "lint": "bundle exec standardrb",
     "lint:fix": "bundle exec standardrb --fix",
-    "dev": "concurrently --names \"Rails,esbuild,css\" -c blue,magenta,yellow \"bundle exec rails server\" \"yarn build:watch\" \"yarn build:css:dev\"",
+    "dev": "concurrently --names \"Rails,Redis,esbuild,css\" -c blue,cyan,magenta,yellow \"bundle exec rails server\" \"redis-server\" \"yarn build:watch\" \"yarn build:css:dev\"",
     "build:watch": "yarn build --watch",
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
