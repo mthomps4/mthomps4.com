@@ -1,0 +1,16 @@
+<form>
+  <h1 class="text-2xl font-medium">Contact Me</h1>
+  <div class="grid grid-cols-2 gap-4">
+    <div>
+      <%= render(InputComponent.new(id: "first_name", label: "First Name:", type: "text", placeholder: "Peter")) %>
+    </div>
+    <div>
+      <label for="last_name" class="block text-sm font-medium leading-6 text-brand-blue-900 dark:text-brand-blue-100">Last Name:</label>
+      <input type="text" name="last_name" id="last_name" class="block w-full rounded-md border-0 py-1.5 text-brand-blue-900 shadow-sm ring-1 ring-inset ring-brand-blue-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-brand-blue-600 sm:text-sm sm:leading-6" placeholder="Parker">
+    </div>
+  </div>
+  <label for="email" class="block text-sm font-medium leading-6 text-brand-blue-900 dark:text-brand-blue-100">Email:</label>
+  <input type="email" name="email" id="email" class="block w-full rounded-md border-0 py-1.5 text-brand-blue-900 shadow-sm ring-1 ring-inset ring-brand-blue-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-brand-blue-600 sm:text-sm sm:leading-6" placeholder="parker@daily.net">
+  <label for="message" class="block text-sm font-medium leading-6 text-brand-blue-900 dark:text-brand-blue-100">Message:</label>
+  <textarea rows="4" name="message" id="message" class="block w-full rounded-md border-0 py-1.5 text-brand-blue-900 shadow-sm ring-1 ring-inset ring-brand-blue-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-brand-blue-600 sm:text-sm sm:leading-6"></textarea>
+</form>
