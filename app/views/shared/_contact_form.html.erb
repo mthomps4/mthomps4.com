@@ -13,4 +13,8 @@
   <input type="email" name="email" id="email" class="block w-full rounded-md border-0 py-1.5 text-brand-blue-900 shadow-sm ring-1 ring-inset ring-brand-blue-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-brand-blue-600 sm:text-sm sm:leading-6" placeholder="parker@daily.net">
   <label for="message" class="block text-sm font-medium leading-6 text-brand-blue-900 dark:text-brand-blue-100">Message:</label>
   <textarea rows="4" name="message" id="message" class="block w-full rounded-md border-0 py-1.5 text-brand-blue-900 shadow-sm ring-1 ring-inset ring-brand-blue-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-brand-blue-600 sm:text-sm sm:leading-6"></textarea>
+
+  <div class="mt-10 flex justify-end">
+    <%= render(ButtonComponent.new(label: "Learn More...")) %>
+  </div>
 </form>
