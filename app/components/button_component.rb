@@ -22,8 +22,8 @@ class ButtonComponent < ViewComponent::Base
 
   def initialize(label:, options: {})
     @label = label
-    @options = validate_options(options)
-    @styles = generate_styles(@options)
+    custom_options = validate_options(options)
+    @styles = generate_styles(custom_options)
   end
 
   # Could make a basic call here and remove the html.erb -- but I like the flexibility of the erb
