@@ -10,9 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_21_184312) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_07_013054) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "phone_number"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_contacts_on_email"
+    t.index ["first_name"], name: "index_contacts_on_first_name"
+    t.index ["last_name"], name: "index_contacts_on_last_name"
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
