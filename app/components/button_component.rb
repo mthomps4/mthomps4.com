@@ -23,6 +23,7 @@ class ButtonComponent < ViewComponent::Base
   def initialize(label:, options: {})
     @label = label
     custom_options = validate_options(options)
+    @type = custom_options[:type]
     @styles = generate_styles(custom_options)
     super
   end
