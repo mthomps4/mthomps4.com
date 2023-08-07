@@ -24,6 +24,7 @@ class ButtonComponent < ViewComponent::Base
     @label = label
     custom_options = validate_options(options)
     @styles = generate_styles(custom_options)
+    super
   end
 
   # Could make a basic call here and remove the html.erb -- but I like the flexibility of the erb

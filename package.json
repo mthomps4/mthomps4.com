@@ -6,8 +6,6 @@
     "@hotwired/turbo-rails": "^7.3.0",
     "autoprefixer": "^10.4.14",
     "esbuild": "^0.18.11",
-    "flowbite": "^1.8.1",
-    "flowbite-datepicker": "^1.2.2",
     "postcss": "^8.4.25",
     "stimulus": "^3.2.1",
     "stimulus-reveal-controller": "^4.1.0",

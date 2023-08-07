@@ -39,3 +39,8 @@ Still not 100% on this one... may remove
 - SSO
 - Manual Pagination
 - Infinite Scroll
+
+## Deploy (Heroku)
+
+- bundle lock --add-platform x86_64-linux --add-platform ruby
+-

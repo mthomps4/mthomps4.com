@@ -68,7 +68,6 @@ export default {
     './app/helpers/**/*.rb',
     './app/assets/stylesheets/**/*.css',
     './app/javascript/**/*.js',
-    './node_modules/flowbite/**/*.js',
   ],
   safelist: [
     {
@@ -84,11 +83,7 @@ export default {
       variants: ['hover', 'focus', 'disabled'],
     },
   ],
-  plugins: [
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/forms'),
-    require('flowbite/plugin'),
-  ],
+  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')],
   theme: {
     extend: {
       fontFamily: {
