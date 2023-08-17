@@ -10,18 +10,22 @@
     </div>
   <% end %>
   <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+    <%= form.label :title, class: label_styles %>
+    <%= form.text_field :title, class: input_styles %>
   </div>
   <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+    <%= form.label :description, class: label_styles %>
+    <%= form.text_area :description, class: text_area_styles %>
   </div>
   <div>
-    <%= form.label :content, style: "display: block" %>
-    <%= form.text_area :content %>
+    <%= form.label :url, class: label_styles %>
+    <%= form.text_field :url, class: input_styles %>
   </div>
   <div>
-    <%= form.submit %>
+    <%= form.label :content, class: label_styles %>
+    <%= form.text_area :content, rows: 20, class: text_area_styles %>
+  </div>
+  <div>
+    <%= form.submit class: button_styles %>
   </div>
 <% end %>
