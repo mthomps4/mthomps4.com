@@ -2,7 +2,8 @@
 
 class MainController < ApplicationController
   def index
-    @title = "MAIN"
-    @contact = Contact.new()
+  end
+
+  def info
   end
 end

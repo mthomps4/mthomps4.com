@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :contacts, only: [:create]
   resources :posts
 
-  get "main/index"
+  get "index", to: "main#index"
+  get "info", to: "main#info"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

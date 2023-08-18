@@ -2,7 +2,7 @@
 <% menu_links = [
     { label: 'About', path: root_path, class: link_class },
     { label: 'Blog', path: posts_path, class: link_class },
-    { label: 'Contact', path: root_path, class: link_class },
+    { label: 'Contact Me', path: info_path, class: link_class },
 ] %>
 <nav class="bg-gradient-to-tr from-brand-blue-400 to-brand-blue-600 shadow-xl h-18" data-controller="reveal" data-reveal-hidden-class="hidden">
   <div class="mx-auto max-w-6xl px-4">
@@ -13,7 +13,7 @@
             <img class="h-12" src="/brand/MThompson-white.png" alt="Matt Thompson">
           <% end %>
         </div>
-        <div class="hidden sm:flex sm:space-x-8 items-center">
+        <div class="hidden sm:flex sm:space-x-8 items-center justify-end w-full">
           <% menu_links.each do |link| %>
             <%= link_to link[:label], link[:path], class: link[:class] %>
           <% end %>
