@@ -55,9 +55,10 @@ gem 'bootsnap', require: false
 # gem "image_processing", "~> 1.2"
 
 # Theme support
-gem 'view_component'
+# gem 'view_component'
 # gem "primer_view_components" -- BETA
-gem 'class_variants'
+# gem 'class_variants'
+
 gem 'tailwind_merge'
 
 # Markdown rendering
@@ -69,6 +70,7 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   # https://github.com/standardrb/standard
   gem 'awesome_print'
+  gem 'erb_lint'
   gem 'standard'
   gem 'standard-rails'
 end

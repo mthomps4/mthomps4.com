@@ -41,3 +41,4 @@
 /config/credentials/test.key
 
 dump.rdb
+.DS_Store
