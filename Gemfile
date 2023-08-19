@@ -70,7 +70,7 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   # https://github.com/standardrb/standard
   gem 'awesome_print'
-  gem 'erb_lint'
+  # gem 'erb_lint'
   gem 'standard'
   gem 'standard-rails'
 end
