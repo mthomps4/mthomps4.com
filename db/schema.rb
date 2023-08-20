@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_08_011323) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_20_004548) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,6 +27,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_08_011323) do
     t.index ["last_name"], name: "index_contacts_on_last_name"
   end
 
+  create_table "learnings", force: :cascade do |t|
+    t.string "title"
+    t.text "markdown"
+    t.boolean "published"
+    t.datetime "published_on"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -35,6 +44,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_08_011323) do
     t.datetime "updated_at", null: false
     t.string "url", null: false
     t.index ["url"], name: "index_posts_on_url", unique: true
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.string "taggable_type", null: false
+    t.bigint "taggable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true
+    t.index ["taggable_type", "taggable_id"], name: "index_tags_on_taggable"
   end
 
 end
