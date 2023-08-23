@@ -5,16 +5,17 @@ Rails.application.routes.draw do
   resources :contacts, only: [:create]
   resources :posts
 
-  get 'index', to: 'main#index'
-  get 'info', to: 'main#info'
+  get "index", to: "main#index"
+  get "info", to: "main#info"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root 'main#index'
+  root "main#index"
+  post "parse_markdown", to: "main#parse_markdown"
 
-  namespace 'admin' do
+  namespace "admin" do
     resources :learnings
   end
 
-  mount Lookbook::Engine, at: '/lookbook' if Rails.env.development?
+  mount Lookbook::Engine, at: "/lookbook" if Rails.env.development?
 end
