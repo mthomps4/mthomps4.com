@@ -8,5 +8,9 @@ module Taggable
       tag = Tag.find_or_create_by(name: name.strip)
       tags << tag unless tags.include?(tag)
     end
+
+    # Update Backup file in S3 with new tags
+    reload
+    create_backup
   end
 end
