@@ -7,8 +7,7 @@ export default class extends Controller {
   async preview() {
     const markdown = this.bodyTarget.value;
 
-    console.log({ markdown });
-
+    // I could optionally have a JS package here -- but I already had something set in Rails Helpers
     const response = await fetch('/parse_markdown', {
       method: 'POST',
       headers: {
@@ -19,13 +18,9 @@ export default class extends Controller {
       body: JSON.stringify({ markdown }),
     });
 
-    console.log({ response });
-
     const data = await response.json();
     const { parsed } = data;
     this.bodyPreviewTarget.innerHTML = parsed;
-
-    // this.bodyPreviewTarget.innerText = this.bodyTarget.value;
   }
 }
 
