@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :learnings, only: %i[index show]
   resources :contacts, only: [:create]
-  resources :posts
+  resources :posts, only: [:index, :show]
+  get "til", to: "posts#til"
 
   get "index", to: "main#index"
   get "info", to: "main#info"
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   post "parse_markdown", to: "main#parse_markdown"
 
   namespace "admin" do
-    resources :learnings
+    resources :posts
   end
 
   mount Lookbook::Engine, at: "/lookbook" if Rails.env.development?

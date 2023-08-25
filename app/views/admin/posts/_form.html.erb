@@ -1,0 +1,39 @@
+<%= form_with(model: post, url: url) do |form| %>
+  <% if post.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <%= form.label :post_type, class: label_styles %>
+    <%= form.collection_select :post_type, Post.post_types.keys, :to_s, :upcase, { prompt: "Select Post Type" }, { class: "form-control" } %>
+  </div>
+  <div>
+    <%= form.label :title, class: label_styles %>
+    <%= form.text_field :title, class: input_styles %>
+  </div>
+  <div>
+    <%= form.label :description, class: label_styles %>
+    <%= form.text_area :description, class: text_area_styles %>
+  </div>
+  <div>
+    <%= form.label :content, class: label_styles %>
+    <div data-controller="markdown-previewer" class="w-full flex">
+      <%= form.text_area :content, rows: 20, class: text_area_styles(css: "w-1/2 mr-10"), data: {
+      "markdown-previewer-target": "body",
+      "action": "input->markdown-previewer#preview"
+      }
+    %>
+      <div data-markdown-previewer-target="bodyPreview" class="<%= markdown_container_styles %>">
+      </div>
+    </div>
+  </div>
+  <div>
+    <%= form.submit class: button_styles(css: "mt-10") %>
+  </div>
+<% end %>

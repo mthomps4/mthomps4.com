@@ -10,9 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_23_004235) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_25_174917) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  # Custom types defined in this database.
+  # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "post_type", ["post", "til"]
+  create_enum "post_types", ["post", "til"]
 
   create_table "contacts", force: :cascade do |t|
     t.string "first_name"
@@ -27,40 +32,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_23_004235) do
     t.index ["last_name"], name: "index_contacts_on_last_name"
   end
 
-  create_table "learnings", force: :cascade do |t|
-    t.string "title"
-    t.text "markdown"
-    t.boolean "published"
-    t.datetime "published_on"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["published"], name: "index_learnings_on_published"
-    t.index ["published_on"], name: "index_learnings_on_published_on"
-    t.index ["title"], name: "index_learnings_on_title"
-  end
-
-  create_table "learnings_tags", force: :cascade do |t|
-    t.bigint "learning_id", null: false
-    t.bigint "tag_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["learning_id"], name: "index_learnings_tags_on_learning_id"
-    t.index ["tag_id"], name: "index_learnings_tags_on_tag_id"
-  end
-
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "url", null: false
     t.datetime "published_on"
     t.boolean "published", default: false
+    t.enum "post_type", default: "post", null: false, enum_type: "post_types"
     t.index ["published"], name: "index_posts_on_published"
     t.index ["published_on"], name: "index_posts_on_published_on"
     t.index ["title"], name: "index_posts_on_title"
-    t.index ["url"], name: "index_posts_on_url", unique: true
   end
 
   create_table "posts_tags", force: :cascade do |t|
@@ -79,8 +62,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_23_004235) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
-  add_foreign_key "learnings_tags", "learnings"
-  add_foreign_key "learnings_tags", "tags"
   add_foreign_key "posts_tags", "posts"
   add_foreign_key "posts_tags", "tags"
 end
