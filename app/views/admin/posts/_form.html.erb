@@ -10,7 +10,7 @@
     </div>
   <% end %>
   <div class="flex justify-between">
-    <%= form.collection_select :post_type, Post.post_types.keys, :to_s, :upcase, { prompt: "Select Post Type" }, { class: "form-control" } %>
+    <%= form.collection_select :post_type, Post.post_types.keys, :to_s, :upcase, { prompt: "Select Post Type" }, { class: "rounded-lg border-2 border-brand-blue-400" } %>
     <div class="flex items-center">
       <%= form.label :published, class: label_styles %>
       <%= form.check_box :published, class: checkbox_styles %>
