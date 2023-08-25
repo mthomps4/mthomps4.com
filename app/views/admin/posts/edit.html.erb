@@ -1,0 +1,7 @@
+<h1>Editing post</h1>
+<%= render "form", post: @post, url: admin_post_path(@post) %>
+<br>
+<div>
+  <%= link_to "Show this post", admin_post_path(@post) %> |
+  <%= link_to "Back to posts", admin_posts_path %>
+</div>
