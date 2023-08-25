@@ -2,13 +2,15 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application"
+import { application } from './application';
+import Reveal from 'stimulus-reveal-controller';
+application.register('reveal', Reveal);
 
-import DarkModeController from "./dark_mode_controller"
-application.register("dark-mode", DarkModeController)
+import DarkModeController from './dark_mode_controller';
+application.register('dark-mode', DarkModeController);
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+import HelloController from './hello_controller';
+application.register('hello', HelloController);
 
-import MarkdownPreviewerController from "./markdown_previewer_controller"
-application.register("markdown-previewer", MarkdownPreviewerController)
+import MarkdownPreviewerController from './markdown_previewer_controller';
+application.register('markdown-previewer', MarkdownPreviewerController);
