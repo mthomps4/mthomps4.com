@@ -4,6 +4,6 @@ class UpdatePosts < ActiveRecord::Migration[7.0]
     add_column :posts, :published, :boolean, default: false
     add_index :posts, :published
     add_index :posts, :published_on
-    add_index :posts, :title
+    add_index :posts, :title, unique: true
   end
 end

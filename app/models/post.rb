@@ -9,6 +9,8 @@ class Post < ApplicationRecord
   enum post_type: {post: "post", til: "til"}
   scope :published, -> { where(published: true) }
 
+  validates :title, presence: true, uniqueness: true
+
   def set_published_on
     self.published_on = Time.zone.now if published?
   end
@@ -26,6 +28,7 @@ class Post < ApplicationRecord
       body: {
         title: title,
         description: description,
+        type: post_type,
         # featured_image: featured_image,
         tags: tags.map(&:name),
         published_on: published_on,
