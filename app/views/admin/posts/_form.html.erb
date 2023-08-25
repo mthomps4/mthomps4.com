@@ -9,9 +9,12 @@
       </ul>
     </div>
   <% end %>
-  <div>
-    <%= form.label :post_type, class: label_styles %>
+  <div class="flex justify-between">
     <%= form.collection_select :post_type, Post.post_types.keys, :to_s, :upcase, { prompt: "Select Post Type" }, { class: "form-control" } %>
+    <div class="flex items-center">
+      <%= form.label :published, class: label_styles %>
+      <%= form.check_box :published, class: checkbox_styles %>
+    </div>
   </div>
   <div>
     <%= form.label :title, class: label_styles %>
@@ -23,8 +26,8 @@
   </div>
   <div>
     <%= form.label :content, class: label_styles %>
-    <div data-controller="markdown-previewer" class="w-full flex">
-      <%= form.text_area :content, rows: 20, class: text_area_styles(css: "w-1/2 mr-10"), data: {
+    <div data-controller="markdown-previewer" class="w-full flex flex-col md:flex-row">
+      <%= form.text_area :content, rows: 20, class: text_area_styles(css: "w-full md:w-1/2 md:mr-10"), data: {
       "markdown-previewer-target": "body",
       "action": "input->markdown-previewer#preview"
       }

@@ -3,7 +3,9 @@ import { Controller } from '@hotwired/stimulus';
 // Connects to data-controller="markdown-previewer"
 export default class extends Controller {
   static targets = ['body', 'bodyPreview'];
-  connect() {}
+  connect() {
+    this.preview();
+  }
   async preview() {
     const markdown = this.bodyTarget.value;
 
@@ -23,5 +25,3 @@ export default class extends Controller {
     this.bodyPreviewTarget.innerHTML = parsed;
   }
 }
-
-// ![My Feature Image](https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg)

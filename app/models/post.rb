@@ -1,11 +1,17 @@
 class Post < ApplicationRecord
-  after_save :create_backup
   include Taggable
+  before_save :set_published_on
+  after_save :create_backup
+
   has_many :posts_tags, dependent: :destroy
   has_many :tags, through: :posts_tags
 
   enum post_type: {post: "post", til: "til"}
   scope :published, -> { where(published: true) }
+
+  def set_published_on
+    self.published_on = Time.zone.now if published?
+  end
 
   def create_backup
     slug = title.parameterize
