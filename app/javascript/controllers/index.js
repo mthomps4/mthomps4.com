@@ -3,8 +3,8 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from './application';
-import Reveal from 'stimulus-reveal-controller';
-application.register('reveal', Reveal);
+import RevealController from './reveal_controller';
+application.register('reveal', RevealController);
 
 import DarkModeController from './dark_mode_controller';
 application.register('dark-mode', DarkModeController);
