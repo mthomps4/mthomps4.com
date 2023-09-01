@@ -9,34 +9,44 @@
       </ul>
     </div>
   <% end %>
-  <div class="flex justify-between">
-    <%= form.collection_select :post_type, Post.post_types.keys, :to_s, :upcase, { prompt: "Select Post Type" }, { class: "rounded-lg border-2 border-brand-blue-400" } %>
-    <div class="flex items-center">
-      <%= form.label :published, class: label_styles %>
-      <%= form.check_box :published, class: checkbox_styles %>
-    </div>
-  </div>
-  <div>
-    <%= form.label :title, class: label_styles %>
-    <%= form.text_field :title, class: input_styles %>
-  </div>
-  <div>
-    <%= form.label :description, class: label_styles %>
-    <%= form.text_area :description, class: text_area_styles %>
-  </div>
-  <div>
-    <%= form.label :content, class: label_styles %>
-    <div data-controller="markdown-previewer" class="w-full flex flex-col md:flex-row">
-      <%= form.text_area :content, rows: 20, class: text_area_styles(css: "w-full md:w-1/2 md:mr-10"), data: {
-      "markdown-previewer-target": "body",
-      "action": "input->markdown-previewer#preview"
-      }
-    %>
-      <div data-markdown-previewer-target="bodyPreview" class="<%= markdown_container_styles %>">
+  <div class="w-full flex justify-between gap-4">
+    <div class="w-3/4">
+      <div class="flex justify-between">
+        <%= form.collection_select :post_type, Post.post_types.keys, :to_s, :upcase, { prompt: "Select Post Type" }, { class: "rounded-lg border-2 border-brand-blue-400" } %>
+        <div class="flex items-center">
+          <%= form.label :published, class: label_styles %>
+          <%= form.check_box :published, class: checkbox_styles %>
+        </div>
+      </div>
+      <div>
+        <%= form.label :title, class: label_styles %>
+        <%= form.text_field :title, class: input_styles %>
+      </div>
+      <div>
+        <%= form.label :description, class: label_styles %>
+        <%= form.text_area :description, class: text_area_styles %>
+      </div>
+      <div data-controller="markdown-previewer" class="mt-4">
+        <button data-markdown-previewer-target="contentButton" data-action="click->markdown-previewer#hidePreview" type="button" class="bg-brand-blue-300 hover:bg-brand-blue-500 py-2 px-2 font-bold text-white rounded-t-lg data-[active=true]:bg-brand-blue-700">Content</button>
+        <button data-markdown-previewer-target="previewButton" data-action="click->markdown-previewer#showPreview" type="button" class="bg-brand-blue-300 hover:bg-brand-blue-500 py-2 px-2 font-bold text-white rounded-t-lg data-[active=true]:bg-brand-blue-700">Preview</button>
+        <div class="w-full flex flex-col md:flex-row">
+          <%= form.text_area :content, rows: 20, class: text_area_styles(css: "w-full h-[500px] overflow-y-scroll"), data: {
+            "markdown-previewer-target": "body",
+            "action": "input->markdown-previewer#preview"
+          }
+          %>
+        </div>
+        <div data-markdown-previewer-target="bodyPreview" class="<%= markdown_container_styles(css: "w-full h-[500px] overflow-y-scroll hidden") %>">
+        </div>
+      </div>
+      <div>
+        <%= form.submit class: button_styles(css: "mt-10") %>
       </div>
     </div>
-  </div>
-  <div>
-    <%= form.submit class: button_styles(css: "mt-10") %>
+    <div class="w-1/4 border-2 border-brand-blue-200">
+      <h3 class="text-xl text-brand-blue-700 dark:text-brand-blue-100 text-center font-bold">Images</h3>
+      <div>list images here...</div>
+      <div>Uplader...</div>
+    </div>
   </div>
 <% end %>

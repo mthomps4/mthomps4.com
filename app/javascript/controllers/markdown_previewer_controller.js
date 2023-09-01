@@ -2,10 +2,31 @@ import { Controller } from '@hotwired/stimulus';
 
 // Connects to data-controller="markdown-previewer"
 export default class extends Controller {
-  static targets = ['body', 'bodyPreview'];
+  static targets = ['body', 'bodyPreview', 'contentButton', 'previewButton'];
   connect() {
     this.preview();
+    this.contentButtonTarget.setAttribute('data-active', true);
   }
+
+  async toggle() {
+    this.bodyPreviewTarget.classList.toggle('hidden');
+    this.bodyTarget.classList.toggle('hidden');
+  }
+
+  async showPreview() {
+    this.bodyPreviewTarget.classList.remove('hidden');
+    this.bodyTarget.classList.add('hidden');
+    this.previewButtonTarget.setAttribute('data-active', true);
+    this.contentButtonTarget.setAttribute('data-active', false);
+  }
+
+  async hidePreview() {
+    this.bodyPreviewTarget.classList.add('hidden');
+    this.bodyTarget.classList.remove('hidden');
+    this.previewButtonTarget.setAttribute('data-active', false);
+    this.contentButtonTarget.setAttribute('data-active', true);
+  }
+
   async preview() {
     const markdown = this.bodyTarget.value;
 
