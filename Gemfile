@@ -69,6 +69,11 @@ gem "rouge"
 gem "aws-sdk-core"
 gem "aws-sdk-s3"
 
+# Image Uploads
+gem "carrierwave", "~> 3.0"
+gem "carrierwave-aws"
+gem "mini_magick"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri mingw x64_mingw]

@@ -1,14 +1,16 @@
 <div class="my-4">
   <h1 class="text-4xl text-brand-blue-700 dark:text-brand-blue-50 font-light text-center"><%= @title %></h1>
-  <p>NON ADMIN VIEW</p>
-  <p>AHHHH</p>
-  <div id="posts" class="bg-gradient-to-br from-brand-blue-50 to-brand-blue-100 dark:from-brand-blue-800 dark:to-brand-blue-950 border-[1px] border-brand-blue-300 dark:border-brand-blue-600 my-2 p-2 rounded-lg text-brand-blue-950 dark:text-brand-blue-100">
+  <div id="posts" class="grid grid-cols-3 gap-4">
     <% @posts.each do |post| %>
-      <h2><%= post.title%></h2>
-      <p><%= post.description %></p>
-      <p class="flex justify-end underline active:text-brand-blue-300">
-        <%= link_to "Read more...", post %>
-      </p>
+      <%= link_to post do %>
+        <div class="bg-gradient-to-br from-brand-blue-50 to-brand-blue-100 dark:from-brand-blue-800 dark:to-brand-blue-950 border-[1px] border-brand-blue-300 dark:border-brand-blue-600 rounded-lg text-brand-blue-950 dark:text-brand-blue-100 hover:border-4 hover:border-brand-blue-300">
+          <%= image_tag post.featured_image.small_og.url || "https://placeholder.com/300x158", class: "w-full" %>
+          <div class="mt-4 mx-2">
+            <h2 class="text-3xl break-words"><%= post.title%></h2>
+            <p><%= post.description %></p>
+          </div>
+        </div>
+      <%end%>
     <% end %>
   </div>
 </div>
