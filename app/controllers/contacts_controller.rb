@@ -11,7 +11,7 @@ class ContactsController < ApplicationController
     if @contact.save
       redirect_to root_path, notice: 'Contact was successfully created.'
     else
-      redirect_to root_path, alert: 'Contact was not created.'
+      redirect_to root_path, alert: "Contact was not created."
     end
   end
 
