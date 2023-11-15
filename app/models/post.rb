@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   include Taggable
-  before_save :set_published_on
+  before_save :set_published_on, unless: :new_record? # Don't set on create_draft Post.create!
   after_save :create_backup
 
   has_many :posts_tags, dependent: :destroy
@@ -12,6 +12,10 @@ class Post < ApplicationRecord
   validates :title, presence: true, uniqueness: true
 
   mount_uploader :featured_image, FeaturedUploader
+
+  def self.create_draft
+    Post.create!(title: "DRAFT", description: "Add a description here...", content: "Write your post here...", published: false)
+  end
 
   def set_published_on
     self.published_on = Time.zone.now if published?

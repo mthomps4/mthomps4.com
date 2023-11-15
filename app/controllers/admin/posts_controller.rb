@@ -1,5 +1,6 @@
 class Admin::PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
+  layout "admin/post_sidebar_layout"
 
   # GET /admin/posts or /admin/posts.json
   def index
@@ -12,7 +13,8 @@ class Admin::PostsController < ApplicationController
 
   # GET /admin/posts/new
   def new
-    @post = Post.new
+    @post = Post.create_draft
+    redirect_to edit_admin_post_path(@post)
   end
 
   # GET /admin/posts/1/edit
@@ -20,19 +22,20 @@ class Admin::PostsController < ApplicationController
   end
 
   # POST /admin/posts or /admin/posts.json
-  def create
-    @post = Post.new(post_params)
+  # New creates a draft -- use Update
+  # def create
+  #   @post = Post.new(post_params)
 
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to admin_post_url(@post), notice: "Post was successfully created." }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  #   respond_to do |format|
+  #     if @post.save
+  #       format.html { redirect_to admin_post_url(@post), notice: "Post was successfully created." }
+  #       format.json { render :show, status: :created, location: @post }
+  #     else
+  #       format.html { render :new, status: :unprocessable_entity }
+  #       format.json { render json: @post.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # PATCH/PUT /admin/posts/1 or /admin/posts/1.json
   def update
