@@ -1,6 +1,8 @@
-require "redcarpet"
-require "rouge"
-require "rouge/plugins/redcarpet"
+# frozen_string_literal: true
+
+require 'redcarpet'
+require 'rouge'
+require 'rouge/plugins/redcarpet'
 
 module MarkdownHelper
   class CustomRougeRenderer < Redcarpet::Render::HTML
@@ -13,8 +15,19 @@ module MarkdownHelper
 
   def self.extensions
     {
-      autolink: true, tables: true, fenced_code_blocks: true, fenced_code: true, strikethrough: true, superscript: true, underline: true,
-      highlight: true, quote: true, footnotes: true, link_attributes: {target: "_blank"}
+      autolink: true,
+      tables: true,
+      fenced_code_blocks: true,
+      fenced_code: true,
+      strikethrough: true,
+      superscript: true,
+      underline: true,
+      highlight: true,
+      quote: true,
+      footnotes: true,
+      link_attributes: {
+        target: '_blank'
+      }
     }
   end
 

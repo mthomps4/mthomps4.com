@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 # https://github.com/carrierwaveuploader/carrierwave-aws/tree/master
 
 CarrierWave.configure do |config|
   config.storage = :aws
   config.aws_bucket = Rails.application.credentials.dig(:aws, :bucket)
-  config.aws_acl = "private"
+  config.aws_acl = 'private'
 
   config.aws_credentials = {
     access_key_id: Rails.application.credentials.dig(:aws, :key),

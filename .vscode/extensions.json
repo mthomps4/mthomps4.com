@@ -1,8 +1,7 @@
 {
   "recommendations": [
-    "testdouble.vscode-standard-ruby", // lint and format
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
-    "rebornix.ruby" // highlighting
+    "Shopify.ruby-lsp"
   ]
 }

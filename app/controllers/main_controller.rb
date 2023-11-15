@@ -5,12 +5,10 @@ class MainController < ApplicationController
     markdown_string = params[:markdown]
     parsed = MarkdownHelper.render(markdown_string)
 
-    render json: {parsed: parsed}
+    render json: { parsed: }
   end
 
-  def index
-  end
+  def index; end
 
-  def info
-  end
+  def info; end
 end
