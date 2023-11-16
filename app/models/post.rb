@@ -11,7 +11,8 @@ class Post < ApplicationRecord
   enum post_type: { post: 'post', til: 'til' }
   scope :published, -> { where(published: true) }
 
-  validates :title, presence: true, uniqueness: true
+  validates :title, presence: true
+  validates :title, uniqueness: true, if: :title_changed?
 
   mount_uploader :featured_image, FeaturedUploader
 

@@ -12,18 +12,11 @@ class AdminPostsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'should get new' do
+  test 'should create draft' do
     get new_admin_post_url
-    assert_response :success
-  end
-
-  test 'should create post' do
-    assert_difference('Post.count') do
-      post admin_posts_url,
-           params: { post: { content: @post.content, description: @post.description, title: @post.title } }
-    end
-
-    assert_redirected_to admin_post_url(Post.last)
+    post = Post.last
+    assert post.title == 'DRAFT'
+    assert_redirected_to edit_admin_post_url(post)
   end
 
   test 'should show post' do
@@ -38,7 +31,8 @@ class AdminPostsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should update post' do
     patch admin_post_url(@post),
-          params: { post: { content: @post.content, description: @post.description, title: @post.title } }
+          params: { post: { content: 'updated content', description: @post.description, title: @post.title,
+                            published: @post.published, post_type: @post.post_type, featured_image: @post.featured_image } }
     assert_redirected_to admin_post_url(@post)
   end
 
