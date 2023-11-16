@@ -29,5 +29,5 @@ Layout/LineLength:
   Exclude:
    - "app/helpers/theme/**/*"
 
-Module/MethodLength:
+Metrics/MethodLength:
   CountAsOne: ['array', 'hash', 'heredoc', 'method_call']
