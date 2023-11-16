@@ -61,12 +61,29 @@ module Admin
       end
     end
 
+    def upload_images
+      @post = Post.find(params[:id])
+      return unless @post
+
+      @post.update(upload_image_params)
+      @post.reload
+
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to @post, notice: 'Images were successfully uploaded.' }
+      end
+    end
+
     private
 
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
       @markdown = PostsHelper.render_markdown(@post.content)
+    end
+
+    def upload_image_params
+      params.require(:post).permit(images: [])
     end
 
     # Only allow a list of trusted parameters through.

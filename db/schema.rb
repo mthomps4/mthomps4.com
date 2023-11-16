@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_15_135555) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_16_013133) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_15_135555) do
     t.boolean "published", default: false
     t.enum "post_type", default: "post", null: false, enum_type: "post_types"
     t.string "featured_image"
+    t.string "images", default: [], null: false, array: true
     t.index ["published"], name: "index_posts_on_published"
     t.index ["published_on"], name: "index_posts_on_published_on"
     t.index ["title"], name: "index_posts_on_title"

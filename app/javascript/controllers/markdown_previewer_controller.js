@@ -6,6 +6,7 @@ export default class extends Controller {
   connect() {
     this.preview();
     this.contentButtonTarget.setAttribute('data-active', true);
+    this.postId = this.data.get('postId');
   }
 
   async toggle() {
@@ -44,5 +45,40 @@ export default class extends Controller {
     const data = await response.json();
     const { parsed } = data;
     this.bodyPreviewTarget.innerHTML = parsed;
+  }
+
+  // Drag n Drop Image Spike
+  dragOver(event) {
+    event.preventDefault();
+  }
+
+  dragLeave(event) {
+    event.preventDefault();
+  }
+
+  async drop(event) {
+    event.preventDefault();
+    const file = event.dataTransfer.files[0];
+    const formData = new FormData({id: this.postId});
+    formData.append('file', file);
+
+    const response = await fetch('admin/posts/upload_image', {
+      method: 'POST',
+      headers: {
+        // eslint-disable-next-line no-undef -- Rails is defined in application.js
+        'X-CSRF-Token': Rails.csrfToken(),
+      },
+      body: formData,
+    });
+
+    const data = await response.json();
+    const { url } = data;
+    const image = `![${file.name}](${url})`;
+    const { selectionStart, selectionEnd } = this.bodyTarget;
+    const text = this.bodyTarget.value;
+    const before = text.substring(0, selectionStart);
+    const after = text.substring(selectionEnd, text.length);
+    this.bodyTarget.value.append = `${before}${image}${after}`;
+    this.preview();
   }
 }

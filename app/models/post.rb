@@ -15,6 +15,7 @@ class Post < ApplicationRecord
   validates :title, uniqueness: true, if: :title_changed?
 
   mount_uploader :featured_image, FeaturedUploader
+  mount_uploaders :images, ImageUploader
 
   def self.create_draft
     Post.create!(title: 'DRAFT', description: 'Add a description here...', content: 'Write your post here...',

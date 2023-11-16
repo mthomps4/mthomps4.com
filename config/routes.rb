@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   namespace 'admin' do
     resources :posts
+    post 'upload_image/:id', to: 'posts#upload_images', as: 'upload_images'
   end
 
   mount Lookbook::Engine, at: '/lookbook' if Rails.env.development?

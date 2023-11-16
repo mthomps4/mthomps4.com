@@ -1,0 +1,6 @@
+
+<div class="w-full bg-red-200 min-h-12">
+  <% @post.images.each do |img| %>
+    <%= image_tag img.thumb.url %>
+  <% end%>
+</div>

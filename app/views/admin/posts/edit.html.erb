@@ -9,3 +9,15 @@
 </div>
 <h1 class="text-2xl text-center m-10 text-brand-blue-700 dark:text-brand-blue-100">Editing post</h1>
 <%= render "form", post: @post, url: admin_post_path(@post) %>
+
+<turbo_frame_tag id="post-image-sidebar">
+  <%= render 'admin/posts/images_sidebar', images: @images %>
+
+  <%= form_with model: @post, url: admin_upload_images_path(@post), method: :post, local: true, html: { enctype: 'multipart/form-data' } do |f| %>
+
+    <%= f.label :images, "Upload Images" %>
+    <%= f.file_field :images, multiple: true %>
+
+    <%= f.submit %>
+  <% end %>
+<turbo_frame_tag>

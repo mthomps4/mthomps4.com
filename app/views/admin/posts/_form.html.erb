@@ -36,7 +36,7 @@
     <%= form.label :description, class: label_styles %>
     <%= form.text_area :description, class: text_area_styles %>
   </div>
-  <div data-controller="markdown-previewer" class="mt-4">
+  <div data-controller="markdown-previewer" data-markdown-previewer-post-id="<%= post.id%>" class="mt-4">
     <button data-markdown-previewer-target="contentButton" data-action="click->markdown-previewer#hidePreview" type="button" class="bg-brand-blue-300 hover:bg-brand-blue-500 py-2 px-2 font-bold text-white rounded-t-lg data-[active=true]:bg-brand-blue-700">Content</button>
     <button data-markdown-previewer-target="previewButton" data-action="click->markdown-previewer#showPreview" type="button" class="bg-brand-blue-300 hover:bg-brand-blue-500 py-2 px-2 font-bold text-white rounded-t-lg data-[active=true]:bg-brand-blue-700">Preview</button>
     <div class="w-full flex flex-col md:flex-row">
