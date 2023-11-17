@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_16_013133) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_17_211249) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,6 +32,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_16_013133) do
     t.index ["last_name"], name: "index_contacts_on_last_name"
   end
 
+  create_table "post_images", force: :cascade do |t|
+    t.string "name"
+    t.bigint "post_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_images_on_post_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -42,7 +50,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_16_013133) do
     t.boolean "published", default: false
     t.enum "post_type", default: "post", null: false, enum_type: "post_types"
     t.string "featured_image"
-    t.string "images", default: [], null: false, array: true
+    t.string "images", default: [], array: true
     t.index ["published"], name: "index_posts_on_published"
     t.index ["published_on"], name: "index_posts_on_published_on"
     t.index ["title"], name: "index_posts_on_title"
@@ -64,6 +72,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_16_013133) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  add_foreign_key "post_images", "posts"
   add_foreign_key "posts_tags", "posts"
   add_foreign_key "posts_tags", "tags"
 end

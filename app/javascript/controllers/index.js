@@ -15,5 +15,5 @@ application.register('hello', HelloController);
 import MarkdownPreviewerController from './markdown_previewer_controller';
 application.register('markdown-previewer', MarkdownPreviewerController);
 
-import Clipboard from 'stimulus-clipboard';
+import Clipboard from './clipboard_controller';
 application.register('clipboard', Clipboard);

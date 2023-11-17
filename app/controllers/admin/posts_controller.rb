@@ -69,8 +69,9 @@ module Admin
       existing_images = @post.images || []
 
       # Concatenate existing images with the new ones from the form submission
-      new_images = existing_images + Array(upload_image_params[:images])
+      new_images = existing_images + upload_image_params[:images]
 
+      # TODO: Issue -- this creates new versions of the images
       @post.update(images: new_images)
       @post.reload
 
@@ -80,16 +81,32 @@ module Admin
       end
     end
 
+    def drag_upload_image
+      @post = Post.find(params[:id])
+      return unless @post
+
+      image = params.require(:image)
+
+      # TODO: How to keep previous images?
+      # TODO: How to trigger the turbo stream for the sidebar?
+      @post.update(images: [image])
+      @post.reload
+
+      markdown_link = PostImage.s3_markdown_link(@post.images.last.url)
+
+      render json: { markdown_link: }
+    end
+
     private
+
+    def upload_image_params
+      params.require(:post).permit(images: [])
+    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
       @markdown = PostsHelper.render_markdown(@post.content)
-    end
-
-    def upload_image_params
-      params.require(:post).permit(images: [])
     end
 
     # Only allow a list of trusted parameters through.

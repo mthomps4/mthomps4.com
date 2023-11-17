@@ -3,10 +3,22 @@ import { Controller } from '@hotwired/stimulus';
 // Connects to data-controller="markdown-previewer"
 export default class extends Controller {
   static targets = ['body', 'bodyPreview', 'contentButton', 'previewButton'];
+
+  static values = {
+    postId: String,
+  };
+
   connect() {
     this.preview();
     this.contentButtonTarget.setAttribute('data-active', true);
-    this.postId = this.data.get('postId');
+    this.bodyTarget.addEventListener('dragenter', this.dragEnter, false);
+    this.bodyTarget.addEventListener('dragexit', this.dragExit, false);
+    this.bodyTarget.addEventListener('dragover', this.dragOver, false);
+    this.bodyTarget.addEventListener(
+      'drop',
+      (event) => this.drop(event, this.postIdValue),
+      false,
+    );
   }
 
   async toggle() {
@@ -48,21 +60,31 @@ export default class extends Controller {
   }
 
   // Drag n Drop Image Spike
+  dragEnter(event) {
+    // console.log('dragEnter', event);
+    event.preventDefault();
+  }
+
   dragOver(event) {
+    // console.log('dragOver', event);
     event.preventDefault();
   }
 
-  dragLeave(event) {
+  dragExit(event) {
+    // console.log('dragExit', event);
     event.preventDefault();
   }
 
-  async drop(event) {
+  async drop(event, postId) {
     event.preventDefault();
+
+    console.log({ files: event.dataTransfer.files });
+
     const file = event.dataTransfer.files[0];
-    const formData = new FormData({id: this.postId});
-    formData.append('file', file);
+    const formData = new FormData();
+    formData.append('image', file);
 
-    const response = await fetch('admin/posts/upload_image', {
+    const response = await fetch(`/admin/drag_upload_image/${postId}`, {
       method: 'POST',
       headers: {
         // eslint-disable-next-line no-undef -- Rails is defined in application.js
@@ -72,13 +94,11 @@ export default class extends Controller {
     });
 
     const data = await response.json();
-    const { url } = data;
-    const image = `![${file.name}](${url})`;
-    const { selectionStart, selectionEnd } = this.bodyTarget;
-    const text = this.bodyTarget.value;
-    const before = text.substring(0, selectionStart);
-    const after = text.substring(selectionEnd, text.length);
-    this.bodyTarget.value.append = `${before}${image}${after}`;
+
+    console.log({ data });
+
+    this.bodyTarget.value =
+      this.bodyTarget.value += `\n\n${data.markdown_link}`;
     this.preview();
   }
 }
