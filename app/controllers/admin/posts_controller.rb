@@ -65,14 +65,12 @@ module Admin
       @post = Post.find(params[:id])
       return unless @post
 
-      # Extract existing images from the post
-      existing_images = @post.images || []
+      upload_image_params[:images].each do |image|
+        next unless image.present?
 
-      # Concatenate existing images with the new ones from the form submission
-      new_images = existing_images + upload_image_params[:images]
+        @post.post_images.create(filename: image.original_filename, images: image)
+      end
 
-      # TODO: Issue -- this creates new versions of the images
-      @post.update(images: new_images)
       @post.reload
 
       respond_to do |format|

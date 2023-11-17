@@ -33,7 +33,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_17_211249) do
   end
 
   create_table "post_images", force: :cascade do |t|
-    t.string "name"
+    t.string "filename"
+    t.string "images"
     t.bigint "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
