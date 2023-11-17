@@ -5,6 +5,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   storage :aws
 
+  # TODO: This needs set back under POST in the bucket
   def store_dir
     "#{model.class.to_s.underscore}/#{model.id}/#{mounted_as}"
   end
