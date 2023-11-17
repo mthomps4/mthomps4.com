@@ -8,16 +8,25 @@
   <%= link_to "Show this post", admin_post_path(@post) %>
 </div>
 <h1 class="text-2xl text-center m-10 text-brand-blue-700 dark:text-brand-blue-100">Editing post</h1>
-<%= render "form", post: @post, url: admin_post_path(@post) %>
+<div class="grid grid-cols-4 gap-2">
+  <div class="col-span-3">
+    <%= render "form", post: @post, url: admin_post_path(@post) %>
+  </div>
 
-<turbo_frame_tag id="post-image-sidebar">
-  <%= render 'admin/posts/images_sidebar', images: @images %>
+  <div class="col-span-1">
+    <turbo_frame_tag id="post-image-sidebar">
+      <%= render 'admin/posts/images_sidebar', images: @images %>
 
-  <%= form_with model: @post, url: admin_upload_images_path(@post), method: :post, local: true, html: { enctype: 'multipart/form-data' } do |f| %>
+      <div class="bg-brand-blue-100 p-4">
+        <%= form_with model: @post, url: admin_upload_images_path(@post), method: :post, local: true, html: { enctype: 'multipart/form-data' } do |f| %>
 
-    <%= f.label :images, "Upload Images" %>
-    <%= f.file_field :images, multiple: true %>
+          <%= f.file_field :images, multiple: true %>
 
-    <%= f.submit %>
-  <% end %>
-<turbo_frame_tag>
+          <div class="flex justify-center my-4">
+            <%= f.submit "Upload Images", class: button_styles %>
+          </div>
+        <% end %>
+      </div>
+    <turbo_frame_tag>
+  </div>
+</div>

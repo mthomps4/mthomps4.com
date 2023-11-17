@@ -65,7 +65,13 @@ module Admin
       @post = Post.find(params[:id])
       return unless @post
 
-      @post.update(upload_image_params)
+      # Extract existing images from the post
+      existing_images = @post.images || []
+
+      # Concatenate existing images with the new ones from the form submission
+      new_images = existing_images + Array(upload_image_params[:images])
+
+      @post.update(images: new_images)
       @post.reload
 
       respond_to do |format|
