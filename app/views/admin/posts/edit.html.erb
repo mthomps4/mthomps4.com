@@ -15,18 +15,7 @@
 
   <div class="col-span-1">
     <turbo_frame_tag id="post-image-sidebar">
-      <%= render 'admin/posts/images_sidebar', images: @images %>
-
-      <div class="bg-brand-blue-100 p-4">
-        <%= form_with model: @post, url: admin_upload_images_path(@post), method: :post, local: true, html: { enctype: 'multipart/form-data' } do |f| %>
-
-          <%= f.file_field :images, multiple: true %>
-
-          <div class="flex justify-center my-4">
-            <%= f.submit "Upload Images", class: button_styles %>
-          </div>
-        <% end %>
-      </div>
-    <turbo_frame_tag>
+      <%= render 'admin/posts/images_sidebar', post_images: @post.post_images %>
+    </turbo_frame_tag>
   </div>
 </div>

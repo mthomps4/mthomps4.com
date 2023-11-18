@@ -74,8 +74,15 @@ module Admin
       @post.reload
 
       respond_to do |format|
-        format.turbo_stream
-        format.html { redirect_to @post, notice: 'Images were successfully uploaded.' }
+        # format.turbo_stream do
+        #   render turbo_stream: turbo_stream.replace('post-image-sidebar', partial: 'admin/posts/images_sidebar',
+        #                                                                   locals: { post_images: @post.post_images })
+        # end
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace('post-image-sidebar', partial: 'admin/posts/images_sidebar',
+                                                                          locals: { post_images: @post.post_images })
+        end
+        # format.html { redirect_to @post, notice: 'Images were successfully uploaded.' }
       end
     end
 
@@ -85,14 +92,24 @@ module Admin
 
       image = params.require(:image)
 
-      # TODO: How to keep previous images?
       # TODO: How to trigger the turbo stream for the sidebar?
-      @post.update(images: [image])
+      post_image = @post.post_images.create(filename: image.original_filename, image:)
       @post.reload
 
-      markdown_link = PostImage.s3_markdown_link(@post.images.last.url)
+      markdown_link = PostImage.s3_markdown_link(post_image.image.url)
 
       render json: { markdown_link: }
+    end
+
+    def refresh_sidebar
+      @post = Post.find(params[:id])
+      return unless @post
+
+      # TODO: This still doesn't seem to work (terminal great -- UI doesn't update)
+      # WHY YOU NO WORK!!
+      turbo_stream.replace :post_image_sidebar, target: 'post-image-sidebar' do
+        render partial: 'admin/posts/images_sidebar', locals: { post_images: @post.post_images }
+      end
     end
 
     private

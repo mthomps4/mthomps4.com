@@ -13,7 +13,6 @@ class Post < ApplicationRecord
   scope :published, -> { where(published: true) }
 
   validates :title, presence: true
-  validates :title, uniqueness: true, if: :title_changed?
 
   mount_uploader :featured_image, FeaturedUploader
 

@@ -78,8 +78,6 @@ export default class extends Controller {
   async drop(event, postId) {
     event.preventDefault();
 
-    console.log({ files: event.dataTransfer.files });
-
     const file = event.dataTransfer.files[0];
     const formData = new FormData();
     formData.append('image', file);
@@ -99,6 +97,18 @@ export default class extends Controller {
 
     this.bodyTarget.value =
       this.bodyTarget.value += `\n\n${data.markdown_link}`;
-    this.preview();
+
+    await this.preview();
+
+    // const sidebar = this.document.getElementById('post-images-sidebar');
+    // sidebar.reload();
+
+    await fetch(`/admin/refresh_sidebar/${postId}`, {
+      method: 'POST',
+      headers: {
+        // eslint-disable-next-line no-undef -- Rails is defined in application.js
+        'X-CSRF-Token': Rails.csrfToken(),
+      },
+    });
   }
 }
