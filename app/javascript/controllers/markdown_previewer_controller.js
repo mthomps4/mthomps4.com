@@ -100,15 +100,13 @@ export default class extends Controller {
 
     await this.preview();
 
-    // const sidebar = this.document.getElementById('post-images-sidebar');
-    // sidebar.reload();
-
-    await fetch(`/admin/refresh_sidebar/${postId}`, {
-      method: 'POST',
-      headers: {
-        // eslint-disable-next-line no-undef -- Rails is defined in application.js
-        'X-CSRF-Token': Rails.csrfToken(),
-      },
-    });
+    // TODO: this is being called from outside of the turbo frame -- move to another controller.
+    // await fetch(`/admin/refresh_sidebar/${postId}`, {
+    //   method: 'POST',
+    //   headers: {
+    //     // eslint-disable-next-line no-undef -- Rails is defined in application.js
+    //     'X-CSRF-Token': Rails.csrfToken(),
+    //   },
+    // });
   }
 }

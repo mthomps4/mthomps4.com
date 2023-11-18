@@ -92,12 +92,19 @@ module Admin
       render json: { markdown_link: }
     end
 
+    # TODO: This needs to be hit from within the turbo frame -- maybe a Poll Stimulus Controller?
     def refresh_sidebar
       @post = Post.find(params[:id])
       return unless @post
 
       # TODO: This still doesn't seem to work (terminal great -- UI doesn't update)
       # WHY YOU NO WORK!!
+
+      ## Learning curve noted -- this API call is from an element not inside the frame
+      ## If I move the turbo_frame_tag I replace too much of the page
+      # render turbo_stream: turbo_stream.append('post-image-sidebar', partial: 'admin/posts/images_sidebar',
+      #                                                                locals: { post_images: @post.post_images })
+
       render turbo_stream: turbo_stream.replace('post-image-sidebar', partial: 'admin/posts/images_sidebar',
                                                                       locals: { post_images: @post.post_images })
     end
