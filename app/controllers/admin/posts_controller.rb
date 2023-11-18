@@ -73,17 +73,8 @@ module Admin
 
       @post.reload
 
-      respond_to do |format|
-        # format.turbo_stream do
-        #   render turbo_stream: turbo_stream.replace('post-image-sidebar', partial: 'admin/posts/images_sidebar',
-        #                                                                   locals: { post_images: @post.post_images })
-        # end
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace('post-image-sidebar', partial: 'admin/posts/images_sidebar',
-                                                                          locals: { post_images: @post.post_images })
-        end
-        # format.html { redirect_to @post, notice: 'Images were successfully uploaded.' }
-      end
+      render turbo_stream: turbo_stream.replace('post-image-sidebar', partial: 'admin/posts/images_sidebar',
+                                                                      locals: { post_images: @post.post_images })
     end
 
     def drag_upload_image
@@ -107,9 +98,8 @@ module Admin
 
       # TODO: This still doesn't seem to work (terminal great -- UI doesn't update)
       # WHY YOU NO WORK!!
-      turbo_stream.replace :post_image_sidebar, target: 'post-image-sidebar' do
-        render partial: 'admin/posts/images_sidebar', locals: { post_images: @post.post_images }
-      end
+      render turbo_stream: turbo_stream.replace('post-image-sidebar', partial: 'admin/posts/images_sidebar',
+                                                                      locals: { post_images: @post.post_images })
     end
 
     private
