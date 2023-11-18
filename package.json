@@ -15,13 +15,15 @@
   },
   "scripts": {
     "heroku-postbuild": "npm run build && npm run build:css",
+    "clear": "rails tmp:cache:clear && rails assets:clean",
     "lint": "bundle exec standardrb",
     "lint:fix": "bundle exec standardrb --fix",
-    "dev": "concurrently --names \"Rails,Redis,esbuild,css\" -c blue,cyan,magenta,yellow \"bundle exec rails server\" \"redis-server\" \"npm run build:watch\" \"npm run build:css:dev\"",
+    "dev": "concurrently --names \"esbuild,css\" -c cyan,magenta \"npm run build:watch\" \"npm run build:css:watch\"",
+    "dev:all": "concurrently --names \"Rails,Redis,esbuild,css\" -c blue,cyan,magenta,yellow \"bundle exec rails server\" \"redis-server\" \"npm run build:watch\" \"npm run build:css:dev\"",
     "build:watch": "npm run build --watch",
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
-    "build:css:dev": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --watch"
+    "build:css:watch": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --watch"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",

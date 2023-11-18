@@ -1,6 +1,6 @@
 class PostImage < ApplicationRecord
   belongs_to :post
-  mount_uploader :images, ImageUploader
+  mount_uploader :image, ImageUploader
 
   def self.s3_public_url(s3_url = '')
     s3_url.split('?').first

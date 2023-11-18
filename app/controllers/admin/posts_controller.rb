@@ -68,7 +68,7 @@ module Admin
       upload_image_params[:images].each do |image|
         next unless image.present?
 
-        @post.post_images.create(filename: image.original_filename, images: image)
+        @post.post_images.create(filename: image.original_filename, image:)
       end
 
       @post.reload
