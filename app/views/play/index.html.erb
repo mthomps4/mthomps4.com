@@ -1,0 +1,8 @@
+<div class="mt-10 px-20">
+  <h1> Playground... </h1> 
+  
+  <%= form_with url: play_submit_tags_path, method: :post  do |f| %> 
+    <%= f.select :tags, @tag_options, prompt: "Select Colors" %>
+  <% end %> 
+
+</div>
