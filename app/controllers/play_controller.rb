@@ -9,8 +9,7 @@ class PlayController < ApplicationController
     tag_options = []
 
     if params[:search].present?
-      tags = Tag.where('name ILIKE ?', "%#{params[:search]}%").where.not(id: params[:selectedIds])
-      tag_options = map_tags(tags)
+      tag_options = Tag.where('name ILIKE ?', "%#{params[:search]}%").where.not(id: params[:selectedIds])
     end
 
     respond_to do |format|
@@ -37,12 +36,8 @@ class PlayController < ApplicationController
   end
 
   def submit_tags
-    # TODO:
-  end
+    selected_tag_ids = params[:selected_tag_ids] ||= ''
 
-  private
-
-  def map_tags(tags)
-    tags.map { |t| { name: t.name, id: t.id } }
+    render turbo_stream: turbo_stream.replace('response', partial: 'response', locals: { selected_tag_ids: })
   end
 end

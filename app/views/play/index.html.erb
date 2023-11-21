@@ -8,7 +8,12 @@
       <input type="text" data-multi-select-target="search" data-action="input->multi-select#search" />
       <%= render partial: "tag_options", locals: { tag_options: [] } %>
       <%= render partial: "selected_tags", locals: {selected_tags: [] }%>
+      <%# This grabs the value from the selectedTags target %>
+      <%= f.hidden_field :selected_tag_ids, data: { multi_select_target: 'selectedTagIds' } %>
     </div>
     <%= f.submit "Submit", class: button_styles(css: "my-10") %>
   <% end %>
+  <div id="response">
+    Please select some tags...then submit.
+  </div>
 </div>

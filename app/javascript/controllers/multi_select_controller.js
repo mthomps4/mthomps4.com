@@ -3,7 +3,13 @@ import { get } from '@rails/request.js';
 
 // Connects to data-controller="multi-select"
 export default class extends Controller {
-  static targets = ['search', 'option', 'list', 'selectedTag'];
+  static targets = [
+    'search',
+    'option',
+    'list',
+    'selectedTag',
+    'selectedTagIds',
+  ];
 
   static values = {
     searchUrl: String,
@@ -59,6 +65,9 @@ export default class extends Controller {
     const selectedIds = [selectedId, ...previouslySelectedIds];
     const arrayString = selectedIds.join(',');
 
+    // UPDATE THE REAL FORM VALUE
+    this.selectedTagIdsTarget.value = arrayString;
+    // UPDATE THE UI
     this.listTarget.classList.add('hidden');
     this.searchTarget.value = '';
 
@@ -81,6 +90,10 @@ export default class extends Controller {
 
     const selectedIds = previouslySelectedIds.filter((id) => id !== selectedId);
     const arrayString = selectedIds.join(',');
+
+    // UPDATE THE REAL FORM VALUE
+    this.selectedTagIdsTarget.value = arrayString;
+
     const request = get(
       `${this.updateSelectedUrlValue}?selected=${arrayString}`,
       {
