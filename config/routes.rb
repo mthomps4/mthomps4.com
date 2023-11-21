@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   get 'play', to: 'play#index'
   get 'play/fetch_tags', to: 'play#fetch_tags'
+  get 'play/update_tag_selections', to: 'play#update_tag_selections'
   post 'play/submit_tags', to: 'play#submit_tags'
 
   mount Lookbook::Engine, at: '/lookbook' if Rails.env.development?

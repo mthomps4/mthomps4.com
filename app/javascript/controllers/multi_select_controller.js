@@ -3,13 +3,26 @@ import { get } from '@rails/request.js';
 
 // Connects to data-controller="multi-select"
 export default class extends Controller {
-  static targets = ['search', 'option', 'list', 'item'];
+  static targets = ['search', 'option', 'list', 'selectedTag'];
 
   static values = {
     searchUrl: String,
+    updateSelectedUrl: String,
   };
 
-  connect() {}
+  connect() {
+    document.addEventListener('click', this.handleClickOutside.bind(this));
+  }
+
+  disconnect() {
+    document.removeEventListener('click', this.handleClickOutside.bind(this));
+  }
+
+  handleClickOutside(e) {
+    if (!this.element.contains(e.target)) {
+      this.listTarget.classList.add('hidden');
+    }
+  }
 
   async search(e) {
     e.preventDefault();
@@ -22,45 +35,58 @@ export default class extends Controller {
       this.listTarget.classList.add('hidden');
     }
 
-    const request = get(`${this.searchUrlValue}?search=${search}`, {
-      responseKind: 'turbo-stream',
-    });
+    const selectedIds = this.selectedOptionTargets
+      ? this.selectedOptionTargets.map((options) => options.id)
+      : [];
 
-    await request.perform();
+    const request = get(
+      `${this.searchUrlValue}?search=${search}?selected=${[selectedIds]}`,
+      {
+        responseKind: 'turbo-stream',
+      },
+    );
+
+    await request.perform;
   }
 
-  addItem() {}
+  async addItem(e) {
+    e.preventDefault();
 
-  removeItem() {}
+    const selectedId = this.optionTarget.dataset.id;
+    const previouslySelectedIds = this.selectedTagTargets.map(
+      (options) => options.id,
+    );
+    const selectedIds = [selectedId, ...previouslySelectedIds];
+    const arrayString = selectedIds.join(',');
+
+    this.listTarget.classList.add('hidden');
+    this.searchTarget.value = '';
+
+    const request = get(
+      `${this.updateSelectedUrlValue}?selected=${arrayString}`,
+      {
+        responseKind: 'turbo-stream',
+      },
+    );
+
+    await request.perform;
+  }
+
+  async removeItem(e) {
+    e.preventDefault();
+    const selectedId = this.selectedTagTarget.dataset.id;
+    const previouslySelectedIds = this.selectedTagTargets.map(
+      (options) => options.id,
+    );
+
+    const selectedIds = previouslySelectedIds.filter((id) => id !== selectedId);
+    const arrayString = selectedIds.join(',');
+    const request = get(
+      `${this.updateSelectedUrlValue}?selected=${arrayString}`,
+      {
+        responseKind: 'turbo-stream',
+      },
+    );
+    await request.perform;
+  }
 }
-
-// if (response.ok) {
-//   const text = (await response.isTurboStream())
-//     ? response.getTurboStream().getInnerHTML()
-//     : await response.text();
-//   console.log({ text });
-//   return text;
-// }
-
-// const response = await fetch(`/play/fetch_tags?search=${search}`, {
-//   method: 'GET',
-//   headers: {
-//     // eslint-disable-next-line no-undef -- Rails is defined in application.js
-//     'X-CSRF-Token': Rails.csrfToken(),
-//   },
-// });
-
-// this.listTarget.innerHTML = await response.text();
-
-// const tag_options = await response.json();
-
-// this.listTarget.innerHTML = '';
-
-// tag_options.forEach((tag) => {
-//   const item = document.createElement('li');
-//   item.classList.add('search-option');
-//   item.innerText = tag.name;
-//   item.id = tag.id;
-//   item.dataset.action = 'click->multi-select#addItem';
-//   this.listTarget.appendChild(item);
-// });
