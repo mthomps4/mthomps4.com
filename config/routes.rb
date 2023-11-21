@@ -20,9 +20,9 @@ Rails.application.routes.draw do
     post 'refresh_sidebar/:id', to: 'posts#refresh_sidebar', as: 'refresh_sidebar'
   end
 
-  get '/play', to: "play#index"
-  get '/play/fetch_tags', to: "play#fetch_tags"
-  post 'play/submit_tags', to: "play#submit_tags"
-  
+  get 'play', to: 'play#index'
+  get 'play/fetch_tags', to: 'play#fetch_tags'
+  post 'play/submit_tags', to: 'play#submit_tags'
+
   mount Lookbook::Engine, at: '/lookbook' if Rails.env.development?
 end

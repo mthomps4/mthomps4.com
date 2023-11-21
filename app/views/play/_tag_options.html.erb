@@ -1,0 +1,5 @@
+<ul data-multi-select-target="list" id="search-options">
+  <% tag_options.each do |t| %>
+    <li id="<%= t[:id]%>" data-multi-select-target="option"> <%= t[:name] %> </li>
+  <% end %>
+</ul>

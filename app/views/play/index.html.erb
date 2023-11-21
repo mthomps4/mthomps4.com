@@ -1,8 +1,10 @@
 <div class="mt-10 px-20">
-  <h1> Playground... </h1> 
-  
-  <%= form_with url: play_submit_tags_path, method: :post  do |f| %> 
-    <%= f.select :tags, @tag_options, prompt: "Select Colors" %>
-  <% end %> 
-
+  <h1> Playground... </h1>
+  <%= form_with url: play_submit_tags_path, method: :post  do |f| %>
+    <div data-controller="multi-select" data-multi-select-search-url-value="<%= play_fetch_tags_path %>">
+      <input type="text" data-multi-select-target="search" data-action="input->multi-select#search" />
+      <%= render partial: "tag_options", locals: { tag_options: [{name: "test", id: "test"}] } %>
+    </div>
+    <%= f.submit "Submit", class: button_styles(css: "my-10") %>
+  <% end %>
 </div>
