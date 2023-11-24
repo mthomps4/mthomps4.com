@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :posts
     post 'upload_image/:id', to: 'posts#upload_images', as: 'upload_images'
     post 'drag_upload_image/:id', to: 'posts#drag_upload_image', as: 'drag_upload_image'
-    post 'refresh_sidebar/:id', to: 'posts#refresh_sidebar', as: 'refresh_sidebar'
+    get 'refresh_sidebar/:id', to: 'posts#refresh_sidebar', as: 'refresh_sidebar'
   end
 
   get 'play', to: 'play#index'

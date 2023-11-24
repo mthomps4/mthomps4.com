@@ -12,10 +12,7 @@
   <div class="col-span-3">
     <%= render "form", post: @post, url: admin_post_path(@post) %>
   </div>
-
   <div class="col-span-1">
-    <turbo_frame_tag id="post-image-sidebar">
-      <%= render 'admin/posts/images_sidebar', post_images: @post.post_images %>
-    </turbo_frame_tag>
+    <%= render 'admin/posts/images_sidebar', post: @post %>
   </div>
 </div>

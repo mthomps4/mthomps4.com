@@ -1,16 +1,4 @@
-<div class="bg-brand-blue-100 py-2 px-4 ">
-  <% post_images.each do |post_image| %>
-    <%= render "admin/posts/sidebar_post_image", post_image: post_image %>
-  <% end%>
-
-  <div class="bg-brand-blue-100 p-4">
-    <%= form_with model: @post, url: admin_upload_images_path(@post), method: :post, local: true, html: { enctype: 'multipart/form-data' } do |f| %>
-
-      <%= f.file_field :images, multiple: true %>
-
-      <div class="flex justify-center my-4">
-        <%= f.submit "Upload Images", class: button_styles %>
-      </div>
-    <% end %>
-  </div>
+<div id="post-image-sidebar" class="bg-brand-blue-100 py-2 px-4 ">
+  <%= render "post_images", post_images: @post.post_images %>
+  <%= render "upload_images_form", post: @post%>
 </div>

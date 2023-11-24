@@ -1,4 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
+import { get, post } from '@rails/request.js';
 
 // Connects to data-controller="markdown-previewer"
 export default class extends Controller {
@@ -43,20 +44,16 @@ export default class extends Controller {
   async preview() {
     const markdown = this.bodyTarget.value;
 
-    // I could optionally have a JS package here -- but I already had something set in Rails Helpers
-    const response = await fetch('/parse_markdown', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        // eslint-disable-next-line no-undef -- Rails is defined in application.js
-        'X-CSRF-Token': Rails.csrfToken(),
-      },
+    const response = await post('/parse_markdown', {
       body: JSON.stringify({ markdown }),
+      responseKind: 'json',
     });
 
-    const data = await response.json();
-    const { parsed } = data;
-    this.bodyPreviewTarget.innerHTML = parsed;
+    if (response.ok) {
+      const data = await response.json;
+      const { parsed } = data;
+      this.bodyPreviewTarget.innerHTML = parsed;
+    }
   }
 
   // Drag n Drop Image Spike
@@ -82,31 +79,24 @@ export default class extends Controller {
     const formData = new FormData();
     formData.append('image', file);
 
-    const response = await fetch(`/admin/drag_upload_image/${postId}`, {
-      method: 'POST',
-      headers: {
-        // eslint-disable-next-line no-undef -- Rails is defined in application.js
-        'X-CSRF-Token': Rails.csrfToken(),
-      },
+    const response = await post(`/admin/drag_upload_image/${postId}`, {
+      responseKind: 'json',
       body: formData,
     });
 
-    const data = await response.json();
+    if (response.ok) {
+      const data = await response.json;
 
-    console.log({ data });
+      this.bodyTarget.value =
+        this.bodyTarget.value += `\n\n${data.markdown_link}`;
 
-    this.bodyTarget.value =
-      this.bodyTarget.value += `\n\n${data.markdown_link}`;
+      await this.preview();
+    }
+    // refresh the sidebar
+    const sidebarResponse = await get(`/admin/refresh_sidebar/${postId}`, {
+      responseKind: 'turbo-stream',
+    });
 
-    await this.preview();
-
-    // TODO: this is being called from outside of the turbo frame -- move to another controller.
-    // await fetch(`/admin/refresh_sidebar/${postId}`, {
-    //   method: 'POST',
-    //   headers: {
-    //     // eslint-disable-next-line no-undef -- Rails is defined in application.js
-    //     'X-CSRF-Token': Rails.csrfToken(),
-    //   },
-    // });
+    await sidebarResponse.perform;
   }
 }

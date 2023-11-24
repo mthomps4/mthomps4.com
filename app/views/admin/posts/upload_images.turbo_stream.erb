@@ -1,0 +1,6 @@
+<%= turbo_stream.update 'sidebar-images' do %>
+  <%= render partial: 'admin/posts/post_images', locals: { post_images: @post.post_images } %>
+<% end %>
+<%= turbo_stream.update 'upload_images_form' do %>
+  <%= render partial: 'admin/posts/upload_images_form', locals: { post: @post } %>
+<% end %>

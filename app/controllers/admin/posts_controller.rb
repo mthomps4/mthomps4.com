@@ -22,22 +22,6 @@ module Admin
     # GET /admin/posts/1/edit
     def edit; end
 
-    # POST /admin/posts or /admin/posts.json
-    # New creates a draft -- use Update
-    # def create
-    #   @post = Post.new(post_params)
-
-    #   respond_to do |format|
-    #     if @post.save
-    #       format.html { redirect_to admin_post_url(@post), notice: "Post was successfully created." }
-    #       format.json { render :show, status: :created, location: @post }
-    #     else
-    #       format.html { render :new, status: :unprocessable_entity }
-    #       format.json { render json: @post.errors, status: :unprocessable_entity }
-    #     end
-    #   end
-    # end
-
     # PATCH/PUT /admin/posts/1 or /admin/posts/1.json
     def update
       respond_to do |format|
@@ -65,7 +49,7 @@ module Admin
       @post = Post.find(params[:id])
       return unless @post
 
-      upload_image_params[:images].each do |image|
+      upload_image_params[:images].map do |image|
         next unless image.present?
 
         @post.post_images.create(filename: image.original_filename, image:)
@@ -73,8 +57,10 @@ module Admin
 
       @post.reload
 
-      render turbo_stream: turbo_stream.replace('post-image-sidebar', partial: 'admin/posts/images_sidebar',
-                                                                      locals: { post_images: @post.post_images })
+      respond_to do |format|
+        format.json { render json: { post_images: @post.post_images } }
+        format.turbo_stream
+      end
     end
 
     def drag_upload_image
@@ -83,7 +69,6 @@ module Admin
 
       image = params.require(:image)
 
-      # TODO: How to trigger the turbo stream for the sidebar?
       post_image = @post.post_images.create(filename: image.original_filename, image:)
       @post.reload
 
@@ -92,18 +77,9 @@ module Admin
       render json: { markdown_link: }
     end
 
-    # TODO: This needs to be hit from within the turbo frame -- maybe a Poll Stimulus Controller?
     def refresh_sidebar
       @post = Post.find(params[:id])
       return unless @post
-
-      # TODO: This still doesn't seem to work (terminal great -- UI doesn't update)
-      # WHY YOU NO WORK!!
-
-      ## Learning curve noted -- this API call is from an element not inside the frame
-      ## If I move the turbo_frame_tag I replace too much of the page
-      # render turbo_stream: turbo_stream.append('post-image-sidebar', partial: 'admin/posts/images_sidebar',
-      #                                                                locals: { post_images: @post.post_images })
 
       render turbo_stream: turbo_stream.replace('post-image-sidebar', partial: 'admin/posts/images_sidebar',
                                                                       locals: { post_images: @post.post_images })
