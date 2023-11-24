@@ -1,46 +1,11 @@
 # README
-
-## Setup
-
-TODO:
-
-## Linting & Formatting
-
-### Standard RB
-
-<https://github.com/standardrb/standard>
-[standardrb extension](https://blog.testdouble.com/posts/2023-02-16-its-official-the-standard-ruby-vscode-extension)
-
-### ERB Lint (WIP)
-
-Still not 100% on this one... may remove
-[erb-lint](https://github.com/Shopify/erb-lint)
-
-## Toolbox
-
-- asdf .tool-versions
-- redis (recommend asdf redis)
-- Awesome Print: <https://github.com/awesome-print/awesome_print>
+Playground... Exploring some Turbo/Stimulus
 
 ## TODOs
-
-### Dev
-
-- factory_girl
-- eslint
-- prettier
-- tailwind theme
-
-### Features
-
-- tailwind Components (ViewComponents and/or Partials )
-- feature flag lib
-- Can Can
-- SSO
-- Manual Pagination
-- Infinite Scroll
-
-## Deploy (Heroku)
-
-- bundle lock --add-platform x86_64-linux --add-platform ruby
--
+- Uniq Constraint around PostImage POST ID and FileName
+- Multiple responses with Request.js
+  - Understand Turbo Append better (not working as expected)
+- Tests with turbo streams
+- Overhaul Form design to something... real
+- Sort/Filters for main index page
+- Carrierwave Permissions

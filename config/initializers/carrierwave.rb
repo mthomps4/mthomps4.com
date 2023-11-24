@@ -5,7 +5,8 @@
 CarrierWave.configure do |config|
   config.storage = :aws
   config.aws_bucket = Rails.application.credentials.dig(:aws, :bucket)
-  config.aws_acl = 'private'
+  # config.aws_acl = 'private'
+  config.aws_acl = :public_read # Set the ACL for uploaded files
 
   config.aws_credentials = {
     access_key_id: Rails.application.credentials.dig(:aws, :key),
