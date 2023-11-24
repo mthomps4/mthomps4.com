@@ -274,6 +274,8 @@ GEM
     regexp_parser (2.8.2)
     reline (0.4.0)
       io-console (~> 0.5)
+    requestjs-rails (0.0.11)
+      railties (>= 6.1.0)
     rexml (3.2.6)
     rouge (4.2.0)
     rubocop (1.57.2)
@@ -382,6 +384,7 @@ DEPENDENCIES
   rails (= 7.1.2)
   redcarpet
   redis (~> 4.0)
+  requestjs-rails
   rouge
   rubocop
   ruby-lsp-rails
