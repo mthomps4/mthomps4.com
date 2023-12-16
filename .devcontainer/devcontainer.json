@@ -1,8 +1,8 @@
 {
   "name": "ASDF Ruby with Postgres",
   "image": "mthomps4/devcontainer-ruby:latest",
-  "workspaceFolder": "~/workspace",
-  "workspaceMount": "~/workspace",
+  "workspaceFolder": "/root/workspace/project",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/root/workspace/project,type=bind",
   "customizations": {
     "codespaces": {      
       "settings": {
