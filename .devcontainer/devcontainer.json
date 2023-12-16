@@ -28,5 +28,18 @@
     }
   },
   "remoteUser": "root",
-  "forwardPorts": [3000, 5432]
+  "forwardPorts": [3000, 5432],
+  "portsAttributes": {
+    "3000": {
+      "label": "Application",
+      "onAutoForward": "notify",
+      "protocol": "https"
+    },
+    "5432": {
+      "label": "Database",
+      "onAutoForward": "notify",
+      "elevateIfNeeded": true
+    }
+  }
+
 }
