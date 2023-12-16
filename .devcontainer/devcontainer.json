@@ -1,0 +1,15 @@
+{
+  "name": "ASDF Ruby with Postgres",
+  "image": "mthomps4/devcontainer-ruby:latest",  // Replace with your Docker Hub username and image name
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/zsh"
+  },
+  "extensions": [
+    // Add your VS Code extensions here, if needed
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "Shopify.ruby-lsp"
+  ],
+  "remoteUser": "root",
+  "forwardPorts": [3000, 5432]
+}
