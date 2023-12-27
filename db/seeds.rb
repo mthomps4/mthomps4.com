@@ -9,6 +9,5 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 Tag.create({ name: 'Ruby' })
-Tag.create({ name: 'JS' })
+Tag.create({ name: 'JS/TS' })
 Tag.create({ name: 'Elixir' })
-Tag.create({ name: 'PHP' })

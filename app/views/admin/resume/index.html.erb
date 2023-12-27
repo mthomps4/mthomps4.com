@@ -1,0 +1,7 @@
+<h1 class="text-4xl text-brand-blue-700 dark:text-brand-blue-50 font-light text-center my-10">Resume History</h1>
+<ul>
+  <% @resumes.each do |resume| %>
+    <p class="text-gray-500"> <%= resume.created_at.strftime('%-m/%-d/%y') %> </p>
+    <%= link_to resume.file.file.filename, resume.file.url, target: '_blank', rel: 'noopener noreferrer', class: "block hover:underline" %>
+  <% end %>
+</ul>

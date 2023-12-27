@@ -1,5 +1,5 @@
 <%= form_with(model: post, url: url, multipart: true) do |form| %>
-  <div class="bg-brand-blue-100 dark:bg-brand-blue-800 p-4">
+  <div class="bg-brand-blue-100 dark:bg-brand-blue-900 p-4">
     <% if post.errors.any? %>
       <div style="color: red">
         <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>

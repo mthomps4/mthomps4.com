@@ -1,7 +1,7 @@
-<div id="sidebar-images">
+<div id="sidebar-images" class="my-4">
   <% post_images.each do |post_image| %>
-    <div>
-      <p class="text-xs truncate"><%= post_image.filename %></p>
+    <div class="my-2">
+      <p class="text-xs truncate dark:text-brand-blue-50 text-brand-blue-950"><%= post_image.filename %></p>
       <div class="flex items-center justify-center">
         <div class="mr-2">
           <%= image_tag post_image.image.thumb.url %>

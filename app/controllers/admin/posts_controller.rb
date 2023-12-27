@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Admin
-  class PostsController < ApplicationController
+  class PostsController < AdminController
     before_action :set_post, only: %i[show edit update destroy]
     layout 'admin/post_sidebar_layout'
 

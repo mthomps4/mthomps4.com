@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_18_032319) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_27_014051) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,6 +18,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_18_032319) do
   # Note that some types may not work with other database engines. Be careful if changing database.
   create_enum "post_type", ["post", "til"]
   create_enum "post_types", ["post", "til"]
+
+  create_table "admins", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "name", null: false
+    t.string "resume"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true
+  end
 
   create_table "contacts", force: :cascade do |t|
     t.string "first_name"
@@ -63,6 +72,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_18_032319) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_posts_tags_on_post_id"
     t.index ["tag_id"], name: "index_posts_tags_on_tag_id"
+  end
+
+  create_table "resumes", force: :cascade do |t|
+    t.string "file", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tags", force: :cascade do |t|

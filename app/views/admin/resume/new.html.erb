@@ -1,0 +1,19 @@
+<h1 class="text-4xl text-brand-blue-700 dark:text-brand-blue-50 font-light text-center my-10">Resume Uploader</h1>
+<%= form_with(model: @resume, url: admin_resume_path, method: :post, local: true, multipart: true) do |form| %>
+  <% if @resume.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@resume.errors.count, "error") %> prohibited this resume from being saved:</h2>
+      <ul>
+        <% @resume.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="my-4">
+    <%= form.file_field :file %>
+  </div>
+  <div class="my-4">
+    <%= form.submit "Upload", class: button_styles() %>
+  </div>
+<% end %>
