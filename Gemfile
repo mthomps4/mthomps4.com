@@ -74,9 +74,9 @@ gem 'aws-sdk-s3'
 # Image Uploads
 gem 'carrierwave', '~> 3.0'
 gem 'carrierwave-aws'
+gem 'kaminari'
 gem 'mini_magick'
 gem 'ransack'
-gem 'kaminari'
 
 group :development, :test do
   gem 'pry'

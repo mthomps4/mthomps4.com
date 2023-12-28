@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-
   root 'main#index'
   scope module: 'main' do
     get 'about', to: 'main#index', as: 'index'

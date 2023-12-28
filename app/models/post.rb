@@ -47,11 +47,12 @@ class Post < ApplicationRecord
                          })
   end
 
-  def self.ransackable_attributes(auth_object = nil)
-    ["content", "created_at", "description", "featured_image", "id", "id_value", "post_type", "published", "published_on", "title", "updated_at"]
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[content created_at description featured_image id id_value post_type published
+       published_on title updated_at]
   end
 
-  def self.ransackable_associations(auth_object = nil)
-    ["post_images", "posts_tags", "tags"]
+  def self.ransackable_associations(_auth_object = nil)
+    %w[post_images posts_tags tags]
   end
 end

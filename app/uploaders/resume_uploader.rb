@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ResumeUploader < CarrierWave::Uploader::Base
   # Set the storage to :file or :fog for AWS S3
   storage :aws
