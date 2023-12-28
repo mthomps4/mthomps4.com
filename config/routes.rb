@@ -7,9 +7,7 @@ Rails.application.routes.draw do
     get 'about', to: 'main#index', as: 'index'
     get 'blog'
     get 'info'
-    get 'contact', to: 'main#new_contact', as: 'new_contact'
-    post 'contact', to: 'main#create_contact', as: 'create_contact'
-    get 'posts/:id', to: 'main#post', as: 'show_post'
+    get 'post/:id', action: :show_post, as: 'post'
     post 'parse_markdown'
   end
 

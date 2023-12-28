@@ -29,7 +29,7 @@ class MainController < ApplicationController
   end
 
   def blog
-    @posts = Post.post.published.order(published_on: :desc)
+    @posts = Post.published.order(published_on: :desc)
     @title = 'Posts'
   end
 
