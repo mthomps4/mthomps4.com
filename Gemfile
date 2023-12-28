@@ -75,6 +75,8 @@ gem 'aws-sdk-s3'
 gem 'carrierwave', '~> 3.0'
 gem 'carrierwave-aws'
 gem 'mini_magick'
+gem 'ransack'
+gem 'kaminari'
 
 group :development, :test do
   gem 'pry'

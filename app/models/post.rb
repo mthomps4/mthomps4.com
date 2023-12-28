@@ -46,4 +46,12 @@ class Post < ApplicationRecord
                            }.to_json
                          })
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["content", "created_at", "description", "featured_image", "id", "id_value", "post_type", "published", "published_on", "title", "updated_at"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["post_images", "posts_tags", "tags"]
+  end
 end

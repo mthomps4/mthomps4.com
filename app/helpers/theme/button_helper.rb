@@ -54,7 +54,7 @@ module Theme
     def variant_styles(variant)
       {
         VARIANT[:primary] => 'bg-brand-blue-600 hover:bg-brand-blue-700 focus:ring-brand-blue-500 focus-visible:outline-brand-blue-600',
-        VARIANT[:secondary] => 'bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus-visible:outline-blue-600',
+        VARIANT[:secondary] => 'bg-brand-blue-50 hover:bg-brand-blue-200 focus:ring-brand-blue-500 focus-visible:outline-brand-blue-600 text-brand-blue-700 border-[1px] border-brand-blue-700',
         VARIANT[:danger] => 'bg-red-600 hover:bg-red-700 focus:ring-red-500 focus-visible:outline-red-600'
       }[variant] || ''
     end

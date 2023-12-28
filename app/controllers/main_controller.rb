@@ -29,8 +29,8 @@ class MainController < ApplicationController
   end
 
   def blog
-    @posts = Post.published.order(published_on: :desc)
-    @title = 'Posts'
+    @q = Post.published.ransack(params[:q])
+    @posts = @q.result(distinct: true).order(published_on: :desc).page(params[:page]).per(10)
   end
 
   # GET /posts/1 or /posts/1.json
