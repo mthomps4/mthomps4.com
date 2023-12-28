@@ -7,7 +7,8 @@ module Admin
 
     # GET /admin/posts or /admin/posts.json
     def index
-      @posts = Post.all
+      @q = Post.order(published_on: :desc).ransack(params[:q])
+      @posts = @q.result(distinct: true).page(params[:page]).per(25)
     end
 
     # GET /admin/posts/1 or /admin/posts/1.json
