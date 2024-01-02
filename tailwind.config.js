@@ -69,20 +69,6 @@ export default {
     './app/assets/stylesheets/**/*.css',
     './app/javascript/**/*.js',
   ],
-  // safelist: [
-  //   {
-  //     pattern: /bg-(.*)-(50|100|200|300|400|500|600|700|800|900|950)/,
-  //     variants: ['hover', 'focus', 'disabled'],
-  //   },
-  //   {
-  //     pattern: /text-(.*)-(50|100|200|300|400|500|600|700|800|900|950)/,
-  //     variants: ['hover', 'focus', 'disabled'],
-  //   },
-  //   {
-  //     pattern: /placeholder-(.*)-(50|100|200|300|400|500|600|700|800|900|950)/,
-  //     variants: ['hover', 'focus', 'disabled'],
-  //   },
-  // ],
   plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')],
   theme: {
     extend: {

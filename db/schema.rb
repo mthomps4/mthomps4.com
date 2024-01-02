@@ -19,15 +19,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_27_014051) do
   create_enum "post_type", ["post", "til"]
   create_enum "post_types", ["post", "til"]
 
-  create_table "admins", force: :cascade do |t|
-    t.string "email", null: false
-    t.string "name", null: false
-    t.string "resume"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_admins_on_email", unique: true
-  end
-
   create_table "contacts", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -43,7 +34,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_27_014051) do
 
   create_table "post_images", force: :cascade do |t|
     t.string "filename"
-    t.string "image"
+    t.string "images"
     t.bigint "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
