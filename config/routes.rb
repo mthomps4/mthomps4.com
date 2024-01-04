@@ -20,6 +20,4 @@ Rails.application.routes.draw do
     post 'resume', to: 'resume#create'
     get 'resumes', to: 'resume#index'
   end
-
-  mount Lookbook::Engine, at: '/lookbook' if Rails.env.development?
 end

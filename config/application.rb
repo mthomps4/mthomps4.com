@@ -24,8 +24,5 @@ module Turby
 
     config.hosts << '.ngrok.dev' if Rails.env.development?
     config.hosts << '.ngrok.app' if Rails.env.development?
-
-    # LOOKBOOK
-    # config.view_component.default_preview_layout = "lookbook"
   end
 end
