@@ -2,6 +2,13 @@
   "recommendations": [
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
-    "Shopify.ruby-lsp"
+    "kaiwood.endwise",
+    "streetsidesoftware.code-spell-checker",
+    "setobiralo.erb-commenter",
+    "aliariff.vscode-erb-beautify",
+    "rayhanw.erb-helpers",
+    "aki77.html-erb",
+    "lorankloeze.ruby-rubocop-revived",
+    "marcoroth.stimulus-lsp"
   ]
 }

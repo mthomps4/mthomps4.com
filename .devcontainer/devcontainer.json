@@ -20,10 +20,17 @@
         "terminal.integrated.shell.linux": "/bin/zsh"
       },
       "extensions": [
-        // Add your VS Code extensions here, if needed
         "esbenp.prettier-vscode",
         "dbaeumer.vscode-eslint",
-        "Shopify.ruby-lsp"
+        "Shopify.ruby-lsp",
+        "kaiwood.endwise",
+        "streetsidesoftware.code-spell-checker",
+        "setobiralo.erb-commenter",
+        "aliariff.vscode-erb-beautify",
+        "rayhanw.erb-helpers",
+        "aki77.html-erb",
+        "LoranKloeze.ruby-rubocop-revived",
+        "marcoroth.stimulus-lsp"
       ]
     }
   },
