@@ -100,7 +100,8 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :description, :content, :published, :post_type, :featured_image)
+      params.require(:post).permit(:title, :description, :content, :published, :post_type, :featured_image,
+                                   :published_on, tag_ids: [])
     end
   end
 end

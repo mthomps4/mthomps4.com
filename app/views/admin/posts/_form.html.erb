@@ -21,13 +21,22 @@
         </div>
       </div>
     </div>
-    <div>
-      <%= form.label :post_type, class: label_styles %>
-      <%= form.collection_select :post_type, Post.post_types.keys, :to_s, :upcase, { prompt: "Select Post Type" }, { class: "rounded-lg border-2 border-brand-blue-400" } %>
-    </div>
-    <div class="flex items-center">
-      <%= form.label :published, class: label_styles %>
-      <%= form.check_box :published, class: checkbox_styles %>
+    <div class="flex justify-between">
+      <div>
+        <%= form.label :post_type, class: label_styles %>
+        <%= form.collection_select :post_type, Post::POST_TYPES, :first, :last, { prompt: "Select Post Type" }, { class: "rounded-lg border-2 border-brand-blue-400" } %>
+      </div>
+      <div>
+        <%= form.label :published, class: label_styles %>
+        <div class="flex items-center">
+          <%= form.check_box :published, class: checkbox_styles %>
+          <%= form.label :published, "true", class: label_styles(css:"mx-2") %>
+        </div>
+      </div>
+      <div>
+        <%= form.label :published_on, class: label_styles %>
+        <%= form.date_field :published_on %>
+      </div>
     </div>
     <div>
       <%= form.label :title, class: label_styles %>

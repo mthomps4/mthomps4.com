@@ -9,12 +9,13 @@ class Post < ApplicationRecord
   has_many :tags, through: :posts_tags
   has_many :post_images, dependent: :destroy
 
-  enum post_type: { post: 'post', til: 'til' }
   scope :published, -> { where(published: true) }
 
   validates :title, presence: true
 
   mount_uploader :featured_image, FeaturedUploader
+
+  POST_TYPES = [['DIGITAL_FORGE', 'Digital Forge'], ['HAND_TOOL_ARMORY', 'Hand Tool Armory']].freeze
 
   def self.create_draft
     Post.create!(title: 'DRAFT', description: 'Add a description here...', content: 'Write your post here...',
@@ -22,6 +23,8 @@ class Post < ApplicationRecord
   end
 
   def set_published_on
+    return unless published_on.nil? && published?
+
     self.published_on = Time.zone.now if published?
   end
 
