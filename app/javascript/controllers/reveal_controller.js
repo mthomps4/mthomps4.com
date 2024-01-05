@@ -1,5 +1,4 @@
 //Copied from https://github.com/stimulus-components/stimulus-reveal-controller/blob/master/src/index.ts
-// rails g stimulus would hijack imports from yarn packages... :shrug:
 
 import { Controller } from '@hotwired/stimulus';
 
