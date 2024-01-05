@@ -124,8 +124,6 @@ GEM
     drb (2.2.0)
       ruby2_keywords
     erubi (1.12.0)
-    esbuild-rails (0.1.4)
-      rails (>= 6.0.0)
     ffi (1.16.3)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -341,7 +339,6 @@ DEPENDENCIES
   carrierwave-aws
   cssbundling-rails
   debug
-  esbuild-rails
   hotwire-livereload
   inline_svg
   jsbundling-rails
