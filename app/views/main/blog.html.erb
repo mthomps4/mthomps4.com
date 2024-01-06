@@ -1,11 +1,11 @@
 <h1 class="text-4xl text-brand-blue-700 dark:text-brand-blue-50 font-light text-center my-10"><%= @title %></h1>
 <section class="my-4 flex justify-center w-full">
-  <%= search_form_for @q, url: blog_path do |f| %>
+  <%= search_form_for @q, url: @search_path do |f| %>
     <div class="flex items-center">
       <%= f.search_field :title_or_description_cont, placeholder: "Search..." %>
       <div class="flex justify-end my-2">
         <%= f.submit class: button_styles(css: "mx-2") %>
-        <%= link_to "Reset", blog_path, class: button_styles(variant: "secondary") %>
+        <%= link_to "Reset", @search_path, class: button_styles(variant: "secondary") %>
       </div>
     </div>
   <% end %>

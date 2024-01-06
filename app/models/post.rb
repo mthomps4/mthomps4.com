@@ -17,6 +17,9 @@ class Post < ApplicationRecord
 
   POST_TYPES = [['DIGITAL_FORGE', 'Digital Forge'], ['HAND_TOOL_ARMORY', 'Hand Tool Armory']].freeze
 
+  scope :digital_forge, -> { where(post_type: 'DIGITAL_FORGE') }
+  scope :hand_tool_armory, -> { where(post_type: 'HAND_TOOL_ARMORY') }
+
   def self.create_draft
     Post.create!(title: 'DRAFT', description: 'Add a description here...', content: 'Write your post here...',
                  published: false)

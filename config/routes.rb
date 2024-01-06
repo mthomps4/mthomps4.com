@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   root 'main#index'
   scope module: 'main' do
     get 'about', to: 'main#index', as: 'index'
-    get 'blog'
+    get 'digital-forge', as: 'digital_forge'
+    get 'hand-tool-armory', as: 'hand_tool_armory'
     get 'info'
     get 'post/:id', action: :show_post, as: 'post'
     post 'parse_markdown'
