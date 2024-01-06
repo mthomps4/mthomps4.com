@@ -15,13 +15,13 @@
     "tailwindcss": "^3.3.2"
   },
   "scripts": {
-    "heroku-postbuild-old": "npm run build && npm run build:css",
+    "heroku-postbuild": "yarn build && yarn build:css",
     "clear": "rails tmp:cache:clear && rails assets:clean",
-    "dev": "concurrently --names \"esbuild,css,redis\" -c cyan,magenta,yellow \"npm run watch:js\" \"npm run watch:css\" \"redis-server\"",
-    "build-old": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
+    "dev": "concurrently --names \"esbuild,css,redis\" -c cyan,magenta,yellow \"yarn watch:js\" \"yarn watch:css\" \"redis-server\"",
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
-    "watch:js": "npm run build -- --watch",
-    "watch:css": "npm run build:css -- --watch"
+    "watch:js": "yarn build --watch",
+    "watch:css": "yarn build:css --watch"
   },
   "engines": {
     "node": "^20.8.0",
