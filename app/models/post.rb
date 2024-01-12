@@ -2,6 +2,8 @@
 
 class Post < ApplicationRecord
   include Taggable
+  mount_uploader :featured_image, FeaturedUploader
+
   before_save :set_published_on, unless: :new_record? # Don't set on create_draft Post.create!
   after_save :create_backup
 
@@ -11,19 +13,16 @@ class Post < ApplicationRecord
 
   scope :published, -> { where(published: true) }
 
-  POST_TYPES = { digital_forge: 'Digital Forge', hand_tool_armory: 'Hand Tool Armory' }.freeze
-  enum post_type: POST_TYPES
+  # POST_TYPES = { digital_forge: 'Digital Forge', hand_tool_armory: 'Hand Tool Armory' }.freeze
+  # enum post_type: POST_TYPES, default: :digital_forge
+  # scope :digital_forge, -> { where(post_type: Post.post_types[:digital_forge]) }
+  # scope :hand_tool_armory, -> { where(post_type: Post.post_types[:hand_tool_armory]) }
 
   validates :title, presence: true
 
-  mount_uploader :featured_image, FeaturedUploader
-
-  scope :digital_forge, -> { where(post_type: Post.post_types[:digital_forge]) }
-  scope :hand_tool_armory, -> { where(post_type: Post.post_types[:hand_tool_armory]) }
-
   def self.create_draft
     Post.create!(title: 'DRAFT', description: 'Add a description here...', content: 'Write your post here...',
-                 published: false, post_type: Post.post_types[:digital_forge])
+                 published: false)
   end
 
   def set_published_on

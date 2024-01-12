@@ -31,7 +31,7 @@ class MainController < ApplicationController
   def blog; end
 
   def digital_forge
-    @q = Post.digital_forge.published.ransack(params[:q])
+    @q = Post.published.ransack(params[:q])
     @posts = @q.result(distinct: true).order(published_on: :desc).page(params[:page]).per(10)
     @title = 'The Digital Forge'
     @search_path = digital_forge_path
