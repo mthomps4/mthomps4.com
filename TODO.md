@@ -9,3 +9,7 @@
 - Robots.txt and other SEO
 - Data to Production
 - DNS Swap
+
+## Nice to Have
+
+- Round out Theming and styles @apply and helpers
