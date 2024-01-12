@@ -26,3 +26,8 @@
 <section class="w-full">
   <%= paginate @posts %>
 </section>
+<%if @posts.empty? %>
+  <div class="flex justify-center items-center h-96">
+    <p class="text-2xl text-brand-blue-700 dark:text-brand-blue-50">No Posts Yet... Stay tuned.</p>
+  </div>
+<% end %>
