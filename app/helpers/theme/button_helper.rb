@@ -39,7 +39,7 @@ module Theme
     end
 
     def default_styles
-      'rounded-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2'
+      'rounded-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 no-underline hover:text-brand-blue-50'
     end
 
     def size_styles(size)
