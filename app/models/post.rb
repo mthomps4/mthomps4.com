@@ -11,18 +11,19 @@ class Post < ApplicationRecord
 
   scope :published, -> { where(published: true) }
 
+  POST_TYPES = { digital_forge: 'Digital Forge', hand_tool_armory: 'Hand Tool Armory' }.freeze
+  enum post_type: POST_TYPES
+
   validates :title, presence: true
 
   mount_uploader :featured_image, FeaturedUploader
 
-  POST_TYPES = [['DIGITAL_FORGE', 'Digital Forge'], ['HAND_TOOL_ARMORY', 'Hand Tool Armory']].freeze
-
-  scope :digital_forge, -> { where(post_type: 'DIGITAL_FORGE') }
-  scope :hand_tool_armory, -> { where(post_type: 'HAND_TOOL_ARMORY') }
+  scope :digital_forge, -> { where(post_type: Post.post_types[:digital_forge]) }
+  scope :hand_tool_armory, -> { where(post_type: Post.post_types[:hand_tool_armory]) }
 
   def self.create_draft
     Post.create!(title: 'DRAFT', description: 'Add a description here...', content: 'Write your post here...',
-                 published: false)
+                 published: false, post_type: Post.post_types[:digital_forge])
   end
 
   def set_published_on

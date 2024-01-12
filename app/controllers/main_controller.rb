@@ -39,14 +39,16 @@ class MainController < ApplicationController
     render :blog
   end
 
-  def hand_tool_armory
-    @q = Post.hand_tool_armory.published.ransack(params[:q])
-    @posts = @q.result(distinct: true).order(published_on: :desc).page(params[:page]).per(10)
-    @title = 'The Hand Tool Armory'
-    @search_path = hand_tool_armory_path
+  # def hand_tool_armory
+  #   @q = Post.hand_tool_armory.published.ransack(params[:q])
+  #   @posts = @q.result(distinct: true).order(published_on: :desc).page(params[:page]).per(10)
+  #   @title = 'The Hand Tool Armory'
+  #   @search_path = hand_tool_armory_path
 
-    render :blog
-  end
+  #   render :blog
+  # end
+
+  def hand_tool_armory; end
 
   # GET /posts/1 or /posts/1.json
   def show_post
