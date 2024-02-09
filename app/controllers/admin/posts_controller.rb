@@ -28,10 +28,8 @@ module Admin
       respond_to do |format|
         if @post.update(post_params)
           format.html { redirect_to admin_post_url(@post), notice: 'Post was successfully updated.' }
-          format.json { render :show, status: :ok, location: @post }
         else
           format.html { render :edit, status: :unprocessable_entity }
-          format.json { render json: @post.errors, status: :unprocessable_entity }
         end
       end
     end
@@ -42,7 +40,6 @@ module Admin
 
       respond_to do |format|
         format.html { redirect_to admin_posts_url, notice: 'Post was successfully destroyed.' }
-        format.json { head :no_content }
       end
     end
 
@@ -59,7 +56,6 @@ module Admin
       @post.reload
 
       respond_to do |format|
-        format.json { render json: { post_images: @post.post_images } }
         format.turbo_stream
       end
     end

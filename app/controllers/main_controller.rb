@@ -50,15 +50,18 @@ class MainController < ApplicationController
 
   def hand_tool_armory; end
 
+  def search_posts
+    @q = Post.published.ransack(params[:q])
+    @posts = @q.result(distinct: true).order(published_on: :desc).page(params[:page]).per(10)
+
+    respond_to do |format|
+      format.html { render 'shared/_post_search_results', layout: false }
+    end
+  end
+
   # GET /posts/1 or /posts/1.json
   def show_post
     @post = Post.find(params[:id])
     @markdown = PostsHelper.render_markdown(@post.content)
-  end
-
-  private
-
-  def contact_params
-    params.require(:contact).permit(:first_name, :last_name, :email, :phone_number, :message)
   end
 end
