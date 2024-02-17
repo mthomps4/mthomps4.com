@@ -79,4 +79,5 @@ group :development do
   gem 'rubocop', require: false
   gem 'ruby-lsp-rails'
   gem 'ruby-lsp-rspec', require: false
+  gem 'htmlbeautifier'
 end

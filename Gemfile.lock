@@ -131,6 +131,7 @@ GEM
       actioncable (>= 6.0.0)
       listen (>= 3.0.0)
       railties (>= 6.0.0)
+    htmlbeautifier (1.4.3)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -343,6 +344,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   hotwire-livereload
+  htmlbeautifier
   inline_svg
   jsbundling-rails
   kaminari
