@@ -2,7 +2,7 @@
   <%= form_with model: @post, url: admin_upload_images_path(@post), method: :post, local: true, html: { enctype: 'multipart/form-data' } do |f| %>
     <%= f.file_field :images, multiple: true %>
     <div class="flex justify-center my-4">
-      <%= f.submit "Upload Images", class: button_styles %>
+      <%= f.submit 'Upload Images', class: button_styles %>
     </div>
   <% end %>
 </div>

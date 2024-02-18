@@ -96,6 +96,13 @@ GEM
     aws-sigv4 (1.6.1)
       aws-eventstream (~> 1, >= 1.0.2)
     base64 (0.2.0)
+    better_html (2.0.2)
+      actionview (>= 6.0)
+      activesupport (>= 6.0)
+      ast (~> 2.0)
+      erubi (~> 1.4)
+      parser (>= 2.4)
+      smart_properties
     bigdecimal (3.1.4)
     bindex (0.8.1)
     bootsnap (1.17.0)
@@ -123,6 +130,13 @@ GEM
       reline (>= 0.3.1)
     drb (2.2.0)
       ruby2_keywords
+    erb_lint (0.5.0)
+      activesupport
+      better_html (>= 2.0.1)
+      parser (>= 2.7.1.4)
+      rainbow
+      rubocop
+      smart_properties
     erubi (1.12.0)
     ffi (1.16.3)
     globalid (1.2.1)
@@ -281,6 +295,11 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.30.0)
       parser (>= 3.2.1.0)
+    rubocop-rails (2.23.1)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 1.33.0, < 2.0)
+      rubocop-ast (>= 1.30.0, < 2.0)
     ruby-lsp (0.12.3)
       language_server-protocol (~> 3.17.0)
       prism (>= 0.17.1, < 0.18)
@@ -295,6 +314,7 @@ GEM
     ruby-vips (2.2.0)
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
+    smart_properties (1.17.0)
     sorbet-runtime (0.5.11128)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
@@ -338,11 +358,13 @@ DEPENDENCIES
   awesome_print
   aws-sdk-core
   aws-sdk-s3
+  better_html
   bootsnap
   carrierwave (~> 3.0)
   carrierwave-aws
   cssbundling-rails
   debug
+  erb_lint
   hotwire-livereload
   htmlbeautifier
   inline_svg
@@ -359,6 +381,7 @@ DEPENDENCIES
   requestjs-rails
   rouge
   rubocop
+  rubocop-rails
   ruby-lsp-rails
   ruby-lsp-rspec
   sprockets-rails

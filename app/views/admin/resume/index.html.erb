@@ -2,6 +2,6 @@
 <ul>
   <% @resumes.each do |resume| %>
     <p class="text-gray-500"> <%= resume.created_at.strftime('%-m/%-d/%y') %> </p>
-    <%= link_to resume.file.file.filename, resume.file.url, target: '_blank', rel: 'noopener noreferrer', class: "block hover:underline" %>
+    <%= link_to resume.file.file.filename, resume.file.url, target: '_blank', rel: 'noopener noreferrer', class: 'block hover:underline' %>
   <% end %>
 </ul>

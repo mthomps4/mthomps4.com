@@ -1,6 +1,6 @@
 <section class="my-4">
   <div class="flex justify-end w-full">
-    <%= link_to "+New Post", new_admin_post_path, class: "text-brand-blue-700 dark:text-brand-blue-50 hover:underline" %>
+    <%= link_to '+New Post', new_admin_post_path, class: 'text-brand-blue-700 dark:text-brand-blue-50 hover:underline' %>
   </div>
   <h1 class="text-4xl text-brand-blue-700 dark:text-brand-blue-50 font-light text-center">Admin::Posts</h1>
   <div class="mt-8 flow-root">
@@ -8,7 +8,7 @@
       <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
 
         <section class="my-4 flex justify-center w-full">
-          <%= render "shared/post_search" %>
+          <%= render 'shared/post_search' %>
         </section>
 
         <table class="min-w-full divide-y divide-gray-300">
@@ -28,14 +28,14 @@
             <% @posts.each do |post| %>
               <tr>
 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium sm:pl-0 w-[50px] h-[50px]">
-<%=image_tag post.featured_image.thumb.url || "https://placeholder.com/50x50", class: "w-full"%>
+<%= image_tag post.featured_image.thumb.url || 'https://placeholder.com/50x50', class: 'w-full' %>
 </td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-brand-blue-900 dark:text-brand-blue-100 font-bold"><%= link_to post.title, admin_post_path(post), class: "hover:underline" %></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-brand-blue-900 dark:text-brand-blue-100 font-bold"><%= link_to post.title, admin_post_path(post), class: 'hover:underline' %></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-brand-blue-900 dark:text-brand-blue-100"><%= post.published_on&.strftime('%m/%d/%Y') %></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-brand-blue-900 dark:text-brand-blue-100 truncate"><%= post.description %></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-brand-blue-900 dark:text-brand-blue-100"><%= post.tags.map(&:name).join(", ") %></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-brand-blue-900 dark:text-brand-blue-100"><%= post.tags.map(&:name).join(', ') %></td>
                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                  <%= link_to "Edit", edit_admin_post_path(post), class:"text-brand-blue-500 dark:text-brand-blue-100 hover:text-brand-blue-300 hover:underline" %>
+                  <%= link_to 'Edit', edit_admin_post_path(post), class: 'text-brand-blue-500 dark:text-brand-blue-100 hover:text-brand-blue-300 hover:underline' %>
                 </td>
               </tr>
             <% end %>

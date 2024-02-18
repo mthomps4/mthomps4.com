@@ -2,7 +2,7 @@
 <%= form_with(model: @resume, url: admin_resume_path, method: :post, local: true, multipart: true) do |form| %>
   <% if @resume.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@resume.errors.count, "error") %> prohibited this resume from being saved:</h2>
+      <h2><%= pluralize(@resume.errors.count, 'error') %> prohibited this resume from being saved:</h2>
       <ul>
         <% @resume.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -14,6 +14,6 @@
     <%= form.file_field :file %>
   </div>
   <div class="my-4">
-    <%= form.submit "Upload", class: button_styles() %>
+    <%= form.submit 'Upload', class: button_styles %>
   </div>
 <% end %>
