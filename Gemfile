@@ -75,9 +75,11 @@ group :development do
   gem 'pry'
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'awesome_print'
+  gem 'better-html' # Works with erb-lint
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'erb-lint'
+  gem 'htmlbeautifier' # Format on save HTML bits
   gem 'rubocop', require: false
   gem 'ruby-lsp-rails'
   gem 'ruby-lsp-rspec', require: false
-  gem 'htmlbeautifier'
 end
