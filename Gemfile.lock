@@ -358,7 +358,6 @@ DEPENDENCIES
   awesome_print
   aws-sdk-core
   aws-sdk-s3
-  better_html
   bootsnap
   carrierwave (~> 3.0)
   carrierwave-aws
