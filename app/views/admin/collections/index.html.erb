@@ -1,0 +1,24 @@
+<section class="my-4">
+  <div class="flex justify-end w-full">
+    <%= form_with model: @collection, url: admin_collections_path, method: :post, local: true, data: {turbo: false, turbo_stream: false}, class: "" do |f| %>
+      <%= f.text_field :name, class: "w-full bg-white" %>
+      <%= f.submit "Create" %>
+    <% end %>
+  </div>
+  <h1 class="text-4xl text-brand-blue-700 dark:text-brand-blue-50 font-light text-center">Admin::Collections</h1>
+  <div class="mt-8 flow-root">
+    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+        <% @collections.each do |c| %>
+          <div class="flex">
+            <p class="mr-2"><%= c.name %></p>
+            <%= link_to 'Edit', edit_admin_collection_path(c), class: 'text-brand-blue-500 dark:text-brand-blue-100 hover:text-brand-blue-300 hover:underline' %>
+          </div>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <%= paginate @collections %>
+</section>

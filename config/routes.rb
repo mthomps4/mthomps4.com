@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/admin', to: 'admin#index'
   namespace 'admin' do
     resources :posts
+    resources :collections
     post 'upload_image/:id', to: 'posts#upload_images', as: 'upload_images'
     post 'drag_upload_image/:id', to: 'posts#drag_upload_image', as: 'drag_upload_image'
     get 'refresh_sidebar/:id', to: 'posts#refresh_sidebar', as: 'refresh_sidebar'

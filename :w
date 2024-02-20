@@ -1,0 +1,8 @@
+<h1 class="text-4xl text-brand-blue-700 dark:text-brand-blue-50 font-light text-center">Edit Collection</h1>
+<% if @collections.errors %>
+  <p> Check the name!</p>
+<%end%>
+<%= form_with model: @collection, url: admin_collection_path(@collection), class: "" do |f| %>
+  <%= f.text_field :name, class: "" %>
+  <%= f.submit "Save", class:"" %>
+<%end%>
