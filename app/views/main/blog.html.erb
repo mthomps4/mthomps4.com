@@ -1,25 +1,27 @@
-<h1 class="text-4xl text-brand-blue-700 dark:text-brand-blue-50 font-light text-center my-10"><%= @title %></h1>
-<section class="my-4 flex justify-center w-full">
-  <%= render 'shared/post_search' %>
-</section>
-<section id="posts" class="grid md:grid-cols-3 gap-4">
-  <% @posts.each do |post| %>
-    <%= link_to post do %>
-      <div class="bg-gradient-to-br from-brand-blue-50 to-brand-blue-100 dark:from-brand-blue-800 dark:to-brand-blue-950 border-[1px] border-brand-blue-300 dark:border-brand-blue-600 rounded-lg text-brand-blue-950 dark:text-brand-blue-100 hover:border-4 hover:border-brand-blue-300">
-        <%= image_tag post.featured_image.small_og.url || 'https://placeholder.com/300x158', class: 'w-full' %>
-        <div class="mt-4 mx-2">
-          <h2 class="text-3xl break-words"><%= post.title %></h2>
-          <p><%= post.description %></p>
+<main>
+  <h1 class="text-4xl text-brand-blue-700 dark:text-brand-blue-50 font-light text-center my-10"><%= @title %></h1>
+  <section class="my-4 flex justify-center w-full">
+    <%= render 'shared/post_search' %>
+  </section>
+  <section id="posts" class="grid md:grid-cols-3 gap-4">
+    <% @posts.each do |post| %>
+      <%= link_to post do %>
+        <div class="bg-gradient-to-br from-brand-blue-50 to-brand-blue-100 dark:from-brand-blue-800 dark:to-brand-blue-950 border-[1px] border-brand-blue-300 dark:border-brand-blue-600 rounded-lg text-brand-blue-950 dark:text-brand-blue-100 hover:border-4 hover:border-brand-blue-300">
+          <%= image_tag post.featured_image.small_og.url || 'https://placeholder.com/300x158', class: 'w-full' %>
+          <div class="mt-4 mx-2">
+            <h2 class="text-3xl break-words"><%= post.title %></h2>
+            <p><%= post.description %></p>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
+  </section>
+  <section class="w-full">
+    <%= paginate @posts %>
+  </section>
+  <% if @posts.empty? %>
+    <div class="flex justify-center items-center h-96">
+      <p class="text-2xl text-brand-blue-700 dark:text-brand-blue-50">No Posts Yet... Stay tuned.</p>
+    </div>
   <% end %>
-</section>
-<section class="w-full">
-  <%= paginate @posts %>
-</section>
-<% if @posts.empty? %>
-  <div class="flex justify-center items-center h-96">
-    <p class="text-2xl text-brand-blue-700 dark:text-brand-blue-50">No Posts Yet... Stay tuned.</p>
-  </div>
-<% end %>
+</main>

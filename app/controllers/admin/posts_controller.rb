@@ -48,7 +48,7 @@ module Admin
       return unless @post
 
       upload_image_params[:images].map do |image|
-        next unless image.present?
+        next if image.blank?
 
         @post.post_images.create(filename: image.original_filename, image:)
       end

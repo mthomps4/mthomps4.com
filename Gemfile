@@ -56,9 +56,11 @@ gem 'aws-sdk-s3'
 # Image Uploads
 gem 'carrierwave', '~> 3.0'
 gem 'carrierwave-aws'
-gem 'kaminari'
 gem 'mini_magick'
+
+# Pagination 
 gem 'ransack'
+gem 'kaminari'
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
@@ -76,7 +78,6 @@ group :development do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'awesome_print'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
-  # gem 'erb_lint', require: false
   gem 'htmlbeautifier' # Format on save HTML bits
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false

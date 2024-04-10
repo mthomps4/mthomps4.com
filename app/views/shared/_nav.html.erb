@@ -1,4 +1,4 @@
-<% link_class = 'text-sm font-medium text-brand-blue-50 hover:border-brand-blue-200 hover:border-b-2 my-4 active:text-brand-blue-700 active:border-brand-blue-700 no-underline hover:text-brand-blue-50' %>
+<% link_class = 'text-sm font-medium text-brand-blue-50 hover:border-brand-blue-200 hover:border-b-2 my-4 active:text-brand-blue-700 active:border-brand-blue-700 no-underline hover:text-brand-blue-50 dark:text-white dark:hover:text-brand-blue-200' %>
 <% menu_links = [
      { label: 'About', path: root_path, class: link_class },
      { label: 'Digital Forge', path: digital_forge_path, class: link_class },
@@ -9,7 +9,7 @@
   <div class="mx-auto max-w-6xl px-4">
     <div class="flex h-16 justify-between items-center">
       <div class="w-full flex justify-between items-center">
-        <div class="mr-auto w-full">
+        <div class="mr-auto">
           <%= link_to root_path do %>
             <%= image_tag 'brand/MThompson-white.png', class: 'h-12', alt: 'Matt Thompson' %>
           <% end %>
