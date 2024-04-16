@@ -8,20 +8,20 @@
 # where the inspected file is and continue its way up to the root directory.
 #
 # See https://docs.rubocop.org/rubocop/configuration
-require: 
-  - rubocop-rails
+# require:
+#   - rubocop-rails
 
 AllCops:
   NewCops: disable
   SuggestExtensions: false
   TargetRubyVersion: 3.2.0
   Exclude:
-    - "vendor/**/*"
-    - "features/**/*"
-    - "db/schema.rb"
-    - "db/migrate/**/*"
-    - "test/fixtures/**/*"
-    - "bin/**/*"
+    - 'vendor/**/*'
+    - 'features/**/*'
+    - 'db/schema.rb'
+    - 'db/migrate/**/*'
+    - 'test/fixtures/**/*'
+    - 'bin/**/*'
 
 Style/Documentation:
   Enabled: false
@@ -29,7 +29,7 @@ Style/Documentation:
 Layout/LineLength:
   Max: 120
   Exclude:
-   - "app/helpers/theme/**/*"
+    - 'app/helpers/theme/**/*'
 
 Metrics/MethodLength:
   CountAsOne: ['array', 'hash', 'heredoc', 'method_call']

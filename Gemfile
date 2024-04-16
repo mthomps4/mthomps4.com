@@ -58,9 +58,9 @@ gem 'carrierwave', '~> 3.0'
 gem 'carrierwave-aws'
 gem 'mini_magick'
 
-# Pagination 
-gem 'ransack'
+# Pagination
 gem 'kaminari'
+gem 'ransack'
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
@@ -79,8 +79,7 @@ group :development do
   gem 'awesome_print'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'htmlbeautifier' # Format on save HTML bits
-  gem 'rubocop', require: false
-  gem 'rubocop-rails', require: false
-  gem 'ruby-lsp-rails'
-  gem 'ruby-lsp-rspec', require: false
+  gem 'rubocop', require: true
+  gem 'rubocop-rails', require: true
+  gem 'solargraph'
 end

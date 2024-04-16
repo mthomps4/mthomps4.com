@@ -7,7 +7,6 @@ class Post < ApplicationRecord
   before_save :set_published_on, unless: :new_record? # Don't set on create_draft Post.create!
   after_save :create_backup
 
-  belongs_to :collection, optional: true
   has_many :posts_tags
   has_many :tags, through: :posts_tags
   has_many :post_images, dependent: :destroy
