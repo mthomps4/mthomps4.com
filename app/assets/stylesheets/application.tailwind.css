@@ -9,6 +9,14 @@ p {
   @apply text-brand-blue-950 dark:text-brand-blue-50/80 font-brand my-2;
 }
 
+input, textarea {
+  @apply text-brand-blue-950;
+}
+
+.actions input {
+  @apply my-2 px-4 py-2 bg-brand-blue-700 text-white dark:bg-blue-200 dark:text-brand-blue-950;
+}
+
 a {
   @apply underline text-brand-blue-700 hover:text-brand-blue-500 dark:text-brand-blue-300 dark:hover:text-brand-blue-500;
 }
@@ -23,4 +31,8 @@ h2 {
 
 section {
   @apply my-8 w-full;
+}
+
+iframe {
+  @apply aspect-video w-[80%] h-fit;
 }

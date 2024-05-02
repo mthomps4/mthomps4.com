@@ -45,3 +45,15 @@
     </div>
   </div>
 </nav>
+<!-- Any User -->
+<% if user_signed_in? %>
+  <div class="w-full bg-brand-blue-600 h-10 flex items-center">
+    <div class="flex text-xs items-center mx-auto max-w-6xl">
+      <%=link_to "Admin", admin_path, class: 'text-white no-underline hover:text-purple-200 dark:text-white dark:no-underline dark:hover:text-purple-200 mx-4' %>
+      <%=link_to "Posts", admin_posts_path, class: 'text-white no-underline hover:text-purple-200 dark:text-white dark:no-underline dark:hover:text-purple-200 mx-4' %>
+      <%=link_to "Collections", admin_collections_path, class: 'text-white no-underline hover:text-purple-200 dark:text-white dark:no-underline dark:hover:text-purple-200 mx-4' %>
+      <%=link_to "Resumes", admin_resumes_path, class: 'text-white no-underline hover:text-purple-200 dark:text-white dark:no-underline dark:hover:text-purple-200 mx-4' %>
+      <%=link_to "Sign Out", destroy_user_session_path, method: :delete, data: {turbo_method: :delete}, class: 'text-white no-underline hover:text-purple-200 dark:text-white dark:no-underline dark:hover:text-purple-200 mx-4' %>
+    </div>
+  </div>
+<% end %>
