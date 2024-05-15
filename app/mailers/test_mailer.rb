@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TestMailer < ApplicationMailer
-  default from: 'test@mthomps4.com'
+  default from: Rails.application.credentials.dig(:smtp, :username)
   layout 'mailer'
 
   def test_email(to)
