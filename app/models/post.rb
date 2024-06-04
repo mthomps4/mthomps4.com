@@ -51,6 +51,24 @@ class Post < ApplicationRecord
                                     last_updated_at: updated_at
                                   }.to_json
                                 })
+
+    sync_featured_image
+  end
+
+  def sync_featured_image # rubocop:disable Metrics/AbcSize
+    S3_CLIENT.copy_object({
+                            key: featured_image.path.to_s,
+                            bucket: S3_BACKUP_BUCKET_NAME,
+                            copy_source: "#{S3_CDN_BUCKET_NAME}/#{featured_image.path}"
+                          })
+
+    featured_image.versions.each_key do |version|
+      S3_CLIENT.copy_object({
+                              key: featured_image.send(version).path.to_s,
+                              copy_source: "#{S3_CDN_BUCKET_NAME}/#{featured_image.send(version).path}",
+                              bucket: S3_BACKUP_BUCKET_NAME
+                            })
+    end
   end
 
   def self.ransackable_attributes(_auth_object = nil)

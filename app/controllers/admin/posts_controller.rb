@@ -56,7 +56,7 @@ module Admin
       @post.reload
 
       respond_to do |format|
-        format.turbo_stream
+        format.turbo_stream { render layout: false }
       end
     end
 
