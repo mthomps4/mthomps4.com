@@ -69,7 +69,7 @@ module Admin
       post_image = @post.post_images.create(filename: image.original_filename, image:)
       @post.reload
 
-      markdown_link = PostImage.s3_markdown_link(post_image.image.url)
+      markdown_link = post_image.s3_markdown_link
 
       render json: { markdown_link: }
     end

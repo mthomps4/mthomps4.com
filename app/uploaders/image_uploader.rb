@@ -23,6 +23,10 @@ class ImageUploader < CarrierWave::Uploader::Base
     process resize_to_fill: [1200, 630]
   end
 
+  def asset_host
+    'https://dev-assets.mthomps4.com'
+  end
+
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_allowlist

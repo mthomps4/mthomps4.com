@@ -15,6 +15,9 @@ CarrierWave.configure do |config|
     stub_responses: Rails.env.test? # Optional, avoid hitting S3 actual during tests
   }
 
+  # config.asset_host = Rails.application.credentials.dig(:aws, :asset_host) # Optional, use different host for asset
+  config.asset_host = 'https://dev-assets.mthomps4.com'
+
   # The maximum period for authenticated_urls is only 7 days.
   # config.aws_authenticated_url_expiration = 60 * 60 * 24 * 7
 
