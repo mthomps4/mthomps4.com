@@ -7,7 +7,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   def store_dir
     Rails.logger.info("\n\n\n #{model} -- #{mounted_as}")
-    "post/#{model.post_id}/#{mounted_as.to_s.pluralize}/#{model.filename}"
+    "post/#{model.post_id}/#{mounted_as.to_s.pluralize}"
   end
 
   # Create different versions of your uploaded files:

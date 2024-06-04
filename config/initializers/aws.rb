@@ -10,6 +10,8 @@ Aws.config.update({
                     credentials:
                   })
 
-main_bucket = Rails.application.credentials.aws[:bucket] || 'check-config'
-S3_BUCKET = Aws::S3::Resource.new.bucket(main_bucket)
+S3_CDN_BUCKET_NAME = Rails.application.credentials.aws[:cdn_bucket] || 'check-config'
+S3_BACKUP_BUCKET_NAME = Rails.application.credentials.aws[:backup_bucket] || 'check-config-backup'
+S3_BACKUP_BUCKET = Aws::S3::Resource.new.bucket(S3_BACKUP_BUCKET_NAME)
+S3_CDN_BUCKET = Aws::S3::Resource.new.bucket(S3_CDN_BUCKET_NAME)
 S3_CLIENT = Aws::S3::Client.new(region:, credentials:)

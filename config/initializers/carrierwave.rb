@@ -4,7 +4,7 @@
 
 CarrierWave.configure do |config|
   config.storage = :aws
-  config.aws_bucket = Rails.application.credentials.dig(:aws, :bucket)
+  config.aws_bucket = Rails.application.credentials.dig(:aws, :cdn_bucket)
   # config.aws_acl = 'private'
   # config.aws_acl = :public_read # Set the ACL for uploaded files # Deleted for new Bucket Permissions w/ CloudFront
 
@@ -15,8 +15,7 @@ CarrierWave.configure do |config|
     stub_responses: Rails.env.test? # Optional, avoid hitting S3 actual during tests
   }
 
-  # config.asset_host = Rails.application.credentials.dig(:aws, :asset_host) # Optional, use different host for asset
-  config.asset_host = 'https://dev-assets.mthomps4.com'
+  config.asset_host = Rails.application.credentials.dig(:aws, :asset_host)
 
   # The maximum period for authenticated_urls is only 7 days.
   # config.aws_authenticated_url_expiration = 60 * 60 * 24 * 7

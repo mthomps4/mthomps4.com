@@ -34,23 +34,23 @@ class Post < ApplicationRecord
   def create_backup
     path = "post/#{id}"
 
-    S3_BUCKET.put_object({
-                           key: "#{path}/post.md",
-                           body: content
-                         })
+    S3_BACKUP_BUCKET.put_object({
+                                  key: "#{path}/post.md",
+                                  body: content
+                                })
 
-    S3_BUCKET.put_object({
-                           key: "#{path}/meta.json",
-                           body: {
-                             title:,
-                             description:,
-                             type: post_type,
-                             featured_image:,
-                             tags: tags.map(&:name),
-                             published_on:,
-                             last_updated_at: updated_at
-                           }.to_json
-                         })
+    S3_BACKUP_BUCKET.put_object({
+                                  key: "#{path}/meta.json",
+                                  body: {
+                                    title:,
+                                    description:,
+                                    type: post_type,
+                                    featured_image:,
+                                    tags: tags.map(&:name),
+                                    published_on:,
+                                    last_updated_at: updated_at
+                                  }.to_json
+                                })
   end
 
   def self.ransackable_attributes(_auth_object = nil)
