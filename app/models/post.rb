@@ -52,7 +52,7 @@ class Post < ApplicationRecord
                                   }.to_json
                                 })
 
-    sync_featured_image
+    sync_featured_image if featured_image.present?
   end
 
   def sync_featured_image # rubocop:disable Metrics/AbcSize
