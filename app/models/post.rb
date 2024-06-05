@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   mount_uploader :featured_image, FeaturedUploader
 
   before_save :set_published_on, unless: :new_record? # Don't set on create_draft Post.create!
+  after_save :recreate_og_image
   after_save :create_backup
 
   has_many :posts_tags, dependent: :nullify
@@ -69,6 +70,12 @@ class Post < ApplicationRecord
                               bucket: S3_BACKUP_BUCKET_NAME
                             })
     end
+  end
+
+  def recreate_og_image
+    return unless saved_change_to_title? || saved_change_to_featured_image?
+
+    featured_image.recreate_versions!(:og) if featured_image.present? && title.present?
   end
 
   def self.ransackable_attributes(_auth_object = nil)
