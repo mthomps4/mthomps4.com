@@ -3,7 +3,7 @@
 module Admin
   class ResumeController < AdminController
     def index
-      @resumes = Resume.all.order(created_at: :desc).limit(10)
+      @resumes = Resume.order(created_at: :desc).limit(10)
     end
 
     def new

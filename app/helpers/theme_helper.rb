@@ -1,27 +1,27 @@
 # frozen_string_literal: true
 
 module ThemeHelper
-  def button_styles(**options)
-    Theme::ButtonHelper.generate_styles(**options)
+  def button_styles(**)
+    Theme::ButtonHelper.generate_styles(**)
   end
 
-  def input_styles(**options)
-    Theme::InputHelper.generate_styles(**options)
+  def input_styles(**)
+    Theme::InputHelper.generate_styles(**)
   end
 
-  def label_styles(**options)
-    Theme::LabelHelper.generate_styles(**options)
+  def label_styles(**)
+    Theme::LabelHelper.generate_styles(**)
   end
 
-  def text_area_styles(**options)
-    Theme::TextAreaHelper.generate_styles(**options)
+  def text_area_styles(**)
+    Theme::TextAreaHelper.generate_styles(**)
   end
 
-  def markdown_container_styles(**options)
-    Theme::MarkdownContainerHelper.generate_styles(**options)
+  def markdown_container_styles(**)
+    Theme::MarkdownContainerHelper.generate_styles(**)
   end
 
-  def checkbox_styles(**options)
-    Theme::CheckboxHelper.generate_styles(**options)
+  def checkbox_styles(**)
+    Theme::CheckboxHelper.generate_styles(**)
   end
 end
