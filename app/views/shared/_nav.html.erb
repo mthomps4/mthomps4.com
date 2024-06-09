@@ -10,7 +10,10 @@
     <div class="flex h-16 justify-between items-center">
       <div class="w-full flex justify-between items-center">
         <div class="mr-auto">
-          <%= link_to root_path do %>
+          <%= link_to root_path, class: "flex items-center" do %>
+            <%= image_tag 'lion-logo.png',
+                class: 'aspect-square w-12 mr-2',
+                alt: 'Lion Mascot' %>
             <%= image_tag 'brand/MThompson-white.png', class: 'h-12', alt: 'Matt Thompson' %>
           <% end %>
         </div>
