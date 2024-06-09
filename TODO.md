@@ -9,11 +9,9 @@
 
 - Check SEO meta
 - About the blog text
-- Blog Search margins (desktop)
 - Placeholder Feature Image when non present
 - Basic Pagination Ransack
 - Leave Categories / Tags for later
-- Date stamp
 
 ## Post Page
 
