@@ -3,8 +3,10 @@
 class Post < ApplicationRecord
   include Taggable
   mount_uploader :featured_image, FeaturedUploader
+  mount_uploader :og_image, OgUploader
 
   before_save :set_published_on, unless: :new_record? # Don't set on create_draft Post.create!
+  before_save :set_base_og_image, if: -> { og_image.blank? }
   after_save :recreate_og_image
   after_save :create_backup
 
@@ -20,6 +22,12 @@ class Post < ApplicationRecord
   # scope :hand_tool_armory, -> { where(post_type: Post.post_types[:hand_tool_armory]) }
 
   validates :title, presence: true
+
+  def set_base_og_image
+    return unless og_image.blank?
+
+    self.og_image = ActionController::Base.helpers.asset_path('og-base.png')
+  end
 
   def self.create_draft
     Post.create!(title: 'DRAFT', description: 'Add a description here...', content: 'Write your post here...',
@@ -53,7 +61,7 @@ class Post < ApplicationRecord
                                   }.to_json
                                 })
 
-    sync_featured_image if featured_image.present?
+    # sync_featured_image if featured_image.present?
   end
 
   def sync_featured_image # rubocop:disable Metrics/AbcSize

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_01_234006) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_10_141505) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,6 +46,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_01_234006) do
     t.string "featured_image"
     t.string "post_type"
     t.bigint "collection_id"
+    t.string "og_image"
     t.index ["collection_id"], name: "index_posts_on_collection_id"
     t.index ["published"], name: "index_posts_on_published"
     t.index ["published_on"], name: "index_posts_on_published_on"

@@ -43,7 +43,7 @@ class FeaturedUploader < CarrierWave::Uploader::Base
 
   version :og do
     process resize_to_fill: [1200, 630]
-    process :add_text_overlay
+    # process :add_text_overlay
   end
 
   # Add an allowlist of extensions which are allowed to be uploaded.
@@ -56,38 +56,5 @@ class FeaturedUploader < CarrierWave::Uploader::Base
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
     "featured.#{file.extension}"
-  end
-
-  private
-
-  def add_text_overlay
-    title = title_text
-    # title = title_text.gsub(/'/, '\\\\\'') # Escape single quotes in the title
-
-    manipulate! do |img|
-      img.combine_options do |c|
-        c.gravity 'Center'
-        c.pointsize 50
-        c.draw "text 0,0 '#{title}'"
-        c.fill 'white'
-      end
-    end
-  end
-
-  def title_text
-    if model.present? && model.respond_to?(:title)
-      model.title
-    elsif title.present?
-      title
-    else
-      'Draft'
-    end
-  end
-
-  def manipulate!
-    cache_stored_file! unless cached?
-    image = ::MiniMagick::Image.open(current_path)
-    yield(image)
-    image.write(current_path)
   end
 end
