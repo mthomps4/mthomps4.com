@@ -358,7 +358,7 @@ DEPENDENCIES
   aws-sdk-core
   aws-sdk-s3
   bootsnap
-  carrierwave (~> 3.0)
+  carrierwave
   carrierwave-aws
   cssbundling-rails
   debug

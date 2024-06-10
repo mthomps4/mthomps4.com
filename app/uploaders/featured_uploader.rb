@@ -14,7 +14,7 @@ class FeaturedUploader < CarrierWave::Uploader::Base
   end
 
   def asset_host
-    'https://dev-assets.mthomps4.com'
+    'https://dev.assets.mthomps4.com'
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -43,6 +43,7 @@ class FeaturedUploader < CarrierWave::Uploader::Base
 
   version :og do
     process resize_to_fill: [1200, 630]
+    # process :add_text_overlay
   end
 
   # Add an allowlist of extensions which are allowed to be uploaded.

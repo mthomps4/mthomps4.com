@@ -10,6 +10,7 @@
         </ul>
       </div>
     <% end %>
+    <%= form.hidden_field :og_image, value: asset_path('og-base.png') %>
     <div class="text-brand-blue-700 dark:text-brand-blue-100">
       <%= form.label :featured_image, class: label_styles %>
       <div class="flex items-center">
