@@ -24,7 +24,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def asset_host
-    'https://dev-assets.mthomps4.com'
+    'https://dev.assets.mthomps4.com'
   end
 
   # Add an allowlist of extensions which are allowed to be uploaded.

@@ -54,7 +54,7 @@ gem 'aws-sdk-core'
 gem 'aws-sdk-s3'
 
 # Image Uploads
-gem 'carrierwave', '~> 3.0'
+gem 'carrierwave'
 gem 'carrierwave-aws'
 gem 'mini_magick'
 

@@ -10,14 +10,14 @@ class OgUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "#{model.class.to_s.underscore}/#{model.id}/og"
+    "#{model.class.to_s.underscore}/#{model.id}"
   end
 
   def asset_host
-    'https://dev-assets.mthomps4.com'
+    'https://dev.assets.mthomps4.com'
   end
 
-  version :og do
+  version :with_title do
     process resize_to_fill: [1200, 630]
     process :add_text_overlay
   end
@@ -57,6 +57,9 @@ class OgUploader < CarrierWave::Uploader::Base
   end
 
   def manipulate!
+    # base_image_path = Rails.root.join('app/assets/images/og-base.png')
+    # cdn_path = "https://dev.assets.mthomps4.com/og-base.png"
+
     cache_stored_file! unless cached?
     image = ::MiniMagick::Image.open(current_path)
     yield(image)
