@@ -2,7 +2,8 @@
 
 class PostImage < ApplicationRecord
   belongs_to :post
-  mount_uploader :image, ImageUploader
+  # mount_uploader :image, ImageUploader
+  has_one_attached :image
   after_save :create_backup
 
   def cdn_url(type = :raw_image)
@@ -18,11 +19,14 @@ class PostImage < ApplicationRecord
   end
 
   def s3_markdown_link(type = :raw_image)
-    link = cdn_url(type)
-    "![image](#{link})"
+    '![TODO]()'
+    # link = cdn_url(type)
+    # "![image](#{link})"
   end
 
   def create_backup
+    return unless Rails.configuration.active_storage.service == :amazon
+
     versions = image.versions.keys
 
     # Copy the original

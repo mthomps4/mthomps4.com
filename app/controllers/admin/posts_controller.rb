@@ -7,7 +7,7 @@ module Admin
 
     # GET /admin/posts or /admin/posts.json
     def index
-      @q = Post.order(published_on: :desc).ransack(params[:q])
+      @q = Post.with_attached_featured_image.with_attached_og_image.order(published_on: :desc).ransack(params[:q])
       @posts = @q.result(distinct: true).page(params[:page]).per(25)
     end
 
@@ -97,7 +97,7 @@ module Admin
     # Only allow a list of trusted parameters through.
     def post_params
       params.require(:post).permit(:title, :description, :content, :published, :post_type, :featured_image,
-                                   :published_on, tag_ids: [])
+                                   :published_on)
     end
   end
 end

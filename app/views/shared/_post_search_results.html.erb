@@ -1,7 +1,8 @@
 <% @posts.each do |p| %>
   <%= link_to post_path(p), class: 'no-underline' do %>
     <li class="bg-white p-2 hover:bg-brand-blue-200 flex items-center border-b-2 border-b-brand-blue-300 dark:text-brand-blue-950" role="option" data-autocomplete-value="<%= p.id %>">
-      <%=image_tag p.featured_image.thumb.url, class: "w-[50px] h-fit aspect-video pr-4"%>
+      <%# image_tag p.featured_image.thumb.url, class: "w-[50px] h-fit aspect-video pr-4"%>
+      <%=image_tag p.featured_image, class: "w-[50px] h-fit aspect-video pr-4"%>
       <%= p.title %>
     </li>
   <% end %>

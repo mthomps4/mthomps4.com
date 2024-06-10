@@ -4,8 +4,53 @@ class Post < ApplicationRecord
   require 'open-uri'
 
   include Taggable
-  mount_uploader :featured_image, FeaturedUploader
-  mount_uploader :og_image, OgUploader
+  # mount_uploader :featured_image, FeaturedUploader
+  # mount_uploader :og_image, OgUploader
+
+  has_one_attached :featured_image do |attachable|
+    attachable.variant :thumb, resize_to_limit: [50, 50], preprocessed: true
+    attachable.variant :small_og, resize_to_fill: [300, 157.5], preprocessed: true
+    attachable.variant :og, resize_to_fill: [1200, 630], preprocessed: true
+  end
+
+  has_one_attached :og_image do |attachable|
+    attachable.variant :with_title, process: Post.add_text_overlay, preprocessed: true
+  end
+
+  def add_text_overlay
+    Rails.logger.info('AHHH')
+  end
+
+  def self.add_text_overlay
+    Rails.logger.info('HERE')
+    title = title_text
+    text_overlay = "text 0,0 '#{title}' gravity Center fill white pointsize 50"
+    manipulate_image do |img|
+      img.combine_options do |c|
+        c.gravity 'Center'
+        c.pointsize 50
+        c.draw text_overlay
+      end
+    end
+  end
+
+  def self.title_text
+    if model.present? && model.respond_to?(:title)
+      model.title
+    elsif title.present?
+      title
+    else
+      'Draft'
+    end
+  end
+
+  def self.manipulate_image(&)
+    variant.variant.transform(resize: '500x500').blob.open do |file|
+      image = MiniMagick::Image.new(file.path)
+      yield(image)
+      image.write(file.path)
+    end
+  end
 
   # Don't set on create_draft Post.create!
   before_save :set_published_on, unless: :new_record?
@@ -35,7 +80,9 @@ class Post < ApplicationRecord
     self.published_on = Time.zone.now if published?
   end
 
-  def create_backup
+  def create_backup # rubocop:disable Metrics/AbcSize
+    return unless Rails.configuration.active_storage.service == :amazon
+
     path = "post/#{id}"
 
     S3_BACKUP_BUCKET.put_object({
@@ -76,7 +123,7 @@ class Post < ApplicationRecord
     end
   end
 
-  def sync_og_image
+  def sync_og_image # rubocop:disable Metrics/AbcSize
     S3_CLIENT.copy_object({
                             key: og_image.path.to_s,
                             bucket: S3_BACKUP_BUCKET_NAME,

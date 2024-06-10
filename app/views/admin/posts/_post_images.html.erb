@@ -4,7 +4,8 @@
       <p class="text-xs truncate dark:text-brand-blue-50 text-brand-blue-950"><%= post_image.filename %></p>
       <div class="flex items-center justify-center">
         <div class="mr-2">
-          <%= image_tag post_image.image.thumb.url %>
+          <%= image_tag post_image.image %>
+          <%# image_tag post_image.image.thumb.url %>
         </div>
         <div class="mx-2" data-controller="clipboard" data-clipboard-success-content-value="&check;">
           <input type="text" value="<%= post_image.s3_markdown_link %>" data-clipboard-target="source" class="hidden">

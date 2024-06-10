@@ -6,11 +6,9 @@
   <div class="mt-8 flow-root">
     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-
         <section class="my-4 flex justify-center w-full">
           <%= render 'shared/post_search' %>
         </section>
-
         <table class="min-w-full divide-y divide-gray-300">
           <thead>
             <tr>
@@ -27,9 +25,14 @@
           <tbody class="divide-y divide-gray-200">
             <% @posts.each do |post| %>
               <tr>
-<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium sm:pl-0 w-[50px] h-[50px]">
-<%= image_tag post.featured_image.thumb.url || 'https://placeholder.com/50x50', class: 'w-full' %>
-</td>
+                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium sm:pl-0 w-[50px] h-[50px]">
+                  <%# image_tag post.featured_image.thumb.url || 'https://placeholder.com/50x50', class: 'w-full' %>
+                  <% if post.featured_image.attached? %>
+                    <%= image_tag post.featured_image, class: 'w-full' %>
+                  <%else%>
+                    <%= image_tag 'https://placeholder.com/50x50', class: 'w-full' %>
+                  <% end %>
+                </td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-brand-blue-900 dark:text-brand-blue-100 font-bold"><%= link_to post.title, admin_post_path(post), class: 'hover:underline' %></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-brand-blue-900 dark:text-brand-blue-100"><%= post.published_on&.strftime('%m/%d/%Y') %></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-brand-blue-900 dark:text-brand-blue-100 truncate"><%= post.description %></td>
