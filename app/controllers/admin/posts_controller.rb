@@ -3,7 +3,7 @@
 module Admin
   class PostsController < AdminController
     before_action :set_post, only: %i[show edit update destroy]
-    layout 'admin/post_sidebar_layout'
+    layout 'admin/post_sidebar_layout', except: [:show]
 
     # GET /admin/posts or /admin/posts.json
     def index

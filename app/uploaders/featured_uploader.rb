@@ -37,6 +37,14 @@ class FeaturedUploader < CarrierWave::Uploader::Base
     process resize_to_fit: [50, 50]
   end
 
+  version :square do
+    process resize_to_fill: [300, 300]
+  end
+
+  version :large_square do
+    process resize_to_fill: [600, 600]
+  end
+
   version :small_og do
     process resize_to_fill: [300, 157.5]
   end

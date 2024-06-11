@@ -83,6 +83,7 @@ development:
 #
 production:
   <<: *default
-  database: Turby_production
-  url: <%= ENV["DATABASE_URL"] %>
+  # database: Turby_production
+  # url: <%= ENV["DATABASE_URL"] %>
   # url: <%= Rails.application.credentials.database_url %>
+  url: <%= ENV["DATABASE_URL"] %>

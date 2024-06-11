@@ -8,12 +8,12 @@
       <%= render 'shared/post_search' %>
     </div>
   </section>
-  <section id="posts" class="grid md:grid-cols-3 gap-4">
+  <section id="posts" class="">
     <% @posts.each do |post| %>
       <%= link_to post, class: "no-underline" do %>
-        <div class="bg-gradient-to-br from-brand-blue-50 to-brand-blue-100 dark:from-brand-blue-800 dark:to-brand-blue-950 border-[1px] border-brand-blue-300 dark:border-brand-blue-600 rounded-lg text-brand-blue-950 dark:text-brand-blue-100 hover:border-4 hover:border-brand-blue-300">
-          <%= image_tag post.featured_image.small_og.url || 'https://placeholder.com/300x158', class: 'w-full' %>
-          <div class="mt-4 mx-2">
+        <div class="flex items-start bg-gradient-to-br from-brand-blue-50 to-brand-blue-200 dark:from-brand-blue-700 dark:to-brand-blue-950 border-[1px] border-brand-blue-300 dark:border-brand-blue-400 rounded-lg text-brand-blue-950 dark:text-brand-blue-100 hover:border-2 hover:border-brand-blue-500">
+          <%= image_tag post.featured_image.square.url || asset_path('lion-logo.png'), class: 'w-[200px] aspect-square rounded-tl-lg rounded-bl-lg' %>
+          <div class="mx-2">
             <h2 class="text-3xl break-words"><%= post.title %></h2>
             <p><%= post.description %></p>
             <p class="text-xs"><%= post.published_on.strftime("%b %d, %Y") %></p>

@@ -2,7 +2,8 @@
 
 ## Home Screen
 
-- Check SEO meta
+- SEO meta
+  - meta tags gem
 - Rework Headshot
 
 ## Digital Forge
@@ -11,18 +12,16 @@
 - About the blog text
 - Placeholder Feature Image when non present
 - Basic Pagination Ransack
-- Leave Categories / Tags for later
 
 ## Post Page
 
 - Missing Title
 - Missing Feature Image
-- new Layout for SEO needs
+- new Layout for SEO needs?
 
 ## Hand Tool Armory
 
-- Content... add or remove this page
-- paragraph text a bit small (audit site if this is global)
+- Content... Check the leading paragraphs
 
 ## Connect
 
@@ -37,15 +36,6 @@
 ## Admin / Posts
 
 - Same Pagination as Blog page
-- Remove tags if not using
-
-## Admin / Posts view
-
-- Should mirror the real blog post w/ an edit link
-
-## Admin / Collections
-
-- Fine to leave -- will rework when using
 
 ## Resumes
 
