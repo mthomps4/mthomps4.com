@@ -14,12 +14,23 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
     <link rel="manifest" href="/favicon_io/site.webmanifest">
   </head>
-  <body class="bg-brand-blue-100 pb-4 min-h-screen dark:bg-brand-blue-950">
-    <%= render 'shared/nav' %>
-    <%= render 'shared/notice' %>
-    <div style="background-attachment: fixed; background-image: url('<%= asset_path("lion-side.png") %>'); background-position: top left; background-repeat: no-repeat;">
-      <div class="mx-auto max-w-6xl px-4">
-        <div class="min-h-[calc(100vh-150px)] p-4 bg-gradient-to-br from-brand-blue-50 to-brand-blue-100 dark:from-brand-blue-800 dark:to-brand-blue-950 border-[1px] border-brand-blue-300 dark:border-brand-blue-600 rounded-lg text-brand-blue-950 dark:text-brand-blue-100">
+  <body class="bg-brand-blue-100 pb-4 min-h-screen dark:bg-brand-blue-950" >
+    <!-- Mobile Styles -->
+    <div class="3xl:hidden">
+      <%= render 'shared/nav' %>
+      <%= render 'shared/notice' %>
+      <div class="mx-auto max-w-4xl p-2">
+        <div class="min-h-[calc(100vh-150px)] p-4 bg-gradient-to-br from-brand-blue-50 to-brand-blue-100 dark:from-brand-blue-800 dark:to-brand-blue-950 border-[1px] border-brand-blue-300 dark:border-brand-blue-600 rounded-lg text-brand-blue-950 dark:text-brand-blue-100 shadow-xl">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    <!-- Desktop Styles -->
+    <div class="hidden 3xl:block" style="background-attachment: fixed; background-image: url('<%= asset_path("lion-side.png") %>'); background-position: center left; background-repeat: no-repeat;">
+      <%= render 'shared/nav' %>
+      <%= render 'shared/notice' %>
+      <div class="mx-auto max-w-4xl p-4">
+        <div class="min-h-[calc(100vh-150px)] p-4 bg-gradient-to-br from-brand-blue-50 to-brand-blue-100 dark:from-brand-blue-800 dark:to-brand-blue-950 border-[1px] border-brand-blue-300 dark:border-brand-blue-600 rounded-lg text-brand-blue-950 dark:text-brand-blue-100 shadow-xl">
           <%= yield %>
         </div>
       </div>
