@@ -34,12 +34,13 @@ class OgUploader < CarrierWave::Uploader::Base
 
   def add_text_overlay
     title = title_text
+    title = add_line_breaks_by_words(title, 25)
     # title = title_text.gsub(/'/, '\\\\\'') # Escape single quotes in the title
 
     manipulate! do |img|
       img.combine_options do |c|
         c.gravity 'Center'
-        c.pointsize 50
+        c.pointsize 60
         c.draw "text 0,0 '#{title}'"
         c.fill 'white'
       end
@@ -54,6 +55,29 @@ class OgUploader < CarrierWave::Uploader::Base
     else
       'Draft'
     end
+  end
+
+  def add_line_breaks(str, interval = 10)
+    str.scan(/.{1,#{interval}}/).join("\n")
+  end
+  
+  def add_line_breaks_by_words(str, max_length = 10)
+    words = str.split
+    lines = []
+    current_line = ""
+
+    words.each do |word|
+      if current_line.length + word.length + 1 <= max_length
+        current_line += " " unless current_line.empty?
+        current_line += word
+      else
+        lines << current_line
+        current_line = word
+      end
+    end
+    lines << current_line unless current_line.empty?
+
+    lines.join("\n")
   end
 
   def manipulate!
