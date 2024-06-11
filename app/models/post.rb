@@ -1,60 +1,46 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
-  require 'open-uri'
-
   include Taggable
-  # mount_uploader :featured_image, FeaturedUploader
-  # mount_uploader :og_image, OgUploader
+  include ImageHelper
 
   has_one_attached :featured_image do |attachable|
-    attachable.variant :thumb, resize_to_limit: [50, 50], preprocessed: true
+    attachable.variant :thumb, resize_to_fill: [50, 50], preprocessed: true
     attachable.variant :small_og, resize_to_fill: [300, 157.5], preprocessed: true
     attachable.variant :og, resize_to_fill: [1200, 630], preprocessed: true
   end
 
-  has_one_attached :og_image do |attachable|
-    attachable.variant :with_title, process: Post.add_text_overlay, preprocessed: true
+  has_one_attached :og_image 
+  
+  def process_og_image
+    # Temporarily download the image to a local file
+    tempfile = Tempfile.new(['og_image', '.png'])
+    tempfile.binmode
+    tempfile.write(og_image.download)
+    tempfile.close
+
+    title_text = title.presence || 'Draft'
+
+    # Process the image
+    ImageHelper.add_text_overlay(tempfile.path, title_text)
+
+    # Re-attach the processed image
+    og_image.attach(io: File.open(tempfile.path), filename: "og_image.png", content_type: og_image.content_type)
+
+    # Ensure to close and unlink the tempfile
+    tempfile.unlink
   end
 
-  def add_text_overlay
-    Rails.logger.info('AHHH')
-  end
-
-  def self.add_text_overlay
-    Rails.logger.info('HERE')
-    title = title_text
-    text_overlay = "text 0,0 '#{title}' gravity Center fill white pointsize 50"
-    manipulate_image do |img|
-      img.combine_options do |c|
-        c.gravity 'Center'
-        c.pointsize 50
-        c.draw text_overlay
-      end
-    end
-  end
-
-  def self.title_text
-    if model.present? && model.respond_to?(:title)
-      model.title
-    elsif title.present?
-      title
-    else
-      'Draft'
-    end
-  end
-
-  def self.manipulate_image(&)
-    variant.variant.transform(resize: '500x500').blob.open do |file|
-      image = MiniMagick::Image.new(file.path)
-      yield(image)
-      image.write(file.path)
-    end
+  def set_og_image
+    image_path = Rails.root.join('app/assets/images/og-base.png')
+    og_image = File.open(image_path)
+    self.og_image = og_image
   end
 
   # Don't set on create_draft Post.create!
   before_save :set_published_on, unless: :new_record?
-  before_save :recreate_og_image, unless: :new_record?
+  before_create :set_og_image
+  after_commit :process_og_image, on: [:update], if: :og_attached?
   after_save :create_backup
 
   has_many :posts_tags, dependent: :nullify
@@ -64,6 +50,10 @@ class Post < ApplicationRecord
   validates :title, presence: true
 
   scope :published, -> { where(published: true) }
+
+  def og_attached?
+    og_image.attached?
+  end
 
   def self.create_draft
     # Set base og_image for future updates

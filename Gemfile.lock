@@ -365,6 +365,7 @@ DEPENDENCIES
   devise
   hotwire-livereload
   htmlbeautifier
+  image_processing
   inline_svg
   jsbundling-rails
   kaminari

@@ -57,6 +57,7 @@ gem 'aws-sdk-s3'
 gem 'carrierwave'
 gem 'carrierwave-aws'
 gem 'mini_magick'
+gem "image_processing"
 
 # Pagination
 gem 'kaminari'

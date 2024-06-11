@@ -7,10 +7,10 @@
   </div>
   <%= link_to 'Edit This Post', edit_admin_post_path(@post), class: 'hover:underline' %>
 </div>
-<% if @post.feautred_image.thumb%>
-  <%= image_tag @post.featured_image.thumb%>
+<% if @post&.featured_image %>
+  <%= image_tag @post.featured_image %>
 <% end%>
-<% if @post.og_image.present? %>
+<% if @post&.og_image %>
   <%= image_tag @post.og_image, class: 'h-[100px]' %>
   <!--  <div class="flex justify-center h-80 w-full">
     <p className="border-2 border-brand-blue-400 dark:border-brand-blue-50 p-4">old og classes</p>
