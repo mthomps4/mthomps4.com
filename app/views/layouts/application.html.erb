@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html class="bg-brand-blue-700 dark:bg-brand-blue-950 font-brand">
   <head>
-    <title>MThompson</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,6 +12,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
     <link rel="manifest" href="/favicon_io/site.webmanifest">
+    <%= display_meta_tags site: "Matt Thompson - Software Engineer, Woodworker, and Mentor",
+      title: "Home",
+      reverse: true,
+      desctription: "Matt Thompson is a Software Engineer, Woodworker, and Mentor. He is passionate about building quality software, teaching others, and creating in both digital and phiscial media's.",
+      keywords: "Engineering, Software Engineer, Software Engineering, Leadership, AWS, Rails, Elixir, Node, React, Technology, Blog, Stripe, Twilio, Healthcare, Telecommunication" 
+    %>
   </head>
   <body class="bg-brand-blue-100 pb-4 min-h-screen dark:bg-brand-blue-950" >
     <!-- Mobile Styles -->
