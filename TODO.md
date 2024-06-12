@@ -15,8 +15,6 @@
 
 ## The Armory
 
-- Rename old route from 'hand-tool-armory'
-
 ## Post Page
 
 - Missing Title

@@ -4,5 +4,5 @@
 <%end%>
 <%= form_with model: @collection, url: admin_collection_path(@collection), local: true, data: {turbo: false, turbo_stream: false}, class: "" do |f| %>
   <%= f.text_field :name, class: "" %>
-  <%= f.submit "Save", class:"" %>
+  <%= f.submit "Save", class:"bg-brand-blue-500 px-4 py-2 text-white" %>
 <%end%>

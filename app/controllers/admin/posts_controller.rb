@@ -21,7 +21,10 @@ module Admin
     end
 
     # GET /admin/posts/1/edit
-    def edit; end
+    def edit
+      @tag_options = Tag.all.map { |tag| [tag.name, tag.id] }
+      @selected_tags = @post.tags.pluck(:id)
+    end
 
     # PATCH/PUT /admin/posts/1 or /admin/posts/1.json
     def update

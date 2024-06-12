@@ -2,19 +2,25 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from './application';
+import { application } from "./application"
 
-import ClipboardController from './clipboard_controller';
-application.register('clipboard', ClipboardController);
+import AutocompleteController from "./autocomplete_controller"
+application.register("autocomplete", AutocompleteController)
 
-import DarkModeController from './dark_mode_controller';
-application.register('dark-mode', DarkModeController);
+import ClipboardController from "./clipboard_controller"
+application.register("clipboard", ClipboardController)
 
-import MarkdownPreviewerController from './markdown_previewer_controller';
-application.register('markdown-previewer', MarkdownPreviewerController);
+import DarkModeController from "./dark_mode_controller"
+application.register("dark-mode", DarkModeController)
 
-import RevealController from './reveal_controller';
-application.register('reveal', RevealController);
+import MarkdownPreviewerController from "./markdown_previewer_controller"
+application.register("markdown-previewer", MarkdownPreviewerController)
 
-import AutocompleteController from './autocomplete_controller';
-application.register('autocomplete', AutocompleteController);
+import MultiSelectController from "./multi_select_controller"
+application.register("multi-select", MultiSelectController)
+
+import NoticeController from "./notice_controller"
+application.register("notice", NoticeController)
+
+import RevealController from "./reveal_controller"
+application.register("reveal", RevealController)

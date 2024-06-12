@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     get 'about', to: 'main#index', as: 'index'
     get 'search_posts', as: 'search_posts'
     get 'digital-forge', as: 'digital_forge'
-    get 'hand-tool-armory', as: 'hand_tool_armory'
+    get 'tool-armory', as: 'tool_armory'
     get 'info'
     get 'post/:id', action: :show_post, as: 'post'
     post 'parse_markdown'
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   namespace 'admin' do
     resources :posts
     resources :collections
+    resources :tags
     post 'upload_image/:id', to: 'posts#upload_images', as: 'upload_images'
     post 'drag_upload_image/:id', to: 'posts#drag_upload_image', as: 'drag_upload_image'
     get 'refresh_sidebar/:id', to: 'posts#refresh_sidebar', as: 'refresh_sidebar'

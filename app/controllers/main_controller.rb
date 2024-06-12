@@ -21,7 +21,7 @@ class MainController < ApplicationController
     @search_path = digital_forge_path
   end
 
-  def hand_tool_armory; end
+  def tool_armory; end
 
   def search_posts
     @q = Post.published.ransack(params[:q])
