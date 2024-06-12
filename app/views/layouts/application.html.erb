@@ -16,12 +16,12 @@
       title: "Home",
       reverse: true,
       desctription: "Matt Thompson is a Software Engineer, Woodworker, and Mentor. He is passionate about building quality software, teaching others, and creating in both digital and phiscial media's.",
-      keywords: "Engineering, Software Engineer, Software Engineering, Leadership, AWS, Rails, Elixir, Node, React, Technology, Blog, Stripe, Twilio, Healthcare, Telecommunication" 
+      keywords: "Engineering, Software Engineer, Software Engineering, Leadership, AWS, Rails, Elixir, Node, React, Technology, Blog, Stripe, Twilio, Healthcare, Telecommunication"
     %>
   </head>
   <body class="bg-brand-blue-100 pb-4 min-h-screen dark:bg-brand-blue-950" >
     <!-- Mobile Styles -->
-    <div class="3xl:hidden">
+    <div class="md:hidden">
       <%= render 'shared/nav' %>
       <%= render 'shared/notice' %>
       <div class="mx-auto max-w-4xl p-2">
@@ -31,7 +31,7 @@
       </div>
     </div>
     <!-- Desktop Styles -->
-    <div class="hidden 3xl:block" style="background-attachment: fixed; background-image: url('<%= asset_path("lion-side.png") %>'); background-position: center left; background-repeat: no-repeat;">
+    <div class="hidden md:block" style="background-attachment: fixed; background-image: url('<%= asset_path("lion-side-light.png") %>'); background-position: center left; background-repeat: no-repeat;">
       <%= render 'shared/nav' %>
       <%= render 'shared/notice' %>
       <div class="mx-auto max-w-4xl p-4">
