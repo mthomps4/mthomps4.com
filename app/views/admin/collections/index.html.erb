@@ -2,7 +2,7 @@
   <div class="flex justify-end w-full">
     <%= form_with model: @collection, url: admin_collections_path, method: :post, local: true, data: {turbo: false, turbo_stream: false}, class: "flex" do |f| %>
       <%= f.text_field :name, class: "w-full bg-white" %>
-      <%= f.submit "Create", class: "dark:text-white px-4 py-2 bg-brand-blue-500" %>
+      <%= f.submit "Create", class: "text-white px-4 py-2 bg-brand-blue-500" %>
     <% end %>
   </div>
   <h1 class="text-4xl text-brand-blue-700 dark:text-brand-blue-50 font-light text-center">Admin::Collections</h1>

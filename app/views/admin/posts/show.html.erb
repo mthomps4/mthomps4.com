@@ -22,7 +22,7 @@
       <p>Tags:</p>
       <% @post.tags.map do |tag| %>
         <!-- TODO: future link -->
-        <p><%= tag.name %></p>
+        <p><%= link_to "##{tag.name}", admin_posts_path(q: {tags_name_cont: tag.name}) %></p>
       <% end %>
     <% end %>
   </div>

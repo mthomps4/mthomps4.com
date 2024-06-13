@@ -6,19 +6,17 @@
   <div class="mt-8 flow-root">
     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-
         <section class="my-4 flex justify-center w-full">
           <%= render 'shared/post_search' %>
         </section>
-
         <table class="min-w-full divide-y divide-gray-300">
           <thead>
             <tr>
               <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-brand-blue-900 dark:text-brand-blue-100 sm:pl-0">Image</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-blue-900 dark:text-brand-blue-100">Title</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-blue-900 dark:text-brand-blue-100">Published On</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-blue-900 dark:text-brand-blue-100">Description</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-blue-900 dark:text-brand-blue-100">Tags</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-blue-900 dark:text-brand-blue-100">Collection</th>
               <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
                 <span class="sr-only">Edit</span>
               </th>
@@ -27,13 +25,17 @@
           <tbody class="divide-y divide-gray-200">
             <% @posts.each do |post| %>
               <tr>
-<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium sm:pl-0 w-[50px] h-[50px]">
-<%= image_tag post.featured_image.thumb.url || 'https://placeholder.com/50x50', class: 'w-full' %>
-</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-brand-blue-900 dark:text-brand-blue-100 font-bold"><%= link_to post.title, admin_post_path(post), class: 'hover:underline' %></td>
+                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium sm:pl-0 w-[50px] h-[50px]">
+                  <%= image_tag post.featured_image.thumb.url || 'https://placeholder.com/50x50', class: 'w-full' %>
+                </td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-brand-blue-900 dark:text-brand-blue-100 font-bold truncate"><%= link_to post.title, admin_post_path(post), class: 'hover:underline' %></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-brand-blue-900 dark:text-brand-blue-100"><%= post.published_on&.strftime('%m/%d/%Y') %></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-brand-blue-900 dark:text-brand-blue-100 truncate"><%= post.description %></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-brand-blue-900 dark:text-brand-blue-100"><%= post.tags.map(&:name).join(', ') %></td>
+                <td class="whitespace-nowrap px-3 py-4 text-xs text-brand-blue-900 dark:text-brand-blue-100">
+                  <% post.tags.map do |tag| %>
+                    <p><%= link_to "##{tag.name}", admin_posts_path(q: {tags_name_cont: tag.name}) %></p>
+                  <% end %>
+                </td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-brand-blue-900 dark:text-brand-blue-100 truncate"><%= post.collection&.name %></td>
                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                   <%= link_to 'Edit', edit_admin_post_path(post), class: 'text-brand-blue-500 dark:text-brand-blue-100 hover:text-brand-blue-300 hover:underline' %>
                 </td>
