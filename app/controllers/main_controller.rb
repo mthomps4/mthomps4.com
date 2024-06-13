@@ -17,8 +17,10 @@ class MainController < ApplicationController
   def digital_forge
     @q = Post.published.ransack(params[:q])
     @posts = @q.result(distinct: true).order(published_on: :desc).page(params[:page]).per(10)
-    @title = 'The Digital Forge'
-    @search_path = digital_forge_path
+    @collection_options = Collection.all.map { |collection| [collection.name, digital_forge_path(q: { collection_id_eq: collection.id })] }
+    @selected_collection = params[:q] ? digital_forge_path(q: { collection_id_eq: params.dig(:q, :collection_id_eq) }) : nil
+    @tag_options = Tag.all.map { |tag| [tag.name, digital_forge_path(q: { tags_id_in: tag.id })] }
+    @selected_tag = params[:q] ? digital_forge_path(q: { tags_id_in: params.dig(:q, :tags_id_in) }) : nil
   end
 
   def tool_armory; end

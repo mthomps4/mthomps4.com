@@ -5,13 +5,28 @@
   <div class="flex w-full md:w-3/4 mx-auto flex-col items-center md:flex-row md:justify-between">
     <%= image_tag "lion-logo.png", class: "w-40 h-40 aspect-square" %>
     <div>
-      <h1 class="text-4xl text-brand-blue-700 dark:text-brand-blue-50 font-light text-center m-0"><%= @title %></h1>
+      <h1 class="text-4xl text-brand-blue-700 dark:text-brand-blue-50 font-light text-center m-0">The Digital Forge</h1>
       <p class="ml-4 text-center"> The digital forge is a place where I share my thoughts and ideas on software development, technology, and other topics that interest me. I hope you find something useful here. </p>
     </div>
   </div>
   <section class="my-4 flex justify-center w-full">
     <div class="w-full md:w-3/4">
       <%= render 'shared/post_search' %>
+      <section class="flex gap-2 items-end w-full justify-between text-brand-blue-700 my-0">
+        <div class="w-full">
+          <label for="q[collection_id_eq]" class="text-xs">
+            <p>Collections</p>
+          </label>
+          <%= select_tag "q[collection_id_eq]", options_for_select(@collection_options, selected: @selected_collection ), data: {controller: "nav-select"}, include_blank: true, class: 'block w-full py-2 pl-3 pr-10 text-base border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-blue-500 focus:border-brand-blue-500' %>
+        </div>
+        <div class="w-full">
+          <label for="q[tags_id_in]" class="text-xs">
+            <p>Tags</p>
+          </label>
+          <%= select_tag "q[tags_id_in]", options_for_select(@tag_options, selected: @selected_tag ), data: {controller: "nav-select"}, include_blank: true, class: 'block w-full py-2 pl-3 pr-10 text-base border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-blue-500 focus:border-brand-blue-500' %>
+        </div>
+        <%= link_to "Reset", digital_forge_path, class: 'h-fit px-4 py-2 bg-brand-blue-700 text-white no-underline font-bold rounded-lg' %>
+      </section>
     </div>
   </section>
   <section id="posts" class="grid grid-cols-1 gap-2 sm:gap-4">
