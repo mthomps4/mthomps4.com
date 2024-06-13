@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
-  require 'open-uri'
+  # require 'open-uri'
 
   include Taggable
   mount_uploader :featured_image, FeaturedUploader
@@ -110,11 +110,10 @@ class Post < ApplicationRecord
   # end
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[content created_at description featured_image id id_value post_type published
-       published_on title updated_at]
+    %w[collection_id content created_at description featured_image id id_value og_image post_type published published_on title updated_at]
   end
 
   def self.ransackable_associations(_auth_object = nil)
-    %w[post_images posts_tags tags]
+    %w[collection post_images posts_tags tags]
   end
 end

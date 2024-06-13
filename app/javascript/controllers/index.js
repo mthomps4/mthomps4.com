@@ -19,6 +19,9 @@ application.register("markdown-previewer", MarkdownPreviewerController)
 import MultiSelectController from "./multi_select_controller"
 application.register("multi-select", MultiSelectController)
 
+import NavSelectController from "./nav_select_controller"
+application.register("nav-select", NavSelectController)
+
 import NoticeController from "./notice_controller"
 application.register("notice", NoticeController)
 

@@ -9,6 +9,10 @@ module Admin
     def index
       @q = Post.includes(:tags, :collection).order(published_on: :desc).ransack(params[:q])
       @posts = @q.result(distinct: true).page(params[:page]).per(25)
+      @collection_options = Collection.all.map { |collection| [collection.name, admin_posts_path(q: { collection_id_eq: collection.id })] }
+      @selected_collection = params[:q] ? admin_posts_path(q: { collection_id_eq: params.dig(:q, :collection_id_eq) }) : nil
+      @tag_options = Tag.all.map { |tag| [tag.name, admin_posts_path(q: { tags_id_in: tag.id })] }
+      @selected_tag = params[:q] ? admin_posts_path(q: { tags_id_in: params.dig(:q, :tags_id_in) }) : nil
     end
 
     # GET /admin/posts/1 or /admin/posts/1.json
