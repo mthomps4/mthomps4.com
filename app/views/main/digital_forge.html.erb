@@ -18,7 +18,8 @@
     <% @posts.each do |post| %>
       <div class="my-4 w-full sm:flex bg-gradient-to-br from-brand-blue-50 to-brand-blue-200 dark:from-brand-blue-700 dark:to-brand-blue-950 border-[1px] border-brand-blue-300 dark:border-brand-blue-400 rounded-lg text-brand-blue-950 dark:text-brand-blue-100 hover:border-2 hover:border-brand-blue-500">
         <%= link_to post, class: "no-underline" do %>
-          <%= image_tag post.featured_image.small_og.url || asset_path('lion-logo.png'), class: 'w-full aspect-video md:aspect-square rounded-tl-lg rounded-tr-lg sm:rounded-bl-lg sm:rounded-tr-none object-fit' %>
+          <%= image_tag post.featured_image.small_og.url || asset_path('lion-logo.png'), class: 'w-full aspect-video sm:hidden rounded-tl-lg rounded-tr-lg object-fit' %>
+          <%= image_tag post.featured_image.square.url || asset_path('lion-logo.png'), class: 'hidden sm:block w-full aspect-square rounded-tl-lg rounded-bl-lg object-fit' %>
           <div class="px-2 sm:px-4 w-full flex-grow flex flex-col justify-between">
             <div>
               <p class="text-xs text-left"><%= post.published_on.strftime("%b %d, %Y") %></p>
