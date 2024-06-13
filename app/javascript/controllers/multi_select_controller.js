@@ -3,14 +3,13 @@ import TomSelect from 'tom-select';
 
 // Connects to data-controller="multi-select"
 export default class extends Controller {
-  static values = { options: Array };
-
   connect() {
     this.initializeTomSelect();
   }
 
   initializeTomSelect() {
     if (!this.element) return;
+
     this.element.setAttribute('multiple', true);
     this.select = new TomSelect(this.element, {
       sortField: {

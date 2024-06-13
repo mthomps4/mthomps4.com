@@ -14,6 +14,7 @@ class Post < ApplicationRecord
 
   has_many :posts_tags, dependent: :nullify
   has_many :tags, through: :posts_tags
+  belongs_to :collection, optional: true
   has_many :post_images, dependent: :destroy
 
   validates :title, presence: true

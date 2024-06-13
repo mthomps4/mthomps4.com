@@ -93,14 +93,14 @@ module Admin
 
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      @post = Post.includes(:tags, :collection).find(params[:id])
       @markdown = PostsHelper.render_markdown(@post.content)
     end
 
     # Only allow a list of trusted parameters through.
     def post_params
       params.require(:post).permit(:title, :description, :content, :published, :post_type, :featured_image,
-                                   :published_on, tag_ids: [])
+                                   :published_on, :collection_id, tag_ids: [])
     end
   end
 end

@@ -40,12 +40,12 @@
       <%= form.label :description, class: label_styles %>
       <%= form.text_area :description, class: text_area_styles %>
     </div>
-    <div class="flex flex-col justify-between">
+    <div class="flex gap-4 justify-between">
       <div class="w-1/2">
         <%= form.label :collection_id, class: label_styles %>
-        <%= form.collection_select :collection_id, Collection.all, :id, :name, { include_blank: true }, class: "" %>
+        <%= form.collection_select :collection_id, Collection.all, :id, :name, { include_blank: true }, class: "w-full" %>
       </div>
-      <div>
+      <div class="w-1/2">
         <%= form.label :tag_ids, class: label_styles %>
         <%= select_tag 'post[tag_ids][]', options_for_select(@tag_options, selected: @selected_tags), {data: {controller: "multi-select"}, multiple: true, class: ""} %>
       </div>

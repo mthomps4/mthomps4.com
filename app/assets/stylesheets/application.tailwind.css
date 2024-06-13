@@ -1,5 +1,6 @@
 @import 'satoshi.css';
 @import 'code-highlight.css';
+@import 'tom-select.css';
 
 @tailwind base;
 @tailwind components;
@@ -9,7 +10,8 @@ p {
   @apply text-brand-blue-950 dark:text-brand-blue-50/80 font-brand my-2;
 }
 
-input, textarea {
+input,
+textarea {
   @apply text-brand-blue-950;
 }
 

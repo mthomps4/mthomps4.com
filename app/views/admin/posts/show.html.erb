@@ -11,3 +11,19 @@
   <%= image_tag @post.featured_image.og.url, class: 'border-brand-blue-700 border-2 rounded-lg' %>
 <% end %>
 <%= render @post %>
+<div>
+  <div>
+    <% if @post.collection_id %>
+      <p><%= @post.collection.name %></p>
+    <% end %>
+  </div>
+  <div>
+    <% if @post.tags.any? %>
+      <p>Tags:</p>
+      <% @post.tags.map do |tag| %>
+        <!-- TODO: future link -->
+        <p><%= tag.name %></p>
+      <% end %>
+    <% end %>
+  </div>
+</div>
