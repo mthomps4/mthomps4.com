@@ -1,28 +1,28 @@
 <main>
   <% set_meta_tags title: "Connect", description: "Stay in touch! I'm always looking to meet more people, to connect, and learn more. Use one of the links below and reach out!" %>
   <% links = [
-    { title: "GitHub", href: "https://github.com/mthomps4", img: "social/github-mark.png", alt: "GitHub Logo", username: "@mthomps4", description: "Personal Playground. Real work behind Client NDA walls." },
-    { title: "Twit... X", href: "https://twitter.com/mthomps4", img: "social/X-logo-black.png", alt: "TwitterX Logo", username: "@mthomps4", description: "Watching Tech Twitter" },
-    { title: "LinkedIn", href: "https://linkedin.com/in/mthomps4", img: "social/linkedin-black-square.png", alt: "LinkedIn Logo", username: "@mthomps4", description: "Folks say you need one..." },
-    { title: "Instagram", href: "https://instagram.com/_mthomps4", img: "social/Instagram_Glyph_Black.png", alt: "Instagram Logo", username: "@_mthomps4", description: "Traditional Woodworking and Shop Fun" }
+    { title: "GitHub", href: "https://github.com/mthomps4", img: "split-key.jpg", alt: "split-keyboard", logo: "social/github-mark.png", logo_alt: "GitHub Logo", username: "@mthomps4", description: "Personal Playground. <br /> Real work behind Client NDA walls." },
+    { title: "Twit... X", href: "https://twitter.com/mthomps4",img: "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3ozZTF5MDU1dThuYmttYW9leHBvMDh2b2d5cHNkZHIydmpicmVxOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tFK8urY6XHj2w/giphy.gif", alt: "split-keyboard", logo: "social/X-logo-black.png", logo_alt: "TwitterX Logo", username: "@mthomps4", description: "Watching Tech Twitter" },
+    { title: "LinkedIn", href: "https://linkedin.com/in/mthomps4",img: "avatars/portrait.png", alt: "split-keyboard", logo: "social/linkedin-black-square.png", logo_alt: "LinkedIn Logo", username: "@mthomps4", description: "Folks say you need one..." },
+    { title: "Instagram", href: "https://instagram.com/_mthomps4",img: "avatars/shop.jpg", alt: "workshop", logo: "social/Instagram_Glyph_Black.png", logo_alt: "Instagram Logo", username: "@_mthomps4", description: "Traditional Woodworking and Shop Fun" }
   ]%>
   <h1> Connect </h1>
   <p class="w-full md:w-2/3 text-center mx-auto"> Stay in touch! I'm always looking to meet more people, to connect, and learn more. Use one of the links below and reach out! </p>
-  <div class="flex flex-col w-full items-center">
+  <div class="flex flex-col w-full justify-center items-center mb-10">
     <% links.each do |link| %>
-      <div class="w-full flex items-center justify-center">
-        <div class="h-32 w-32 bg-red-500">
-          <!-- <%= image_tag "split-key-bw.png", alt: "Split Key", class: "" %> -->
+      <%= link_to link[:href], class: "w-full flex flex-row justify-center items-center group no-underline", target: "_blank" do %>
+        <div class="h-32 w-32">
+          <%= image_tag(link[:img], alt: link[:alt], class: "rounded-tl-md rounded-bl-md object-fit h-32 w-32 border-2 border-brand-blue-400 dark:border-brand-blue-200") %>
         </div>
-        <%= link_to link[:href], class: "w-full md:w-1/2 min-h-32 my-4 pl-4 flex items-center rounded-md border-2 border-brand-blue-200 dark:border-brand-blue-600 no-underline underline-none focus:underline-none bg-gradient-to-br from-brand-blue-50 to-brand-blue-300 hover:bg-none hover:bg-brand-blue-100 dark:from-brand-blue-500 dark:to-brand-blue-800 dark:hover:bg-brand-blue-700", target: "_blank" do %>
-          <%= image_tag(link[:img], alt: link[:alt], class: 'h-10 w-10 mr-4') %>
+        <div class="w-full md:w-1/2 h-32 my-4 pl-4 flex items-center rounded-tr-md rounded-br-md border-2 border-brand-blue-400 dark:border-brand-blue-200 no-underline underline-none focus:underline-none bg-gradient-to-br from-brand-blue-50 to-brand-blue-300 group-hover:bg-none group-hover:bg-brand-blue-100 dark:from-brand-blue-500 dark:to-brand-blue-800 dark:group-hover:bg-brand-blue-700">
+          <%= image_tag(link[:logo], alt: link[:logo_alt], class: 'h-10 w-10 mr-4') %>
           <div class="w-full">
-            <p><%= link[:title] %></p>
+            <p class="font-bold tracking-wide"><%= link[:title] %></p>
             <p><%= link[:username]%></p>
-            <p class="text-sm italic"><%= link[:description]%></p>
+            <p class="text-sm italic"><%= link[:description].html_safe %></p>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     <% end %>
     <%#  TODO: Redo this section when needed %>
     <% if @resume.present? %>
