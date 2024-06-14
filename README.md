@@ -6,3 +6,4 @@ Playground... Exploring some Turbo/Stimulus
 
 Ensure ImageMagick is installed
 `brew install imagemagick` (Mac) or `sudo apt-get imagemagick`
+TESTING
