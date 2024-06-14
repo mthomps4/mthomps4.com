@@ -37,14 +37,16 @@
           <%= image_tag post.featured_image.square.url || asset_path('lion-logo.png'), class: 'hidden sm:block w-full aspect-square rounded-tl-lg rounded-bl-lg object-fit' %>
           <div class="px-2 sm:px-4 w-full flex-grow flex flex-col justify-between">
             <div>
-              <p class="text-xs text-left"><%= post.published_on.strftime("%b %d, %Y") %></p>
               <h2 class="text-xl font-normal break-words mt-2 mb-0 line-clamp-2"><%= post.title %></h2>
               <p class="line-clamp-2 text-sm text-ellipsis"><%= post.description %></p>
             </div>
             <div>
-              <% if post.collection %>
-                <p class="text-xs">Collection: <%= post.collection&.name %></p>
-              <% end %>
+              <div class="flex items-center">
+                <p class="text-xs text-left mr-2"><%= post.published_on.strftime("%b %d, %Y") %></p>
+                <% if post.collection %>
+                  <p class="text-xs">Series: <%= link_to post.collection&.name, digital_forge_path(q: {collection_id_eq: post.collection&.id}) %></p>
+                <% end %>
+              </div>
               <% if post.tags.any? %>
                 <div class="text-xs text-left flex w-full mb-2">
                   <% post.tags.map do |tag| %>

@@ -10,14 +10,19 @@
   <p class="w-full md:w-2/3 text-center mx-auto"> Stay in touch! I'm always looking to meet more people, to connect, and learn more. Use one of the links below and reach out! </p>
   <div class="flex flex-col w-full items-center">
     <% links.each do |link| %>
-      <%= link_to link[:href], class: "w-full md:w-1/2 min-h-30 my-4 px-4 py-2 flex items-center rounded-md border-2 border-brand-blue-200 dark:border-brand-blue-600 no-underline underline-none focus:underline-none bg-gradient-to-br from-brand-blue-50 to-brand-blue-300 hover:bg-none hover:bg-brand-blue-100 dark:from-brand-blue-500 dark:to-brand-blue-800 dark:hover:bg-brand-blue-700", target: "_blank" do %>
-        <%= image_tag(link[:img], alt: link[:alt], class: 'h-10 w-10 mr-4') %>
-        <div class="w-full">
-          <p><%= link[:title] %></p>
-          <p><%= link[:username]%></p>
-          <p class="text-sm italic"><%= link[:description]%></p>
+      <div class="w-full flex items-center justify-center">
+        <div class="h-32 w-32 bg-red-500">
+          <!-- <%= image_tag "split-key-bw.png", alt: "Split Key", class: "" %> -->
         </div>
-      <% end %>
+        <%= link_to link[:href], class: "w-full md:w-1/2 min-h-32 my-4 pl-4 flex items-center rounded-md border-2 border-brand-blue-200 dark:border-brand-blue-600 no-underline underline-none focus:underline-none bg-gradient-to-br from-brand-blue-50 to-brand-blue-300 hover:bg-none hover:bg-brand-blue-100 dark:from-brand-blue-500 dark:to-brand-blue-800 dark:hover:bg-brand-blue-700", target: "_blank" do %>
+          <%= image_tag(link[:img], alt: link[:alt], class: 'h-10 w-10 mr-4') %>
+          <div class="w-full">
+            <p><%= link[:title] %></p>
+            <p><%= link[:username]%></p>
+            <p class="text-sm italic"><%= link[:description]%></p>
+          </div>
+        <% end %>
+      </div>
     <% end %>
     <%#  TODO: Redo this section when needed %>
     <% if @resume.present? %>
