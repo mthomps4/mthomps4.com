@@ -31,11 +31,11 @@
   </section>
   <section id="posts" class="grid grid-cols-1 gap-2 sm:gap-4">
     <% @posts.each do |post| %>
-      <div class="my-4 w-full sm:flex bg-gradient-to-br from-brand-blue-50 to-brand-blue-200 dark:from-brand-blue-700 dark:to-brand-blue-950 border-[1px] border-brand-blue-300 dark:border-brand-blue-400 rounded-lg text-brand-blue-950 dark:text-brand-blue-100 hover:border-2 hover:border-brand-blue-500">
-        <%= link_to post, class: "no-underline" do %>
+      <%= link_to post, class: "no-underlin" do %>
+        <div class="my-4 w-full sm:flex bg-gradient-to-br from-brand-blue-50 to-brand-blue-200 dark:from-brand-blue-700 dark:to-brand-blue-950 border-[1px] border-brand-blue-300 dark:border-brand-blue-400 rounded-lg text-brand-blue-950 dark:text-brand-blue-100 hover:border-2 hover:border-brand-blue-500">
           <%= image_tag post.featured_image.small_og.url || asset_path('lion-logo.png'), class: 'w-full aspect-video sm:hidden rounded-tl-lg rounded-tr-lg object-fit' %>
-          <%= image_tag post.featured_image.square.url || asset_path('lion-logo.png'), class: 'hidden sm:block w-full aspect-square rounded-tl-lg rounded-bl-lg object-fit' %>
-          <div class="px-2 sm:px-4 w-full flex-grow flex flex-col justify-between">
+          <%= image_tag post.featured_image.square.url || asset_path('lion-logo.png'), class: 'hidden sm:block h-fit aspect-square rounded-tl-lg rounded-bl-lg object-fit' %>
+          <div class="px-2 sm:px-4 w-full flex flex-col justify-between">
             <div>
               <h2 class="text-xl font-normal break-words mt-2 mb-0 line-clamp-2"><%= post.title %></h2>
               <p class="line-clamp-2 text-sm text-ellipsis"><%= post.description %></p>
@@ -56,8 +56,8 @@
               <% end %>
             </div>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     <% end %>
   </section>
   <section class="w-full">
