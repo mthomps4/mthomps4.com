@@ -24,6 +24,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def asset_host
+    'https://assets.mthomps4.com' if Rails.env.production?
     'https://dev.assets.mthomps4.com'
   end
 
