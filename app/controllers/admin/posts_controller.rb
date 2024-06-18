@@ -6,6 +6,7 @@ module Admin
     layout 'admin/post_sidebar_layout', except: [:show]
 
     # GET /admin/posts or /admin/posts.json
+    # rubocop:disable Metrics/AbcSize
     def index
       @q = Post.includes(:tags, :collection).order(published_on: :desc).ransack(params[:q])
       @posts = @q.result(distinct: true).page(params[:page]).per(25)
@@ -14,6 +15,7 @@ module Admin
       @tag_options = Tag.all.map { |tag| [tag.name, admin_posts_path(q: { tags_id_in: tag.id })] }
       @selected_tag = params[:q] ? admin_posts_path(q: { tags_id_in: params.dig(:q, :tags_id_in) }) : nil
     end
+    # rubocop:enable Metrics/AbcSize
 
     # GET /admin/posts/1 or /admin/posts/1.json
     def show; end

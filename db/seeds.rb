@@ -8,7 +8,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-User.create!({ email: "m@m.com", password: "asdfasdf"})
+User.create!({ email: 'm@m.com', password: 'asdfasdf' })
 Tag.create({ name: 'Ruby' })
 Tag.create({ name: 'JS/TS' })
 Tag.create({ name: 'Elixir' })

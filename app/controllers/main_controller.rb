@@ -14,6 +14,7 @@ class MainController < ApplicationController
     @resume = Resume.last
   end
 
+  # rubocop:disable Metrics/AbcSize
   def digital_forge
     @q = Post.published.ransack(params[:q])
     @posts = @q.result(distinct: true).order(published_on: :desc).page(params[:page]).per(10)
@@ -22,6 +23,7 @@ class MainController < ApplicationController
     @tag_options = Tag.all.map { |tag| [tag.name, digital_forge_path(q: { tags_id_in: tag.id })] }
     @selected_tag = params[:q] ? digital_forge_path(q: { tags_id_in: params.dig(:q, :tags_id_in) }) : nil
   end
+  # rubocop:enable Metrics/AbcSize
 
   def tool_armory; end
 
