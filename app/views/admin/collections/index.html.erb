@@ -1,3 +1,4 @@
+<% merge_meta_tags noindex: true, nofollow: true %>
 <section class="my-4">
   <div class="flex justify-end w-full">
     <%= form_with model: @collection, url: admin_collections_path, method: :post, local: true, data: {turbo: false, turbo_stream: false}, class: "flex" do |f| %>

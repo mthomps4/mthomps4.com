@@ -1,5 +1,21 @@
 <main>
-  <% merge_meta_tags title: "Connect", description: "Stay in touch! I'm always looking to meet more people, to connect, and learn more. Use one of the links below and reach out!" %>
+  <% merge_meta_tags(
+    title: "Connect", 
+    description: "Stay in touch! I'm always looking to meet more people, to connect, and learn more. Use one of the links below and reach out!",
+    og: {
+      title: "Connect",
+      description: "Stay in touch! I'm always looking to meet more people, to connect, and learn more. Use one of the links below and reach out!",
+      image: image_url("avatars/portrait.png"),
+      url: info_url
+    },
+    twitter: {
+      title: "Connect",
+      description: "Stay in touch! I'm always looking to meet more people, to connect, and learn more. Use one of the links below and reach out!",
+      card: "photo",
+      image: { _: image_url('avatars/portrait.png'), width: 1200, height: 630, itemprop: 'image' }
+    }
+      
+  )%>
   <% links = [
     { title: "GitHub", href: "https://github.com/mthomps4", img: "split-key.jpg", alt: "split-keyboard", logo: "social/github-mark.png", logo_alt: "GitHub Logo", username: "@mthomps4", description: "Personal Playground. <br /> Real work behind Client NDA walls." },
     { title: "Twit... X", href: "https://twitter.com/mthomps4",img: "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3ozZTF5MDU1dThuYmttYW9leHBvMDh2b2d5cHNkZHIydmpicmVxOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tFK8urY6XHj2w/giphy.gif", alt: "split-keyboard", logo: "social/X-logo-black.png", logo_alt: "TwitterX Logo", username: "@mthomps4", description: "Watching Tech Twitter" },
