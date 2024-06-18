@@ -7,7 +7,14 @@
       description: @post.description,
       image: @post.featured_image&.og.url,
       url: post_url(@post),
-    }
+    },
+    twitter: {
+      card: 'summary_large_image',
+      site: "@mthomps4",
+      title: @post.title,
+      description: @post.description,
+      image: @post.featured_image&.twitter.url,
+    },
   )
 %>
 <div class="flex justify-between items-center text-brand-blue-700 dark:text-brand-blue-100 mt-4">
