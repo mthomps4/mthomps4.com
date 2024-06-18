@@ -26,14 +26,14 @@ module ApplicationHelper
         type: 'website',
         url: :canonical,
         image: image_url('og-base.png')
-      },
-      twitter: {
-        card: 'summary',
-        site: :site,
-        title: :title,
-        description: :description,
-        image: { _: image_url('og-base.png'), width: 1200, height: 630, itemprop: 'image' }
       }
+      # twitter: {
+      #   card: 'summary',
+      #   site: :site,
+      #   title: :title,
+      #   description: :description,
+      #   image: { _: image_url('og-base.png'), width: 1200, height: 630, itemprop: 'image' }
+      # }
     }
   end
 
