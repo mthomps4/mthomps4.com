@@ -28,7 +28,7 @@ module ApplicationHelper
         image: image_url('og-base.png')
       },
       twitter: {
-        card: 'photo',
+        card: 'summary',
         site: :site,
         title: :title,
         description: :description,

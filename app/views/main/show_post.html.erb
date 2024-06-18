@@ -9,7 +9,7 @@
       url: post_url(@post),
     },
     twitter: {
-      card: 'photo',
+      card: 'summary',
       title: @post.title,
       description: @post.description,
       image: {_: @post.featured_image&.og.url, width: 1200, height: 630, itemprop: 'image'},
