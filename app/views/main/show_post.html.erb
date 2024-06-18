@@ -1,8 +1,26 @@
 <% set_meta_tags title: @post.title, description: @post.description %>
-<div class="flex justify-start items-center text-brand-blue-700 dark:text-brand-blue-100 mt-4">
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-  </svg>
-  <%= link_to 'Back to posts', digital_forge_path, class: 'ml-2 hover:underline' %>
+<div class="flex justify-between items-center text-brand-blue-700 dark:text-brand-blue-100 mt-4">
+  <div class="flex justify-start items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+    </svg>
+    <%= link_to 'Back to posts', digital_forge_path, class: 'ml-2 hover:underline' %>
+  </div>
+  <p><%= @post.published_on.strftime('%B %d, %Y') %></p>
 </div>
-<%= render 'post' %>
+<section>
+  <%= render 'post' %>
+</section>
+<section class="w-full border-t border-t-brand-blue-500 flex flex-col items-center">
+  <% if @post.tags.any? %>
+    <p class="flex items-center mt-8">
+      <span class="mr-2">Tags:</span>
+      <% @post.tags.map do |tag| %>
+        <%= link_to "##{tag.name}", digital_forge_path(q: {tags_id_in: tag.id}), class: "mr-2" %>
+      <% end %>
+    </p>
+  <% end %>
+  <% if @post.collection %>
+    <p class="flex items-center"><span class="mr-2">Collection:</span> <%= link_to @post.collection&.name, digital_forge_path(q: {collection_id_eq: @post.collection_id}) %></p>
+  <% end %>
+</section>

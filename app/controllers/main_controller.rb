@@ -26,7 +26,9 @@ class MainController < ApplicationController
   def tool_armory; end
 
   def search_posts
-    @q = Post.published.ransack(params[:q])
+    search_params = params[:q] || ''
+
+    @q = Post.published.ransack(title_or_description_cont: search_params)
     @posts = @q.result(distinct: true).order(published_on: :desc).page(params[:page]).per(10)
 
     respond_to do |format|

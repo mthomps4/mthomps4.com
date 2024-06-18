@@ -31,10 +31,11 @@
   </section>
   <section id="posts" class="grid grid-cols-1 gap-2 sm:gap-4">
     <% @posts.each do |post| %>
-      <%= link_to post, class: "no-underlin" do %>
-        <div class="my-4 w-full sm:flex bg-gradient-to-br from-brand-blue-50 to-brand-blue-200 dark:from-brand-blue-700 dark:to-brand-blue-950 border-[1px] border-brand-blue-300 dark:border-brand-blue-400 rounded-lg text-brand-blue-950 dark:text-brand-blue-100 hover:border-2 hover:border-brand-blue-500">
-          <%= image_tag post.featured_image.small_og.url || asset_path('lion-logo.png'), class: 'w-full aspect-video sm:hidden rounded-tl-lg rounded-tr-lg object-fit' %>
-          <%= image_tag post.featured_image.square.url || asset_path('lion-logo.png'), class: 'hidden sm:block h-fit aspect-square rounded-tl-lg rounded-bl-lg object-fit' %>
+      <%= link_to post, class: "no-underline" do %>
+        <div class="my-4 w-full sm:h-[150px] sm:flex bg-gradient-to-br from-brand-blue-50 to-brand-blue-200 dark:from-brand-blue-700 dark:to-brand-blue-950 border-[1px] border-brand-blue-300 dark:border-brand-blue-400 rounded-lg text-brand-blue-950 dark:text-brand-blue-100 hover:border-2 hover:border-brand-blue-500">
+          <div>
+            <%= image_tag post.featured_image.small_og.url || asset_path('lion-logo.png'), class: 'w-full aspect-video rounded-tl-lg rounded-tr-lg object-fit sm:rounded-none sm:rounded-tl-lg sm:rounded-bl-lg sm:h-full' %>
+          </div>
           <div class="px-2 sm:px-4 w-full flex flex-col justify-between">
             <div>
               <h2 class="text-xl font-normal break-words mt-2 mb-0 line-clamp-2"><%= post.title %></h2>
@@ -44,13 +45,13 @@
               <div class="flex items-center">
                 <p class="text-xs text-left mr-2"><%= post.published_on.strftime("%b %d, %Y") %></p>
                 <% if post.collection %>
-                  <p class="text-xs">Series: <%= link_to post.collection&.name, digital_forge_path(q: {collection_id_eq: post.collection&.id}) %></p>
+                  <p class="text-xs">Series: <%= post.collection&.name %> </p>
                 <% end %>
               </div>
               <% if post.tags.any? %>
                 <div class="text-xs text-left flex w-full mb-2">
                   <% post.tags.map do |tag| %>
-                    <%= link_to "##{tag.name}", admin_posts_path(q: {tags_name_cont: tag.name}), class: "mr-2" %>
+                    <%= "##{tag.name}" %>
                   <% end %>
                 </div>
               <% end %>
