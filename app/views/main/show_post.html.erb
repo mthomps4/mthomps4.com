@@ -1,4 +1,9 @@
-<% set_meta_tags title: @post.title, description: @post.description %>
+<% 
+  merge_meta_tags(
+    title: @post.title, 
+    description: @post.description 
+  )
+%>
 <div class="flex justify-between items-center text-brand-blue-700 dark:text-brand-blue-100 mt-4">
   <div class="flex justify-start items-center">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
