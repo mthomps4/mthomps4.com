@@ -86,7 +86,7 @@ class Post < ApplicationRecord
                        featured_image
                      end
 
-    "#{cdn_asset_host}/#{uploaded_image.path}"
+    return "#{cdn_asset_host}/#{uploaded_image.path}" if uploaded_image.present? && uploaded_image.path.present?
   end
 
   # def sync_og_image

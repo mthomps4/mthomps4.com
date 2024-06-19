@@ -63,3 +63,13 @@ Bucket Cache
     ],
 }
 ```
+
+## Warnings
+
+WARNING: Detected running cluster mode with 1 worker.
+
+[7] ! Running Puma in cluster mode with a single worker is often a misconfiguration.
+
+[7] ! Consider running Puma in single-mode (workers = 0) in order to reduce memory overhead.
+
+[7] ! Set the `silence_single_worker_warning` option to silence this warning message.
