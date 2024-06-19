@@ -108,7 +108,7 @@ class Post < ApplicationRecord
   # def og_image_cdn_url
   #   # cdn_asset_host + '/' + og_image.with_title.path
   #   # I can't spot where the tempfile names are being generated for path...
-  #   # https://dev.assets.mthomps4.com/post/8/with_title_1718041263-508747333762410-0003-9581/og-base.png
+  #   # https://assets.com/post/8/with_title_1718041263-508747333762410-0003-9581/og-base.png
   #
   #   "#{cdn_asset_host}/post/#{id}/with_title_og.png"
   # end

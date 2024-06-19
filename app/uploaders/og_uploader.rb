@@ -82,7 +82,6 @@ class OgUploader < CarrierWave::Uploader::Base
 
   def manipulate!
     # base_image_path = Rails.root.join('app/assets/images/og-base.png')
-    # cdn_path = "https://dev.assets.mthomps4.com/og-base.png"
 
     cache_stored_file! unless cached?
     image = ::MiniMagick::Image.open(current_path)
