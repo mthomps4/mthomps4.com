@@ -15,6 +15,11 @@
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon_io/android-chrome-512x512.png">
     <link rel="manifest" href="/favicon_io/site.webmanifest">
     <%= display_meta_tags(default_meta_tags)%>
+    <% if Rails.env.production? %>
+      <meta name="robots" content="index, follow">
+    <% else %>
+      <meta name="robots" content="noindex, nofollow">
+    <% end %>
   </head>
   <body class="bg-brand-blue-100 pb-4 min-h-screen dark:bg-brand-blue-950" >
     <!-- Mobile Styles -->
