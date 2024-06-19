@@ -77,6 +77,18 @@ class Post < ApplicationRecord
     end
   end
 
+  def featured_cdn_url(type = :raw_image)
+    version_keys = featured_image.versions.keys
+
+    uploaded_image = if version_keys.include?(type.to_sym)
+                       featured_image.send(type)
+                     else
+                       featured_image
+                     end
+
+    "#{uploaded_image.asset_host}/#{uploaded_image.path}"
+  end
+
   # def sync_og_image
   #   S3_CLIENT.copy_object({
   #                           key: og_image.path.to_s,
