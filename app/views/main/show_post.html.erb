@@ -5,7 +5,7 @@
     og: {
       title: @post.title,
       description: @post.description,
-      image: @post.featured_image&.og.url,
+      image: @post.featured_cdn_url(:og),
       url: post_url(@post),
     },
     twitter: {
@@ -13,7 +13,7 @@
       site: "@mthomps4",
       title: @post.title,
       description: @post.description,
-      image: @post.featured_image&.twitter.url,
+      image: @post.featured_cdn_url(:og),
     },
   )
 %>

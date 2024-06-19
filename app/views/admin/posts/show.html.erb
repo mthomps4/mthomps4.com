@@ -9,7 +9,7 @@
   <%= link_to 'Edit This Post', edit_admin_post_path(@post), class: 'hover:underline' %>
 </div>
 <% if @post.featured_image.present? %>
-  <%= image_tag @post.featured_image.og.url, class: 'border-brand-blue-700 border-2 rounded-lg' %>
+  <%= image_tag @post.featured_cdn_url(:og), class: 'border-brand-blue-700 border-2 rounded-lg' %>
 <% end %>
 <%= render @post %>
 <div>

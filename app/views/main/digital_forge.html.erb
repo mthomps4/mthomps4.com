@@ -46,9 +46,9 @@
   <section id="posts" class="grid grid-cols-1 gap-2 sm:gap-4">
     <% @posts.each do |post| %>
       <%= link_to post, class: "no-underline" do %>
-        <div class="my-4 w-full sm:h-[150px] sm:flex bg-gradient-to-br from-brand-blue-50 to-brand-blue-200 dark:from-brand-blue-700 dark:to-brand-blue-950 border-[1px] border-brand-blue-300 dark:border-brand-blue-400 rounded-lg text-brand-blue-950 dark:text-brand-blue-100 hover:border-2 hover:border-brand-blue-500">
+        <div class="my-4 w-full sm:h-[175px] sm:flex bg-gradient-to-br from-brand-blue-50 to-brand-blue-200 dark:from-brand-blue-700 dark:to-brand-blue-950 border-[1px] border-brand-blue-300 dark:border-brand-blue-400 rounded-lg text-brand-blue-950 dark:text-brand-blue-100 hover:border-2 hover:border-brand-blue-500">
           <div>
-            <%= image_tag post.featured_image.small_og.url || asset_path('lion-logo.png'), class: 'w-full aspect-video rounded-tl-lg rounded-tr-lg object-fit sm:rounded-none sm:rounded-tl-lg sm:rounded-bl-lg sm:h-full' %>
+            <%= image_tag post.featured_cdn_url(:small_og) || asset_path('lion-logo.png'), class: 'w-full aspect-video rounded-tl-lg rounded-tr-lg object-fit sm:rounded-none sm:rounded-tl-lg sm:rounded-bl-lg sm:h-full' %>
           </div>
           <div class="px-2 sm:px-4 w-full flex flex-col justify-between">
             <div>
