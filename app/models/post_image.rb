@@ -5,6 +5,8 @@ class PostImage < ApplicationRecord
   mount_uploader :image, ImageUploader
   after_save :create_backup
 
+  include ApplicationHelper
+
   def cdn_url(type = :raw_image)
     version_keys = image.versions.keys
 
@@ -14,7 +16,7 @@ class PostImage < ApplicationRecord
                        image
                      end
 
-    "#{asset_host}/#{uploaded_image.path}"
+    "#{cdn_asset_host}/#{uploaded_image.path}"
   end
 
   def s3_markdown_link(type = :raw_image)

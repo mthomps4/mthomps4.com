@@ -2,6 +2,7 @@
 
 class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
+  include ApplicationHelper
 
   storage :aws
 
@@ -24,8 +25,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def asset_host
-    'https://assets.mthomps4.com' if Rails.env.production?
-    'https://dev.assets.mthomps4.com'
+    cdn_asset_host
   end
 
   # Add an allowlist of extensions which are allowed to be uploaded.

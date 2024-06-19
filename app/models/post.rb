@@ -2,7 +2,7 @@
 
 class Post < ApplicationRecord
   # require 'open-uri'
-
+  include ApplicationHelper
   include Taggable
   mount_uploader :featured_image, FeaturedUploader
   # mount_uploader :og_image, OgUploader
@@ -86,7 +86,7 @@ class Post < ApplicationRecord
                        featured_image
                      end
 
-    "#{asset_host}/#{uploaded_image.path}"
+    "#{cdn_asset_host}/#{uploaded_image.path}"
   end
 
   # def sync_og_image
@@ -106,11 +106,11 @@ class Post < ApplicationRecord
   # end
   #
   # def og_image_cdn_url
-  #   # asset_host + '/' + og_image.with_title.path
+  #   # cdn_asset_host + '/' + og_image.with_title.path
   #   # I can't spot where the tempfile names are being generated for path...
   #   # https://dev.assets.mthomps4.com/post/8/with_title_1718041263-508747333762410-0003-9581/og-base.png
   #
-  #   "#{asset_host}/post/#{id}/with_title_og.png"
+  #   "#{cdn_asset_host}/post/#{id}/with_title_og.png"
   # end
   #
   # def recreate_og_image

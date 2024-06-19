@@ -42,8 +42,7 @@ module ApplicationHelper
     set_meta_tags(options)
   end
 
-  def asset_host
-    'https://assets.mthomps4.com' if Rails.env.production?
-    'https://dev.assets.mthomps4.com'
+  def cdn_asset_host
+    Rails.application.credentials.dig(:aws, :asset_host) || 'https://dev.assets.mthomps4.com'
   end
 end

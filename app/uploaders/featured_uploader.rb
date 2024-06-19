@@ -2,7 +2,7 @@
 
 class FeaturedUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-
+  include ApplicationHelper
   # Choose what kind of storage to use for this uploader:
   # storage :file
   storage :aws
@@ -14,8 +14,7 @@ class FeaturedUploader < CarrierWave::Uploader::Base
   end
 
   def asset_host
-    'https://assets.mthomps4.com' if Rails.env.production?
-    'https://dev.assets.mthomps4.com'
+    cdn_asset_host
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
