@@ -14,7 +14,7 @@ class PostImage < ApplicationRecord
                        image
                      end
 
-    "#{uploaded_image.asset_host}/#{uploaded_image.path}"
+    "#{asset_host}/#{uploaded_image.path}"
   end
 
   def s3_markdown_link(type = :raw_image)

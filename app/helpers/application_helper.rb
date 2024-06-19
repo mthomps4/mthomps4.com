@@ -41,4 +41,9 @@ module ApplicationHelper
     options.reverse_merge!(default_meta_tags)
     set_meta_tags(options)
   end
+
+  def asset_host
+    'https://assets.mthomps4.com' if Rails.env.production?
+    'https://dev.assets.mthomps4.com'
+  end
 end
