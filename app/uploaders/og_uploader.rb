@@ -33,9 +33,9 @@ class OgUploader < CarrierWave::Uploader::Base
     process resize_to_fill: [1200, 630]
   end
 
-  version :twitter do 
+  version :twitter do
     process resize_to_fill: [1200, 675]
-  end 
+  end
 
   # version :with_title do
   #   process resize_to_fill: [1200, 630]

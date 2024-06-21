@@ -54,9 +54,9 @@ class FeaturedUploader < CarrierWave::Uploader::Base
     # process :add_text_overlay
   end
 
-  version :twitter do 
+  version :twitter do
     process resize_to_fill: [1200, 675]
-  end 
+  end
 
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
