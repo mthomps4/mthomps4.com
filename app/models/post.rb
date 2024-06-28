@@ -137,6 +137,8 @@ class Post < ApplicationRecord # rubocop:disable Metrics/ClassLength
   end
 
   def featured_cdn_url(type = :raw_image)
+    return nil if featured_image.blank?
+
     version_keys = featured_image.versions.keys
 
     uploaded_image = if version_keys.include?(type.to_sym)
@@ -149,12 +151,14 @@ class Post < ApplicationRecord # rubocop:disable Metrics/ClassLength
   end
 
   def og_image_cdn_url(type = :raw_image)
+    return nil if og_image.blank?
+
     version_keys = og_image.versions.keys
 
     uploaded_image = if version_keys.include?(type.to_sym)
-                       featured_image.send(type)
+                       og_image.send(type)
                      else
-                       featured_image
+                       og_image
                      end
 
     "#{cdn_asset_host}/#{uploaded_image.path}" if uploaded_image.present? && uploaded_image.path.present?
