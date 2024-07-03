@@ -107,15 +107,15 @@ class Post < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   def sync_post_images # rubocop:disable Metrics/AbcSize
     post_images.each do |post_image|
-      if object_exists?(S3_BACKUP_BUCKET_NAME, post_image.image.path)
-        S3_CLIENT.copy_object({
-                                key: post_image.image.path.to_s,
-                                bucket: S3_BACKUP_BUCKET_NAME,
-                                copy_source: "#{S3_CDN_BUCKET_NAME}/#{post_image.image.path}"
-                              })
-      end
+      next unless object_exists?(S3_BACKUP_BUCKET_NAME, post_image.image.path)
 
-      og_image.versions.each_key do |version|
+      S3_CLIENT.copy_object({
+                              key: post_image.image.path.to_s,
+                              bucket: S3_BACKUP_BUCKET_NAME,
+                              copy_source: "#{S3_CDN_BUCKET_NAME}/#{post_image.image.path}"
+                            })
+
+      post_image.image.versions.each_key do |version|
         next unless object_exists?(S3_BACKUP_BUCKET_NAME, post_image.image.send(version).path)
 
         S3_CLIENT.copy_object({
