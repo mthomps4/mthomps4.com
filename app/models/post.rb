@@ -66,8 +66,8 @@ class Post < ApplicationRecord # rubocop:disable Metrics/ClassLength
   end
 
   def sync_featured_image # rubocop:disable Metrics/AbcSize
-    # return unless object_exists?(S3_BACKUP_BUCKET_NAME, featured_image.path)
-    return if featured_image.path.blank?
+    # return if featured_image.path.blank?
+    return unless object_exists?(S3_BACKUP_BUCKET_NAME, featured_image.path)
 
     S3_CLIENT.copy_object({
                             key: featured_image.path.to_s,
@@ -76,8 +76,8 @@ class Post < ApplicationRecord # rubocop:disable Metrics/ClassLength
                           })
 
     featured_image.versions.each_key do |version|
-      # next unless object_exists?(S3_BACKUP_BUCKET_NAME, featured_image.send(version).path)
-      next if featured_image.send(version).path.blank?
+      # next if featured_image.send(version).path.blank?
+      next unless object_exists?(S3_BACKUP_BUCKET_NAME, featured_image.send(version).path)
 
       S3_CLIENT.copy_object({
                               key: featured_image.send(version).path.to_s,
@@ -85,11 +85,13 @@ class Post < ApplicationRecord # rubocop:disable Metrics/ClassLength
                               bucket: S3_BACKUP_BUCKET_NAME
                             })
     end
+  rescue StandardError
+    true
   end
 
   def sync_og_image # rubocop:disable Metrics/AbcSize
-    # return unless object_exists?(S3_BACKUP_BUCKET_NAME, og_image.path)
-    return if og_image.path.blank?
+    # return if og_image.path.blank?
+    return unless object_exists?(S3_BACKUP_BUCKET_NAME, og_image.path)
 
     S3_CLIENT.copy_object({
                             key: og_image.path.to_s,
@@ -98,8 +100,8 @@ class Post < ApplicationRecord # rubocop:disable Metrics/ClassLength
                           })
 
     og_image.versions.each_key do |version|
-      # next unless object_exists?(S3_BACKUP_BUCKET_NAME, og_image.send(version).path)
-      next if og_image.send(version).path.blank?
+      # next if og_image.send(version).path.blank?
+      next unless object_exists?(S3_BACKUP_BUCKET_NAME, og_image.send(version).path)
 
       S3_CLIENT.copy_object({
                               key: og_image.send(version).path.to_s,
@@ -107,12 +109,14 @@ class Post < ApplicationRecord # rubocop:disable Metrics/ClassLength
                               bucket: S3_BACKUP_BUCKET_NAME
                             })
     end
+  rescue StandardError
+    true
   end
 
   def sync_post_images # rubocop:disable Metrics/AbcSize
     post_images.each do |post_image|
-      # next unless object_exists?(S3_BACKUP_BUCKET_NAME, post_image.image.path)
-      next if post_image.image.path.blank?
+      # next if post_image.image.path.blank?
+      next unless object_exists?(S3_BACKUP_BUCKET_NAME, post_image.image.path)
 
       S3_CLIENT.copy_object({
                               key: post_image.image.path.to_s,
@@ -121,8 +125,8 @@ class Post < ApplicationRecord # rubocop:disable Metrics/ClassLength
                             })
 
       post_image.image.versions.each_key do |version|
-        # next unless object_exists?(S3_BACKUP_BUCKET_NAME, post_image.image.send(version).path)
-        next if post_image.image.send(version).path.blank?
+        # next if post_image.image.send(version).path.blank?
+        next unless object_exists?(S3_BACKUP_BUCKET_NAME, post_image.image.send(version).path)
 
         S3_CLIENT.copy_object({
                                 key: post_image.image.send(version).path.to_s,
@@ -131,6 +135,8 @@ class Post < ApplicationRecord # rubocop:disable Metrics/ClassLength
                               })
       end
     end
+  rescue StandardError
+    true
   end
 
   def object_exists?(bucket, key)
