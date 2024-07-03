@@ -1,5 +1,5 @@
 <%= form_with(model: post, url:, multipart: true) do |form| %>
-  <div class="bg-brand-blue-100 dark:bg-brand-blue-900 p-4">
+  <div class="bg-brand-blue-200 dark:bg-brand-blue-900 p-4">
     <% if post.errors.any? %>
       <div style="color: red">
         <h2><%= pluralize(post.errors.count, 'error') %> prohibited this post from being saved:</h2>
@@ -10,47 +10,54 @@
         </ul>
       </div>
     <% end %>
-    <div class="text-brand-blue-700 dark:text-brand-blue-100">
-      <div class="flex justify-between items-center">
-        <% if post.featured_image.present? %>
-          <div class="flex items-center">
-            <%= image_tag post.featured_image.thumb.url, alt: 'featured image' %>
-          </div>
-        <% end %>
-        <div>
-          <%= form.label :featured_image, class: label_styles(css: "mx-0 px-0") %>
+    <section class="flex gap-3 justify-between">
+      <div class="w-full">
+        <%= form.label :title, class: label_styles %>
+        <%= form.text_field :title, class: input_styles %>
+      </div>
+      <div>
+        <div class="flex items-center">
+          <%= form.check_box :published, class: checkbox_styles %>
+          <%= form.label :published, class: label_styles(css: "pr-0") %>
+        </div>
+        <%= form.date_field :published_on %>
+      </div>
+    </section>
+    <section class="text-brand-blue-700 dark:text-brand-blue-100">
+      <%= form.label :og_image,   class: label_styles %>
+      <div class="flex items-center">
+        <%= image_tag post.og_image.small.url, alt: 'og image' if post.og_image.present? %>
+        <div class="ml-4">
+          <%= form.file_field :og_image, class: "text-brand-blue-700 dark:text-brand-blue-100" %>
+        </div>
+      </div>
+    </section>
+    <section class="text-brand-blue-700 dark:text-brand-blue-100 ">
+      <%= form.label :featured_image, class: label_styles(css: "mx-0 px-0") %>
+      <div class="flex items-center">
+        <%= image_tag post.featured_image.small_og.url, alt: 'featured image' if post.featured_image.present? %>
+        <div class="ml-4">
           <%= form.file_field :featured_image, class: "text-brand-blue-700 dark:text-brand-blue-100" %>
         </div>
-        <div class="flex flex-col">
-          <div class="flex items-center justify-end">
-            <%= form.check_box :published, class: checkbox_styles %>
-            <%= form.label :published, class: label_styles(css: "pr-0") %>
-          </div>
-          <div>
-            <%= form.date_field :published_on %>
-          </div>
+      </div>
+    </section>
+    <section>
+      <div>
+        <%= form.label :description, class: label_styles %>
+        <%= form.text_area :description, class: text_area_styles %>
+      </div>
+      <div class="flex gap-4 justify-between">
+        <div class="w-1/2">
+          <%= form.label :collection_id, class: label_styles %>
+          <%= form.collection_select :collection_id, Collection.all, :id, :name, { include_blank: true }, class: "w-full" %>
+        </div>
+        <div class="w-1/2">
+          <%= form.label :tag_ids, class: label_styles %>
+          <%= select_tag 'post[tag_ids][]', options_for_select(@tag_options, selected: @selected_tags), {data: {controller: "multi-select"}, multiple: true, class: ""} %>
         </div>
       </div>
-    </div>
-    <div>
-      <%= form.label :title, class: label_styles %>
-      <%= form.text_field :title, class: input_styles %>
-    </div>
-    <div>
-      <%= form.label :description, class: label_styles %>
-      <%= form.text_area :description, class: text_area_styles %>
-    </div>
-    <div class="flex gap-4 justify-between">
-      <div class="w-1/2">
-        <%= form.label :collection_id, class: label_styles %>
-        <%= form.collection_select :collection_id, Collection.all, :id, :name, { include_blank: true }, class: "w-full" %>
-      </div>
-      <div class="w-1/2">
-        <%= form.label :tag_ids, class: label_styles %>
-        <%= select_tag 'post[tag_ids][]', options_for_select(@tag_options, selected: @selected_tags), {data: {controller: "multi-select"}, multiple: true, class: ""} %>
-      </div>
-    </div>
-    <div
+    </section>
+    <section
       data-controller="markdown-previewer"
       data-markdown-previewer-post-id-value="<%= post.id.to_s %>"
       class="mt-4">
@@ -64,7 +71,7 @@
       </div>
       <div data-markdown-previewer-target="bodyPreview" class="<%= markdown_container_styles(css: 'w-full h-[500px] overflow-y-scroll hidden') %>">
       </div>
-    </div>
+    </section>
     <div class="w-full flex justify-end">
       <%= form.submit class: button_styles(css: 'mt-4 mb-10') %>
     </div>

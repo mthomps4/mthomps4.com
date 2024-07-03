@@ -1,15 +1,13 @@
 # frozen_string_literal: true
 
-class Post < ApplicationRecord
+class Post < ApplicationRecord # rubocop:disable Metrics/ClassLength
   # require 'open-uri'
   include ApplicationHelper
   include Taggable
   mount_uploader :featured_image, FeaturedUploader
-  # mount_uploader :og_image, OgUploader
+  mount_uploader :og_image, OgUploader
 
-  # Don't set on create_draft Post.create!
   before_save :set_published_on, unless: :new_record?
-  # before_save :recreate_og_image, unless: :new_record?
   after_save :create_backup
 
   has_many :posts_tags, dependent: :nullify
@@ -22,12 +20,16 @@ class Post < ApplicationRecord
   scope :published, -> { where(published: true) }
 
   def self.create_draft
-    # Set base og_image for future updates
-    # image_path = Rails.root.join('app/assets/images/og-base.png')
-    # og_image = File.open(image_path)
-
     Post.create!(title: 'DRAFT', description: 'Add a description here...', content: 'Write your post here...',
                  published: false)
+  end
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[collection_id content created_at description featured_image id id_value og_image post_type published published_on title updated_at]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[collection post_images posts_tags tags]
   end
 
   def set_published_on
@@ -36,7 +38,7 @@ class Post < ApplicationRecord
     self.published_on = Time.zone.now if published?
   end
 
-  def create_backup
+  def create_backup # rubocop:disable Metrics/AbcSize
     path = "post/#{id}"
 
     S3_BACKUP_BUCKET.put_object({
@@ -50,6 +52,7 @@ class Post < ApplicationRecord
                                     title:,
                                     description:,
                                     type: post_type,
+                                    og_image:,
                                     featured_image:,
                                     tags: tags.map(&:name),
                                     published_on:,
@@ -58,17 +61,22 @@ class Post < ApplicationRecord
                                 })
 
     sync_featured_image if featured_image.present?
-    # sync_og_image if og_image.present?
+    sync_og_image if og_image.present?
+    sync_post_images if post_images.present?
   end
 
   def sync_featured_image # rubocop:disable Metrics/AbcSize
-    S3_CLIENT.copy_object({
-                            key: featured_image.path.to_s,
-                            bucket: S3_BACKUP_BUCKET_NAME,
-                            copy_source: "#{S3_CDN_BUCKET_NAME}/#{featured_image.path}"
-                          })
+    if object_exists?(S3_BACKUP_BUCKET_NAME, featured_image.path)
+      S3_CLIENT.copy_object({
+                              key: featured_image.path.to_s,
+                              bucket: S3_BACKUP_BUCKET_NAME,
+                              copy_source: "#{S3_CDN_BUCKET_NAME}/#{featured_image.path}"
+                            })
+    end
 
     featured_image.versions.each_key do |version|
+      next unless object_exists?(S3_BACKUP_BUCKET_NAME, featured_image.send(version).path)
+
       S3_CLIENT.copy_object({
                               key: featured_image.send(version).path.to_s,
                               copy_source: "#{S3_CDN_BUCKET_NAME}/#{featured_image.send(version).path}",
@@ -77,7 +85,60 @@ class Post < ApplicationRecord
     end
   end
 
+  def sync_og_image # rubocop:disable Metrics/AbcSize
+    if object_exists?(S3_BACKUP_BUCKET_NAME, og_image.path)
+      S3_CLIENT.copy_object({
+                              key: og_image.path.to_s,
+                              bucket: S3_BACKUP_BUCKET_NAME,
+                              copy_source: "#{S3_CDN_BUCKET_NAME}/#{og_image.path}"
+                            })
+    end
+
+    og_image.versions.each_key do |version|
+      next unless object_exists?(S3_BACKUP_BUCKET_NAME, og_image.send(version).path)
+
+      S3_CLIENT.copy_object({
+                              key: og_image.send(version).path.to_s,
+                              copy_source: "#{S3_CDN_BUCKET_NAME}/#{og_image.send(version).path}",
+                              bucket: S3_BACKUP_BUCKET_NAME
+                            })
+    end
+  end
+
+  def sync_post_images # rubocop:disable Metrics/AbcSize
+    post_images.each do |post_image|
+      if object_exists?(S3_BACKUP_BUCKET_NAME, post_image.image.path)
+        S3_CLIENT.copy_object({
+                                key: post_image.image.path.to_s,
+                                bucket: S3_BACKUP_BUCKET_NAME,
+                                copy_source: "#{S3_CDN_BUCKET_NAME}/#{post_image.image.path}"
+                              })
+      end
+
+      og_image.versions.each_key do |version|
+        next unless object_exists?(S3_BACKUP_BUCKET_NAME, post_image.image.send(version).path)
+
+        S3_CLIENT.copy_object({
+                                key: post_image.image.send(version).path.to_s,
+                                copy_source: "#{S3_CDN_BUCKET_NAME}/#{post_image.image.send(version).path}",
+                                bucket: S3_BACKUP_BUCKET_NAME
+                              })
+      end
+    end
+  end
+
+  def object_exists?(bucket, key)
+    S3_CLIENT.head_object({ bucket:, key: })
+    true
+  rescue Aws::S3::Errors::NoSuchKey
+    false
+  rescue StandardError # rubocop:disable Lint/DuplicateBranch
+    false
+  end
+
   def featured_cdn_url(type = :raw_image)
+    return nil if featured_image.blank?
+
     version_keys = featured_image.versions.keys
 
     uploaded_image = if version_keys.include?(type.to_sym)
@@ -86,46 +147,20 @@ class Post < ApplicationRecord
                        featured_image
                      end
 
-    return "#{cdn_asset_host}/#{uploaded_image.path}" if uploaded_image.present? && uploaded_image.path.present?
+    "#{cdn_asset_host}/#{uploaded_image.path}" if uploaded_image.present? && uploaded_image.path.present?
   end
 
-  # def sync_og_image
-  #   S3_CLIENT.copy_object({
-  #                           key: og_image.path.to_s,
-  #                           bucket: S3_BACKUP_BUCKET_NAME,
-  #                           copy_source: "#{S3_CDN_BUCKET_NAME}/#{og_image.path}"
-  #                         })
-  #
-  #   og_image.versions.each_key do |version|
-  #     S3_CLIENT.copy_object({
-  #                             key: og_image.send(version).path.to_s,
-  #                             copy_source: "#{S3_CDN_BUCKET_NAME}/#{og_image.send(version).path}",
-  #                             bucket: S3_BACKUP_BUCKET_NAME
-  #                           })
-  #   end
-  # end
-  #
-  # def og_image_cdn_url
-  #   # cdn_asset_host + '/' + og_image.with_title.path
-  #   # I can't spot where the tempfile names are being generated for path...
-  #   # https://assets.com/post/8/with_title_1718041263-508747333762410-0003-9581/og-base.png
-  #
-  #   "#{cdn_asset_host}/post/#{id}/with_title_og.png"
-  # end
-  #
-  # def recreate_og_image
-  #   # og_image.recreate_versions!
-  #   # We need to trigger a full recreation of the og_image here - versions doesn't work
-  #   image_path = Rails.root.join('app/assets/images/og-base.png')
-  #   og_image = File.open(image_path)
-  #   self.og_image = og_image
-  # end
+  def og_image_cdn_url(type = :raw_image)
+    return nil if og_image.blank?
 
-  def self.ransackable_attributes(_auth_object = nil)
-    %w[collection_id content created_at description featured_image id id_value og_image post_type published published_on title updated_at]
-  end
+    version_keys = og_image.versions.keys
 
-  def self.ransackable_associations(_auth_object = nil)
-    %w[collection post_images posts_tags tags]
+    uploaded_image = if version_keys.include?(type.to_sym)
+                       og_image.send(type)
+                     else
+                       og_image
+                     end
+
+    "#{cdn_asset_host}/#{uploaded_image.path}" if uploaded_image.present? && uploaded_image.path.present?
   end
 end
